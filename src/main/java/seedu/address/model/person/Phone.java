@@ -11,8 +11,16 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Phone numbers should only contain '+', spaces, parentheses or numbers, and it should be "
+                    + "a valid phone number. If country code is omitted, it must be a Singapore phone number.";
+
+    //@@author {logical-1985516}-reused
+    //Reused from https://codingnconcepts.com/java/java-regex-to-validate-phone-number/#regex-to-match-10-digit-phone-number-with-parentheses
+    //with minor modifications
+    public static final String INTERNATIONAL_VALIDATION_REGEX =
+            "^\\+\\d{1,3}( )?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$";
+    public static final String LOCAL_VALIDATION_REGEX = "^[689]\\d{3}( )?\\d{4}$";
+    //@@author
     public final String value;
 
     /**
@@ -30,7 +38,7 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(INTERNATIONAL_VALIDATION_REGEX) || test.matches(LOCAL_VALIDATION_REGEX);
     }
 
     @Override
