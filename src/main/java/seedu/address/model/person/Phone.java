@@ -19,7 +19,7 @@ public class Phone {
     //with minor modifications
     public static final String INTERNATIONAL_VALIDATION_REGEX =
             "^\\+\\d{1,3}( )?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$";
-    public static final String LOCAL_VALIDATION_REGEX = "^[689]\\d{3}( )?\\d{4}$";
+    public static final String LOCAL_VALIDATION_REGEX = "^[3689]\\d{3}[- ]?\\d{4}$";
     //@@author
     public final String value;
 
