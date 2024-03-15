@@ -14,13 +14,9 @@ public class Phone {
             "Phone numbers should only contain '+', spaces, parentheses or numbers, and it should be "
                     + "a valid phone number. If country code is omitted, it must be a Singapore phone number.";
 
-    //@@author {logical-1985516}-reused
-    //Reused from https://codingnconcepts.com/java/java-regex-to-validate-phone-number/#regex-to-match-10-digit-phone-number-with-parentheses
-    //with minor modifications
     public static final String INTERNATIONAL_VALIDATION_REGEX =
-            "^\\+\\d{1,3}( )?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$";
+            "^\\+\\d{1,3}((\\d|\\(|\\)|-| )*)\\d((\\d|\\(|\\)|-| )*)\\d((\\d|\\(|\\)|-| )*)\\d$";
     public static final String LOCAL_VALIDATION_REGEX = "^[3689]\\d{3}[- ]?\\d{4}$";
-    //@@author
     public final String value;
 
     /**
