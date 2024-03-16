@@ -17,7 +17,7 @@ public class Phone {
                     + "If country code is omitted, it must be a valid Singapore phone number.";
 
     public static final String INTERNATIONAL_VALIDATION_REGEX =
-            "^\\+\\d{1,3}((\\d|\\(|\\)|-| )*)\\d((\\d|\\(|\\)|-| )*)\\d((\\d|\\(|\\)|-| )*)\\d$";
+            "^\\+\\d{1,3} ((\\d|\\(|\\)|-| )*)\\d((\\d|\\(|\\)|-| )*)\\d((\\d|\\(|\\)|-| )*)\\d$";
     public static final String LOCAL_VALIDATION_REGEX = "^[3689]\\d{3}[- ]?\\d{4}$";
     public final String value;
 
