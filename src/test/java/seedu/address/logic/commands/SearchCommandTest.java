@@ -72,9 +72,9 @@ public class SearchCommandTest {
 
     @Test
     public void execute_matchSubstring() {
-        Person alex = new PersonBuilder().withName("Alex Meyer").withPhone("659482224")
+        Person alex = new PersonBuilder().withName("Alex Meyer").withPhone("+65 94822245")
                 .withEmail("alex@example.com").withCountry("US").withComment("Good job").build();
-        Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
+        Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("+65 94822245")
                 .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
                 .build();
         expectedModel.addPerson(alex);
@@ -104,14 +104,14 @@ public class SearchCommandTest {
 
     @Test
     public void execute_matchExact() {
-        Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
+        Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("+65 94822245")
                 .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
                 .build();
         expectedModel.addPerson(belle);
         model = expectedModel;
 
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        SearchPersonDescriptor descriptor = new SearchPersonDescriptorBuilder().withPhone("9482224").build();
+        SearchPersonDescriptor descriptor = new SearchPersonDescriptorBuilder().withPhone("94822245").build();
         SearchCommand command = new SearchCommand(descriptor);
         expectedModel.updateFilteredPersonList(descriptor.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -141,7 +141,7 @@ public class SearchCommandTest {
 
     @Test
     public void execute_multipleFields() {
-        Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
+        Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("+65 94822245")
                 .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
                 .build();
         expectedModel.addPerson(belle);
