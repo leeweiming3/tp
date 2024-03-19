@@ -52,9 +52,10 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone("87081796"));
         assertTrue(Phone.isValidPhone("35261934"));
         assertTrue(Phone.isValidPhone("95261934"));
+
         //@@author {logical-1985516}-reused
-        //Reused from https://codingnconcepts.com/java/java-regex-to-validate-phone-number/#regex-to-match-10-digit-phone-number-with-parentheses
-        //with minor modifications
+        //Reused from
+        //https://codingnconcepts.com/java/java-regex-to-validate-phone-number
         assertTrue(Phone.isValidPhone("+995 442 123456"));
         assertTrue(Phone.isValidPhone("+93 30 539-0605"));
         assertTrue(Phone.isValidPhone("+61 2 1255-3456"));
