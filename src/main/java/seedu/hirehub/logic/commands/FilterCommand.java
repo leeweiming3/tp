@@ -4,6 +4,7 @@ import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import seedu.hirehub.logic.Messages;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.person.SearchPredicate;
@@ -15,7 +16,7 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the application list by the specified job "
             + "or candidate.\n"
             + "Parameters: [" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TITLE + "TITLE]"
+            + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EMAIL + "johndoe@example.com"
@@ -32,6 +33,9 @@ public class FilterCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+
+        // to change to application list
+        return new CommandResult(
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 }

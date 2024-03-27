@@ -9,10 +9,12 @@ import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TITLE;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import javafx.application.Application;
 import seedu.hirehub.logic.commands.FilterCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.person.ContainsKeywordsPredicate;
 import seedu.hirehub.model.person.Email;
+import seedu.hirehub.model.person.Person;
 import seedu.hirehub.model.person.SearchPredicate;
 import seedu.hirehub.model.person.Status;
 
@@ -37,28 +39,29 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EMAIL, PREFIX_TITLE, PREFIX_STATUS);
 
-        ArrayList<ContainsKeywordsPredicate> predicateList = new ArrayList<>();
+        ArrayList<ContainsKeywordsPredicate<Application, ?>> predicateList = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            ContainsKeywordsPredicate<Email> emailSearch =
+            ContainsKeywordsPredicate<Application, Email> emailSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_EMAIL, Optional.of(email));
             predicateList.add(emailSearch);
         }
 
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
             String title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-            ContainsKeywordsPredicate<Title> titleSearch = new ContainsKeywordsPredicate<>(PREFIX_TITLE, title);
+            ContainsKeywordsPredicate<Application, Title> titleSearch =
+                    new ContainsKeywordsPredicate<>(PREFIX_TITLE, title);
             predicateList.add(titleSearch);
         }
 
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-            ContainsKeywordsPredicate<Status> statusSearch =
+            ContainsKeywordsPredicate<Application, Status> statusSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_STATUS, Optional.of(status));
             predicateList.add(statusSearch);
         }
 
-        return new FilterCommand(new SearchPredicate(predicateList));
+        return new FilterCommand(new SearchPredicate<Application>(predicateList));
     }
 }

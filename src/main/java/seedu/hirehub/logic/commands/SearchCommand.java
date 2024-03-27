@@ -24,6 +24,7 @@ import seedu.hirehub.model.person.ContainsKeywordsPredicate;
 import seedu.hirehub.model.person.Country;
 import seedu.hirehub.model.person.Email;
 import seedu.hirehub.model.person.Name;
+import seedu.hirehub.model.person.Person;
 import seedu.hirehub.model.person.Phone;
 import seedu.hirehub.model.person.SearchPredicate;
 import seedu.hirehub.model.person.Status;
@@ -167,30 +168,30 @@ public class SearchCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public SearchPredicate getPredicate() {
-            ArrayList<ContainsKeywordsPredicate> predicateList = new ArrayList<>();
-            ContainsKeywordsPredicate<Name> nameSearch =
+        public SearchPredicate<Person> getPredicate() {
+            ArrayList<ContainsKeywordsPredicate<Person, ?>> predicateList = new ArrayList<>();
+            ContainsKeywordsPredicate<Person, Name> nameSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_NAME, this.getName());
             predicateList.add(nameSearch);
-            ContainsKeywordsPredicate<Phone> phoneSearch =
+            ContainsKeywordsPredicate<Person, Phone> phoneSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_PHONE, this.getPhone());
             predicateList.add(phoneSearch);
-            ContainsKeywordsPredicate<Email> emailSearch =
+            ContainsKeywordsPredicate<Person, Email> emailSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_EMAIL, this.getEmail());
             predicateList.add(emailSearch);
-            ContainsKeywordsPredicate<Country> countrySearch =
+            ContainsKeywordsPredicate<Person, Country> countrySearch =
                     new ContainsKeywordsPredicate<>(PREFIX_COUNTRY, this.getCountry());
             predicateList.add(countrySearch);
-            ContainsKeywordsPredicate<Status> statusSearch =
+            ContainsKeywordsPredicate<Person, Status> statusSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_STATUS, this.getStatus());
             predicateList.add(statusSearch);
-            ContainsKeywordsPredicate<Comment> commentSearch =
+            ContainsKeywordsPredicate<Person, Comment> commentSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_COMMENT, this.getComment());
             predicateList.add(commentSearch);
-            ContainsKeywordsPredicate<Set<Tag>> tagSearch =
+            ContainsKeywordsPredicate<Person, Set<Tag>> tagSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_TAG, this.getTags());
             predicateList.add(tagSearch);
-            return new SearchPredicate(predicateList);
+            return new SearchPredicate<>(predicateList);
         }
 
         @Override
