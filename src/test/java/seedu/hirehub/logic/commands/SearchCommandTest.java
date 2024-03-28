@@ -103,14 +103,8 @@ public class SearchCommandTest {
 
     @Test
     public void execute_matchExact() {
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/SearchCommandTest.java
         Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("+65 94822245")
-                .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
-=======
-        Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
-                .withEmail("bellewerner@example.com").withCountry("US").withComment("Good work")
->>>>>>> df0f74844677c9a23eb2fe604a8094046647d382:src/test/java/seedu/hirehub/logic/commands/SearchCommandTest.java
-                .build();
+                .withEmail("bellewerner@example.com").withCountry("US").withComment("Good work").build();
         expectedModel.addPerson(belle);
         model = expectedModel;
 
@@ -138,14 +132,8 @@ public class SearchCommandTest {
 
     @Test
     public void execute_multipleFields() {
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/SearchCommandTest.java
         Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("+65 94822245")
-                .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
-=======
-        Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
-                .withEmail("bellewerner@example.com").withCountry("US").withComment("Good work")
->>>>>>> df0f74844677c9a23eb2fe604a8094046647d382:src/test/java/seedu/hirehub/logic/commands/SearchCommandTest.java
-                .build();
+                .withEmail("bellewerner@example.com").withCountry("US").withComment("Good work").build();
         expectedModel.addPerson(belle);
         model = expectedModel;
 
