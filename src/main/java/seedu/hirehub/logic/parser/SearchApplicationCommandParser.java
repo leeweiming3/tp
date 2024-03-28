@@ -1,7 +1,7 @@
 package seedu.hirehub.logic.parser;
 
 import seedu.hirehub.model.application.Application;
-import seedu.hirehub.logic.commands.FilterCommand;
+import seedu.hirehub.logic.commands.SearchApplicationCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.person.ContainsKeywordsPredicate;
 import seedu.hirehub.model.person.Email;
@@ -20,20 +20,20 @@ import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TITLE;
 /**
  * Parses input arguments and creates a new FilterCommand object
  */
-public class FilterCommandParser implements Parser<FilterCommand> {
+public class SearchApplicationCommandParser implements Parser<SearchApplicationCommand> {
 
 
     @Override
-    public FilterCommand parse(String args) throws ParseException {
+    public SearchApplicationCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EMAIL, PREFIX_TITLE, PREFIX_STATUS);
 
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchApplicationCommand.MESSAGE_USAGE));
         }
 
         if (args.trim().isEmpty()) {
-            throw new ParseException(FilterCommand.MESSAGE_NO_FIELD_PROVIDED);
+            throw new ParseException(SearchApplicationCommand.MESSAGE_NO_FIELD_PROVIDED);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EMAIL, PREFIX_TITLE, PREFIX_STATUS);
@@ -61,6 +61,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             predicateList.add(statusSearch);
         }
 
-        return new FilterCommand(new SearchPredicate<>(predicateList));
+        return new SearchApplicationCommand(new SearchPredicate<>(predicateList));
     }
 }

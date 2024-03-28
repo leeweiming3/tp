@@ -11,12 +11,12 @@ import seedu.hirehub.model.Model;
 import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.person.SearchPredicate;
 
-public class FilterCommand extends Command {
+public class SearchApplicationCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter";
+    public static final String COMMAND_WORD = "search_app";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the application list by the specified job "
-            + "or candidate.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all applications whose attributes match all "
+            + "the corresponding specified attributes.\n"
             + "Parameters: [" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_STATUS + "STATUS]\n"
@@ -25,11 +25,11 @@ public class FilterCommand extends Command {
             + PREFIX_TITLE + "Software Engineer "
             + PREFIX_STATUS + "IN_PROGRESS";
 
-    public static final String MESSAGE_NO_FIELD_PROVIDED = "Email, title or status to filter by must be provided.";
+    public static final String MESSAGE_NO_FIELD_PROVIDED = "At least one field to search for must be provided.";
 
     private final SearchPredicate<Application> searchPredicate;
 
-    public FilterCommand(SearchPredicate<Application> searchPredicate) {
+    public SearchApplicationCommand(SearchPredicate<Application> searchPredicate) {
         this.searchPredicate = searchPredicate;
     }
 
