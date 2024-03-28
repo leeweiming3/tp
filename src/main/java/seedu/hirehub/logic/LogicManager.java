@@ -13,10 +13,12 @@ import seedu.hirehub.logic.commands.CommandResult;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.logic.parser.AddressBookParser;
 import seedu.hirehub.logic.parser.ClearConfirmationStageParser;
+import seedu.hirehub.logic.parser.DeleteApplicationConfirmationStageParser;
 import seedu.hirehub.logic.parser.DeleteConfirmationStageParser;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ReadOnlyAddressBook;
+import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.storage.Storage;
 
@@ -36,6 +38,7 @@ public class LogicManager implements Logic {
     private final AddressBookParser addressBookParser;
     private final ClearConfirmationStageParser clearConfirmationStageParser;
     private final DeleteConfirmationStageParser deleteConfirmationStageParser;
+    private final DeleteApplicationConfirmationStageParser deleteApplicationConfirmationStageParser;
     private CommandBoxState state;
 
     /**
@@ -47,6 +50,7 @@ public class LogicManager implements Logic {
         addressBookParser = new AddressBookParser();
         clearConfirmationStageParser = new ClearConfirmationStageParser();
         deleteConfirmationStageParser = new DeleteConfirmationStageParser();
+        deleteApplicationConfirmationStageParser = new DeleteApplicationConfirmationStageParser();
         this.state = CommandBoxState.NORMAL;
     }
 
@@ -65,6 +69,9 @@ public class LogicManager implements Logic {
             break;
         case DELETECONFIRM:
             command = deleteConfirmationStageParser.parseCommand(commandText);
+            break;
+        case DELETEAPPLICATIONCONFIRM:
+            command = deleteApplicationConfirmationStageParser.parseCommand(commandText);
             break;
         default:
             break;
@@ -92,6 +99,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+    @Override
+    public ObservableList<Job> getFilteredJobList() {
+        return model.getFilteredJobList();
     }
 
     @Override
