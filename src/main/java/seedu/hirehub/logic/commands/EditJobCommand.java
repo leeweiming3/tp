@@ -15,9 +15,8 @@ import seedu.hirehub.commons.util.CollectionUtil;
 import seedu.hirehub.commons.util.ToStringBuilder;
 import seedu.hirehub.logic.Messages;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
-import seedu.hirehub.model.application.Application;
-import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.Model;
+import seedu.hirehub.model.job.Job;
 
 /**
  * Edits the details of an existing job in the address book.
@@ -138,7 +137,7 @@ public class EditJobCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title,description,vacancy);
+            return CollectionUtil.isAnyNonNull(title, description, vacancy);
         }
 
         public void setTitle(String title) {
