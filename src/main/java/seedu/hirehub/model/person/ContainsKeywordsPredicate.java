@@ -14,9 +14,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.hirehub.model.application.Application;
 import seedu.hirehub.commons.util.ToStringBuilder;
 import seedu.hirehub.logic.parser.Prefix;
+import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.status.Status;
 import seedu.hirehub.model.tag.Tag;
 

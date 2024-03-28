@@ -11,6 +11,9 @@ import seedu.hirehub.model.Model;
 import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.person.SearchPredicate;
 
+/**
+ *
+ */
 public class SearchApplicationCommand extends Command {
 
     public static final String COMMAND_WORD = "search_app";

@@ -1,24 +1,24 @@
 package seedu.hirehub.logic.parser;
 
-import seedu.hirehub.model.application.Application;
-import seedu.hirehub.logic.commands.SearchApplicationCommand;
-import seedu.hirehub.logic.parser.exceptions.ParseException;
-import seedu.hirehub.model.person.ContainsKeywordsPredicate;
-import seedu.hirehub.model.person.Email;
-import seedu.hirehub.model.person.SearchPredicate;
-import seedu.hirehub.model.status.Status;
-
-import java.util.ArrayList;
-import java.util.Optional;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.hirehub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
+import seedu.hirehub.logic.commands.SearchApplicationCommand;
+import seedu.hirehub.logic.parser.exceptions.ParseException;
+import seedu.hirehub.model.application.Application;
+import seedu.hirehub.model.person.ContainsKeywordsPredicate;
+import seedu.hirehub.model.person.Email;
+import seedu.hirehub.model.person.SearchPredicate;
+import seedu.hirehub.model.status.Status;
+
 /**
- * Parses input arguments and creates a new FilterCommand object
+ * Parses input arguments and creates a new SearchApplicationCommand object
  */
 public class SearchApplicationCommandParser implements Parser<SearchApplicationCommand> {
 
@@ -29,7 +29,8 @@ public class SearchApplicationCommandParser implements Parser<SearchApplicationC
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EMAIL, PREFIX_TITLE, PREFIX_STATUS);
 
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchApplicationCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SearchApplicationCommand.MESSAGE_USAGE));
         }
 
         if (args.trim().isEmpty()) {
