@@ -1,22 +1,21 @@
 package seedu.hirehub.logic.parser;
 
+import seedu.hirehub.model.application.Application;
+import seedu.hirehub.logic.commands.FilterCommand;
+import seedu.hirehub.logic.parser.exceptions.ParseException;
+import seedu.hirehub.model.person.ContainsKeywordsPredicate;
+import seedu.hirehub.model.person.Email;
+import seedu.hirehub.model.person.SearchPredicate;
+import seedu.hirehub.model.status.Status;
+
+import java.util.ArrayList;
+import java.util.Optional;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.hirehub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TITLE;
-
-import java.util.ArrayList;
-import java.util.Optional;
-
-import javafx.application.Application;
-import seedu.hirehub.logic.commands.FilterCommand;
-import seedu.hirehub.logic.parser.exceptions.ParseException;
-import seedu.hirehub.model.person.ContainsKeywordsPredicate;
-import seedu.hirehub.model.person.Email;
-import seedu.hirehub.model.person.Person;
-import seedu.hirehub.model.person.SearchPredicate;
-import seedu.hirehub.model.person.Status;
 
 /**
  * Parses input arguments and creates a new FilterCommand object
@@ -33,7 +32,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        if (!args.trim().isEmpty()) {
+        if (args.trim().isEmpty()) {
             throw new ParseException(FilterCommand.MESSAGE_NO_FIELD_PROVIDED);
         }
 
@@ -50,8 +49,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
             String title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-            ContainsKeywordsPredicate<Application, Title> titleSearch =
-                    new ContainsKeywordsPredicate<>(PREFIX_TITLE, title);
+            ContainsKeywordsPredicate<Application, String> titleSearch =
+                    new ContainsKeywordsPredicate<>(PREFIX_TITLE, Optional.of(title));
             predicateList.add(titleSearch);
         }
 
@@ -62,6 +61,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             predicateList.add(statusSearch);
         }
 
-        return new FilterCommand(new SearchPredicate<Application>(predicateList));
+        return new FilterCommand(new SearchPredicate<>(predicateList));
     }
 }

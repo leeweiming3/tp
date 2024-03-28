@@ -7,7 +7,7 @@ import java.util.function.Predicate;
  * Tests that all a {@code Person}'s {@code Attributes} matches the corresponding keywords given.
  */
 public class SearchPredicate<T> implements Predicate<T> {
-    private List<ContainsKeywordsPredicate<T, ?>> predicateList;
+    private final List<ContainsKeywordsPredicate<T, ?>> predicateList;
 
     public SearchPredicate(List<ContainsKeywordsPredicate<T, ?>> predicateList) {
         this.predicateList = predicateList;
@@ -33,7 +33,7 @@ public class SearchPredicate<T> implements Predicate<T> {
             return false;
         }
 
-        SearchPredicate otherSearchPredicate = (SearchPredicate) other;
+        SearchPredicate<T> otherSearchPredicate = (SearchPredicate<T>) other;
         return predicateList.equals(otherSearchPredicate.predicateList);
     }
 }

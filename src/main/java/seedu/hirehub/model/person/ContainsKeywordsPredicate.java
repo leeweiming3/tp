@@ -6,15 +6,18 @@ import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import javafx.application.Application;
+import seedu.hirehub.model.application.Application;
 import seedu.hirehub.commons.util.ToStringBuilder;
 import seedu.hirehub.logic.parser.Prefix;
+import seedu.hirehub.model.status.Status;
 import seedu.hirehub.model.tag.Tag;
 
 /**
@@ -77,10 +80,11 @@ public class ContainsKeywordsPredicate<S, T> implements Predicate<S> {
     private boolean applicationTest(Application application) {
         if (prefix.equals(PREFIX_EMAIL)) {
             Optional<Email> email = (Optional<Email>) keywords;
-            return application.getEmail().value.equals(email.orElse(application.getEmail()).value);
+            return application.getPerson().getEmail().value
+                    .equals(email.orElse(application.getPerson().getEmail()).value);
         } else if (prefix.equals(PREFIX_TITLE)) {
-            Optional<Title> title = (Optional<Title>) keywords;
-            return application.getTitle().value.contains(title.orElse(application.getTitle()).value);
+            Optional<String> title = (Optional<String>) keywords;
+            return application.getJob().getTitle().contains(title.orElse(application.getJob().getTitle()));
         } else if (prefix.equals(PREFIX_STATUS)) {
             Optional<Status> status = (Optional<Status>) keywords;
             return application.getStatus().value.equals(status.orElse(application.getStatus()).value);
