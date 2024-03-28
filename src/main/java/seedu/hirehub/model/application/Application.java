@@ -55,10 +55,17 @@ public class Application {
     }
 
     /**
-     * Returns person who applied for that job for.
+     * Returns person who applied for that job.
      */
     public Person getPerson() {
         return this.person;
+    }
+
+    /**
+     * Returns the status of the job application
+     */
+    public Status getStatus() {
+        return this.status;
     }
 
     /**
