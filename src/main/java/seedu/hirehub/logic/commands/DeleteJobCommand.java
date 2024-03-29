@@ -3,6 +3,7 @@ package seedu.hirehub.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.hirehub.commons.util.ToStringBuilder;
+import seedu.hirehub.logic.Messages;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.job.Job;
@@ -27,7 +28,7 @@ public class DeleteJobCommand extends Command {
         Job jobToDelete = model.getLastMentionedJob().get();
         model.deleteJob(jobToDelete);
         model.removeApplications(jobToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_JOB_SUCCESS, jobToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_JOB_SUCCESS, Messages.format(jobToDelete)));
     }
 
     @Override

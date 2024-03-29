@@ -6,6 +6,7 @@ import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_VACANCY;
 
 import seedu.hirehub.commons.util.ToStringBuilder;
+import seedu.hirehub.logic.Messages;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.job.Job;
@@ -42,7 +43,7 @@ public class AddJobCommand extends Command {
         }
 
         model.addJob(job);
-        return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, job));
+        return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, Messages.format(job)));
     }
 
     @Override

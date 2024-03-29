@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.hirehub.logic.parser.Prefix;
+import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.Person;
 
 /**
@@ -53,6 +54,19 @@ public class Messages {
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
+    }
+
+    /**
+     * Formats the {@code job} for display to the user.
+     */
+    public static String format(Job job) {
+        return "Job(Title: " +
+                job.getTitle() +
+                "; Description: " +
+                job.getDescription() +
+                "; Vacancy: " +
+                job.getVacancy() +
+                ")";
     }
 
 }
