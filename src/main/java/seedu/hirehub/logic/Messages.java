@@ -60,13 +60,13 @@ public class Messages {
      * Formats the {@code job} for display to the user.
      */
     public static String format(Job job) {
-        return "Job(Title: " +
-                job.getTitle() +
-                "; Description: " +
-                job.getDescription() +
-                "; Vacancy: " +
-                job.getVacancy() +
-                ")";
+        return "Job(Title: "
+                + job.getTitle()
+                + "; Description: "
+                + job.getDescription()
+                + "; Vacancy: "
+                + job.getVacancy()
+                + ")";
     }
 
 }
