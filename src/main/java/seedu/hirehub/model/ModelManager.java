@@ -239,7 +239,7 @@ public class ModelManager implements Model {
         applicationList.setApplication(target, editedApplication);
     }
 
-    /* Update all applications in application list with current person to new person*/
+    /* Updates all applications in application list with current person to new person */
     @Override
     public void replaceApplications(Person target, Person editedPerson) {
         List<Application> applications = new ArrayList<Application>();
@@ -253,7 +253,7 @@ public class ModelManager implements Model {
         applicationList.setApplications(applications);
     }
 
-    /* Update all applications in application list with current job to new job*/
+    /* Updates all applications in application list with current job to new job */
     @Override
     public void replaceApplications(Job target, Job editedJob) {
         List<Application> applications = new ArrayList<Application>();
@@ -267,7 +267,7 @@ public class ModelManager implements Model {
         applicationList.setApplications(applications);
     }
 
-    /* Remove all applications in application list with target person*/
+    /* Removes all applications in application list with target person */
     @Override
     public void removeApplications(Person target) {
         List<Application> applications = new ArrayList<Application>();
@@ -279,7 +279,7 @@ public class ModelManager implements Model {
         applicationList.setApplications(applications);
     }
 
-    /* Remove all applications in application list with target job*/
+    /* Removes all applications in application list with target job */
     @Override
     public void removeApplications(Job target) {
         List<Application> applications = new ArrayList<Application>();
@@ -289,6 +289,12 @@ public class ModelManager implements Model {
             }
         }
         applicationList.setApplications(applications);
+    }
+
+    /* Clears all applications in the model */
+    @Override
+    public void clearApplications() {
+        applicationList.setApplications(new UniqueApplicationList());
     }
 
     //=========== Filtered Application List Accessors ======================================================

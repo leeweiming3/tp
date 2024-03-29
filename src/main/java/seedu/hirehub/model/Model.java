@@ -117,17 +117,20 @@ public interface Model {
      */
     void setApplication(Application target, Application editedApplication);
 
-    /* Update all applications in application list with current person to new person*/
+    /* Updates all applications in application list with current person to new person */
     void replaceApplications(Person target, Person editedPerson);
 
-    /* Update all applications in application list with current job to new job*/
+    /* Updates all applications in application list with current job to new job */
     void replaceApplications(Job target, Job editedJob);
 
-    /* Remove all applications in application list with target person*/
+    /* Removes all applications in application list with target person */
     void removeApplications(Person target);
 
-    /* Remove all applications in application list with target job*/
+    /* Removes all applications in application list with target job */
     void removeApplications(Job target);
+
+    /* Clears all applications in the model */
+    void clearApplications();
 
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();
