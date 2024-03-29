@@ -224,6 +224,32 @@ public class ModelManager implements Model {
         applicationList.setApplication(target, editedApplication);
     }
 
+    /* Update all applications in application list with current job to new job*/
+    @Override
+    public void replaceApplications(Person target, Person editedPerson) {
+        List<Application> applications = new ArrayList<Application>();
+        for (Application app: applicationList) {
+            if (app.getPerson().equals(target)) {
+                applications.add(new Application(editedPerson, app.getJob(), app.getStatus()));
+            } else {
+                applications.add(app);
+            }
+        }
+        applicationList.setApplications(applications);
+    }
+
+    /* Remove all applications in application list with target person*/
+    @Override
+    public void removeApplications(Person person) {
+        List<Application> applications = new ArrayList<Application>();
+        for (Application app: applicationList) {
+            if (!app.getPerson().equals(person)) {
+                applications.add(app);
+            }
+        }
+        applicationList.setApplications(applications);
+    }
+
     //=========== Filtered Application List Accessors ======================================================
 
     /**
