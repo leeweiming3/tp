@@ -125,7 +125,6 @@ public class EditJobCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditJobDescriptor(EditJobDescriptor toCopy) {
             setTitle(toCopy.title);

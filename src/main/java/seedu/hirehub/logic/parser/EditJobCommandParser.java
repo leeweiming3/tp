@@ -12,7 +12,7 @@ import seedu.hirehub.logic.commands.EditJobCommand.EditJobDescriptor;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditJobCommand object
  */
 public class EditJobCommandParser implements Parser<EditJobCommand> {
 
