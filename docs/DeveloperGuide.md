@@ -155,6 +155,17 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### EditJob command 
+The EditJob command allows the recruiters to edit the details (job title, description, vacancy) for a particular job at a specified index from the job list. Given below is an example usage scenario and how the EditJob mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
+
+Step 2. The user types `edit_job 2 d/Good at OOP` to change the description of the job at index 2 to `Good at OOP`. This input is passed as an argument to `CommandResult#executeCommand(String)` in `MainWindow.java`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `EditJobCommandParser#parse(String)`.
+
+Step 3. `EditJobCommandParser#parse(String)` first checks if the given index is valid, before creating a new `EditJobDescriptor` object, which contains the attributes with the edited information that the `Job` object should have, if present. In this case, it contains `Good at OOP` for its `description` and `null` for the rest. `EditJobCommandParser#parse(String)` then parses the command to return a new `EditJobCommand` object containing the `EditJobDescriptor` object.
+
+Step 4. `EditJobCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the old job is updated in the job list with `ModelManager#setJob(Job, Job)`, the filtered job list in the model is updated with `ModelManager#updateFilteredJobList(Predicate<Job>)`, and the applications in the application list are updated to contain the edited job with `ModelManager#replaceApplciations(Job, Job)`. 
+
 ### Get Command
 
 Get command allows the recruiters to retrieve the candidate from the list at specified index in the database. If a recruiter types in `get [INDEX]` with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via following via following steps:
