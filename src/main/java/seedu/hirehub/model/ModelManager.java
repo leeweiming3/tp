@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.hirehub.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -29,8 +31,10 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     private Optional<Person> lastMentionedPerson;
+
     private final UniqueJobList jobList;
     private final FilteredList<Job> filteredJobs;
+    private Optional<Job> lastMentionedJob;
     private Optional<Application> lastMentionedApplication;
 
     private final UniqueApplicationList applicationList;
@@ -50,6 +54,7 @@ public class ModelManager implements Model {
         lastMentionedPerson = Optional.<Person>empty();
         jobList = new UniqueJobList();
         filteredJobs = new FilteredList<>(jobList.asUnmodifiableObservableList());
+        lastMentionedJob = Optional.<Job>empty();
         applicationList = new UniqueApplicationList();
         lastMentionedApplication = Optional.<Application>empty();
         filteredApplications = new FilteredList<>(applicationList.asUnmodifiableObservableList());
@@ -182,6 +187,16 @@ public class ModelManager implements Model {
         jobList.setJob(target, editedJob);
     }
 
+    @Override
+    public void setLastMentionedJob(Job job) {
+        lastMentionedJob = Optional.of(job);
+    }
+
+    @Override
+    public Optional<Job> getLastMentionedJob() {
+        return lastMentionedJob;
+    }
+
     //=========== Filtered Job List Accessors =============================================================
 
     /**
@@ -222,6 +237,32 @@ public class ModelManager implements Model {
     public void setApplication(Application target, Application editedApplication) {
         requireAllNonNull(target, editedApplication);
         applicationList.setApplication(target, editedApplication);
+    }
+
+    /* Update all applications in application list with current job to new job*/
+    @Override
+    public void replaceApplications(Job oldJob, Job newJob) {
+        List<Application> applications = new ArrayList<Application>();
+        for (Application app: applicationList) {
+            if (app.getJob().equals(oldJob)) {
+                applications.add(new Application(app.getPerson(), newJob, app.getStatus()));
+            } else {
+                applications.add(app);
+            }
+        }
+        applicationList.setApplications(applications);
+    }
+
+    /* Remove all applications in application list with target job*/
+    @Override
+    public void removeApplications(Job job) {
+        List<Application> applications = new ArrayList<Application>();
+        for (Application app: applicationList) {
+            if (!app.getJob().equals(job)) {
+                applications.add(app);
+            }
+        }
+        applicationList.setApplications(applications);
     }
 
     //=========== Filtered Application List Accessors ======================================================

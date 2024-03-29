@@ -155,9 +155,20 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### EditJob command 
+The EditJob command allows the recruiters to edit the details (job title, description, vacancy) for a particular job at a specified index from the job list. Given below is an example usage scenario and how the EditJob mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
+
+Step 2. The user types `edit_job 2 d/Good at OOP` to change the description of the job at index 2 to `Good at OOP`. This input is passed as an argument to `MainWindow#executeCommand(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `EditJobCommandParser#parse(String)`.
+
+Step 3. `EditJobCommandParser#parse(String)` first checks if the given index is valid, before creating a new `EditJobDescriptor` object, which contains the attributes with the edited information that the `Job` object should have, if present. In this case, it contains `Good at OOP` for its `description` and `null` for the rest. `EditJobCommandParser#parse(String)` then parses the command to return a new `EditJobCommand` object containing the `EditJobDescriptor` object.
+
+Step 4. `EditJobCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the old job is updated in the job list with `ModelManager#setJob(Job, Job)`, the filtered job list in the model is updated with `ModelManager#updateFilteredJobList(Predicate<Job>)`, and the applications in the application list are updated to contain the edited job with `ModelManager#replaceApplications(Job, Job)`. 
+
 ### Get Command
 
-Get command allows the recruiters to retrieve the candidate from the list at specified index in the database. If a recruiter types in "get \[INDEX\]" with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via following via following steps:
+Get command allows the recruiters to retrieve the candidate from the list at specified index in the database. If a recruiter types in `get [INDEX]` with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via following via following steps:
 
 1. Get command class was created in `Command` file in `Logic` component which constructs a get command with candidate index as an argument
 2. execute() method in getcommand class checks whether index provided by the user is valid (i.e. positive integer with smaller or equal to the size of candidate list) or not, and filters the candidate list with given index number, creating a new `CommandResult` object that output success message
@@ -174,6 +185,27 @@ Step 3. `GetCommand#execute()` checks whether index 3 is valid argument, and if 
 The following sequence diagram shows how a get operation goes through the `Logic` component:
 
 ![GetSequenceDiagram](images/GetSequenceDiagram.png)
+
+### Search Command
+
+Search Command searches candidates whose attributes match all the corresponding attributes (i.e. intersection of all the matches). Phone, email and country are matched by equality, while name, comment, tag are matched by substring of the candidate attributes. The search operation is executed as follows:
+
+Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
+
+Step 2. The user types `search n/l c/SG` to retrieve candidates whose name contains `l`and whose country is `SG`. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `SearchCommandParser#parse(String)`.
+
+Step 3. `SearchCommandParser#parse(String)` creates a new `SearchPersonDescriptor` object, which contains the attributes with the required information that a `Person` object should match, if present. In this case, it contains `l` for its `name` attribute and `SG` for its `country` attribute, and `null` for the rest. `SearchCommandParser#parse(String)` then parses the command to return a new `SearchCommand` object containing the `SearchPersonDescriptor` object.
+
+Step 4. `SearchCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where `SearchPersonDescriptor#getPredicate()` uses the attributes in `SearchPersonDescriptor` to create `ContainsKeywordsPredicate` objects (e.g. `ContainsKeywordsPredicate("n/", Optional.of("l"))`) with the corresponding prefixes and information, before returning a new `SearchPredicate` object containing these `ContainsKeywordsPredicate` objects. Note that a `ContainsKeywordsPredicate` object is created for each attribute, even if it is `null`.
+
+Step 5. `ModelManager#updateFilteredPerson(Predicate<Person>)` (with the `SearchPredicate` object as its argument) is called, where `SearchPredicate#test(Person)` is called. Then for each predicate in the `SearchPredicate` object, `ContainsKeywordsPredicate#test(Person)` is called, which checks if one of the specified attribute contains the specified information (e.g. `ContainsKeywordsPredicate("n/", Optional.of("l"))` tests if `name` contains `l`). `SearchPredicate#test(Person)` then returns people in which **all** `ContainsKeywordsPredicate#test(Person)` in the `SearchPredicate` return `true`. `ModelManager#updateFilteredPerson(Predicate<Person>)` then updates the model to display such people only.
+
+The following sequence diagram shows how a search operation goes through the various components:
+
+![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
+
+Alternatives:
+`SearchPersonDescriptor` may be omitted - in which case, `SearchCommandParser#parse(String)` can directly use the attributes it has parsed to create a `SearchPredicate` object with the relevant attributes and information to search for. However, the methods to test `SearchPersonDescriptor` are readily available, which would ease the testing process.
 
 
 ### \[Proposed\] Undo/redo feature

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.hirehub.logic.parser.Prefix;
+import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.Person;
 
 /**
@@ -23,6 +24,7 @@ public class Messages {
     public static final String MESSAGE_APPLICATIONS_LISTED_OVERVIEW = "%1$d applications listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_INVALID_JOB_DISPLAYED_INDEX = "The job index provided is invalid";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -53,6 +55,19 @@ public class Messages {
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
+    }
+
+    /**
+     * Formats the {@code job} for display to the user.
+     */
+    public static String format(Job job) {
+        return "Job(Title: "
+                + job.getTitle()
+                + "; Description: "
+                + job.getDescription()
+                + "; Vacancy: "
+                + job.getVacancy()
+                + ")";
     }
 
 }

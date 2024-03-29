@@ -62,7 +62,7 @@ public class Application {
     }
 
     /**
-     * Returns the status of the application.
+     * Returns the status of the job application.
      */
     public Status getStatus() {
         return this.status;

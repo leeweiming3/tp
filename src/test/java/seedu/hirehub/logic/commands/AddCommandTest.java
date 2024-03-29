@@ -192,6 +192,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setLastMentionedJob(Job job) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Job> getLastMentionedJob() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Job> getFilteredJobList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -218,6 +228,16 @@ public class AddCommandTest {
 
         @Override
         public void setApplication(Application target, Application editedApplication) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void replaceApplications(Job oldJob, Job newJob) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeApplications(Job job) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -11,8 +11,14 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "International phone numbers should only contain a country code "
+                    + "in front (+ followed by 1 to 3 digits), followed by a combination of digits, spaces, "
+                    + "parentheses or hyphens with at least 3 digits.\n"
+                    + "If country code is omitted, it must be a valid Singapore phone number.";
+
+    public static final String INTERNATIONAL_VALIDATION_REGEX =
+            "^\\+\\d{1,3} ((\\d|\\(|\\)|-| )*)\\d((\\d|\\(|\\)|-| )*)\\d((\\d|\\(|\\)|-| )*)\\d$";
+    public static final String LOCAL_VALIDATION_REGEX = "^[3689]\\d{3}[- ]?\\d{4}$";
     public final String value;
 
     /**
@@ -30,7 +36,7 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(INTERNATIONAL_VALIDATION_REGEX) || test.matches(LOCAL_VALIDATION_REGEX);
     }
 
     @Override
