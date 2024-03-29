@@ -120,14 +120,14 @@ public interface Model {
     /* Update all applications in application list with current person to new person*/
     void replaceApplications(Person target, Person editedPerson);
 
-    /* Remove all applications in application list with target person*/
-    void removeApplications(Person person);
-
     /* Update all applications in application list with current job to new job*/
-    void replaceApplications(Job oldJob, Job newJob);
+    void replaceApplications(Job target, Job editedJob);
+
+    /* Remove all applications in application list with target person*/
+    void removeApplications(Person target);
 
     /* Remove all applications in application list with target job*/
-    void removeApplications(Job job);
+    void removeApplications(Job target);
 
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();

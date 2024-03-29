@@ -254,6 +254,7 @@ public class ModelManager implements Model {
     }
 
     /* Update all applications in application list with current job to new job*/
+    @Override
     public void replaceApplications(Job target, Job editedJob) {
         List<Application> applications = new ArrayList<Application>();
         for (Application app: applicationList) {

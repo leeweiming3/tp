@@ -232,7 +232,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void replaceApplications(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void replaceApplications(Job oldJob, Job newJob) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeApplications(Person target) {
             throw new AssertionError("This method should not be called.");
         }
 
