@@ -15,6 +15,7 @@ import seedu.hirehub.logic.parser.AddressBookParser;
 import seedu.hirehub.logic.parser.ClearConfirmationStageParser;
 import seedu.hirehub.logic.parser.DeleteApplicationConfirmationStageParser;
 import seedu.hirehub.logic.parser.DeleteConfirmationStageParser;
+import seedu.hirehub.logic.parser.DeleteJobConfirmationStageParser;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ReadOnlyAddressBook;
@@ -39,6 +40,7 @@ public class LogicManager implements Logic {
     private final ClearConfirmationStageParser clearConfirmationStageParser;
     private final DeleteConfirmationStageParser deleteConfirmationStageParser;
     private final DeleteApplicationConfirmationStageParser deleteApplicationConfirmationStageParser;
+    private final DeleteJobConfirmationStageParser deleteJobConfirmationStageParser;
     private CommandBoxState state;
 
     /**
@@ -51,6 +53,7 @@ public class LogicManager implements Logic {
         clearConfirmationStageParser = new ClearConfirmationStageParser();
         deleteConfirmationStageParser = new DeleteConfirmationStageParser();
         deleteApplicationConfirmationStageParser = new DeleteApplicationConfirmationStageParser();
+        deleteJobConfirmationStageParser = new DeleteJobConfirmationStageParser();
         this.state = CommandBoxState.NORMAL;
     }
 
@@ -72,6 +75,9 @@ public class LogicManager implements Logic {
             break;
         case DELETEAPPLICATIONCONFIRM:
             command = deleteApplicationConfirmationStageParser.parseCommand(commandText);
+            break;
+        case DELETEJOBCONFIRM:
+            command = deleteJobConfirmationStageParser.parseCommand(commandText);
             break;
         default:
             break;

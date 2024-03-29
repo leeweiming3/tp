@@ -123,6 +123,12 @@ public interface Model {
     /* Remove all applications in application list with target person*/
     void removeApplications(Person person);
 
+    /* Update all applications in application list with current job to new job*/
+    void replaceApplications(Job oldJob, Job newJob);
+
+    /* Remove all applications in application list with target job*/
+    void removeApplications(Job job);
+
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();
 
@@ -153,6 +159,10 @@ public interface Model {
      * The job identity of {@code editedJob} must not be the same as another existing job in the address book.
      */
     void setJob(Job target, Job editedJob);
+
+    void setLastMentionedJob(Job job);
+
+    Optional<Job> getLastMentionedJob();
 
     /** Returns an unmodifiable view of the filtered job list */
     ObservableList<Job> getFilteredJobList();

@@ -10,32 +10,32 @@ import seedu.hirehub.logic.CommandBoxState;
 import seedu.hirehub.logic.Messages;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.model.Model;
-import seedu.hirehub.model.application.Application;
+import seedu.hirehub.model.job.Job;
 
 /**
- * Pushes the program into the state to delete the application at targetIndex.
+ * Pushes the program into the state to delete the job at targetIndex.
  */
-public class InitDeleteApplicationCommand extends Command {
-    public static final String MESSAGE_SUCCESS = "Delete application selected. Proceed? (Y/N)";
+public class InitDeleteJobCommand extends Command {
+    public static final String MESSAGE_SUCCESS = "Delete job selected. Proceed? (Y/N)";
     private final Index targetIndex;
 
 
-    public InitDeleteApplicationCommand(Index targetIndex) {
+    public InitDeleteJobCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Application> lastShownApplicationList = model.getFilteredApplicationList();
+        List<Job> lastShownJobList = model.getFilteredJobList();
 
-        if (targetIndex.getZeroBased() >= lastShownApplicationList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (targetIndex.getZeroBased() >= lastShownJobList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_JOB_DISPLAYED_INDEX);
         }
 
-        Application applicationToDelete = lastShownApplicationList.get(targetIndex.getZeroBased());
-        model.setLastMentionedApplication(applicationToDelete);
-        return new CommandResult(MESSAGE_SUCCESS, CommandBoxState.DELETEAPPLICATIONCONFIRM);
+        Job jobToDelete = lastShownJobList.get(targetIndex.getZeroBased());
+        model.setLastMentionedJob(jobToDelete);
+        return new CommandResult(MESSAGE_SUCCESS, CommandBoxState.DELETEJOBCONFIRM);
     }
 
     @Override
@@ -45,10 +45,10 @@ public class InitDeleteApplicationCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof InitDeleteApplicationCommand)) {
+        if (!(other instanceof InitDeleteJobCommand)) {
             return false;
         }
-        InitDeleteApplicationCommand o = (InitDeleteApplicationCommand) other;
+        InitDeleteJobCommand o = (InitDeleteJobCommand) other;
         return (this.targetIndex.equals(o.targetIndex));
     }
 
@@ -59,3 +59,4 @@ public class InitDeleteApplicationCommand extends Command {
                 .toString();
     }
 }
+
