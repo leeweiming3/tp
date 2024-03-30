@@ -9,7 +9,6 @@ import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_VACANCY;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import seedu.hirehub.logic.commands.SearchApplicationCommand;
 import seedu.hirehub.logic.commands.SearchJobCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.job.Job;
