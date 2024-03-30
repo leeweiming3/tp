@@ -37,9 +37,9 @@ public class AddApplicationCommand extends Command {
     public static final String MESSAGE_NO_PERSON_IN_LIST = "This candidate is not in the current list of candidates! ";
     public static final String MESSAGE_NO_JOB_IN_LIST = "This job has not been created";
     public static final String MESSAGE_EXCEEDS_VACANCY = "The number of accepted candidates already meets the"
-            + " stipulated vacancy.\n If you want to accept more candidates, you could increase the vacancy via"
-            + " edit_job command or set status to \"WAITLIST\" via status command.\n"
-            + " You can retrieve vacancy left via slots_left command";
+            + " stipulated vacancy.\n To accept more candidates, the vacancy for the job can be increased via the"
+            + " edit_job command, or change status for existing application(s) to this job via status command to"
+            + " a status other than ACCEPTED. You can retrieve vacancy left via slots_left command";
 
     private final Email email;
     private final String jobTitle;

@@ -283,10 +283,8 @@ public class ModelManager implements Model {
             }
         }
         for (Application app : applicationList) {
-            if (app.getJob().isSameJob(jobToFind)) {
-                if (app.getStatus().equals(new Status("ACCEPTED"))) {
+            if (app.getJob().isSameJob(jobToFind) && app.getStatus().equals(new Status("ACCEPTED"))) {
                     countAccepted += 1;
-                }
             }
         }
         return countVacancy - countAccepted;

@@ -136,7 +136,7 @@ public interface Model {
     void clearApplications();
 
     /** Returns a number of vacancy left for the given job */
-    int countRemainingVacancy(String jotTitle);
+    int countRemainingVacancy(String jobTitle);
 
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();
