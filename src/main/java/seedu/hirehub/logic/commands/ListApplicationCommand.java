@@ -6,7 +6,7 @@ import static seedu.hirehub.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 import seedu.hirehub.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all jobs in the address book to the user.
  */
 public class ListApplicationCommand extends Command {
 
