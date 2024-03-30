@@ -89,7 +89,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -258,7 +258,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public int countVacancy(String jobTitle) {
+        public int countVacancy(Job job) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int countAccepted(Job job) {
             throw new AssertionError("This method should not be called.");
         }
 

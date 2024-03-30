@@ -136,7 +136,10 @@ public interface Model {
     void clearApplications();
 
     /** Returns a number of initial vacancy for the given job */
-    int countVacancy(String jobTitle);
+    int countVacancy(Job jobToFind);
+
+    /** Returns number of accepted applications for the given job*/
+    int countAccepted(Job jobToFind);
 
     /** Returns a number of remaining vacancy left for the given job */
     int countRemainingVacancy(String jobTitle);

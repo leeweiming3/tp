@@ -273,8 +273,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int countVacancy(String jobTitle) {
-        Job jobToFind = new Job(jobTitle, "", 1);
+    public int countVacancy(Job jobToFind) {
         for (Job job : jobList) {
             if (job.isSameJob(jobToFind)) {
                 return job.getVacancy();
@@ -284,16 +283,21 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int countRemainingVacancy(String jobTitle) {
+    public int countAccepted(Job jobToFind) {
         int countAccepted = 0;
-        int countVacancy = countVacancy(jobTitle);
-        Job jobToFind = new Job(jobTitle, "", 1);
-
         for (Application app : applicationList) {
             if (app.getJob().isSameJob(jobToFind) && app.getStatus().equals(new Status("ACCEPTED"))) {
                 countAccepted += 1;
             }
         }
+        return countAccepted;
+    }
+
+    @Override
+    public int countRemainingVacancy(String jobTitle) {
+        Job jobToFind = new Job(jobTitle, "", 1);
+        int countVacancy = countVacancy(jobToFind);
+        int countAccepted = countAccepted(jobToFind);
         return countVacancy - countAccepted;
     }
 

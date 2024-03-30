@@ -41,6 +41,7 @@ public class AddApplicationCommand extends Command {
             + " edit_job command, or change status for existing application(s) to this job via status command to"
             + " a status other than ACCEPTED.\n You can retrieve vacancies left via slots_left command";
 
+
     private final Email email;
     private final String jobTitle;
     private final Status status;
