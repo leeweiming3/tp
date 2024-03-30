@@ -6,18 +6,18 @@ import java.util.function.Predicate;
 /**
  * Tests that all a {@code Person}'s {@code Attributes} matches the corresponding keywords given.
  */
-public class SearchPredicate implements Predicate<Person> {
-    private List<ContainsKeywordsPredicate> predicateList;
+public class SearchPredicate<T> implements Predicate<T> {
+    private final List<ContainsKeywordsPredicate<T, ?>> predicateList;
 
-    public SearchPredicate(List<ContainsKeywordsPredicate> predicateList) {
+    public SearchPredicate(List<ContainsKeywordsPredicate<T, ?>> predicateList) {
         this.predicateList = predicateList;
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(T items) {
         boolean result = true;
-        for (ContainsKeywordsPredicate predicate : predicateList) {
-            result = result && predicate.test(person);
+        for (ContainsKeywordsPredicate<T, ?> predicate : predicateList) {
+            result = result && predicate.test(items);
         }
         return result;
     }
@@ -33,7 +33,7 @@ public class SearchPredicate implements Predicate<Person> {
             return false;
         }
 
-        SearchPredicate otherSearchPredicate = (SearchPredicate) other;
+        SearchPredicate<T> otherSearchPredicate = (SearchPredicate<T>) other;
         return predicateList.equals(otherSearchPredicate.predicateList);
     }
 }
