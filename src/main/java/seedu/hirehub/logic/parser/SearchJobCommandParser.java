@@ -16,7 +16,7 @@ import seedu.hirehub.model.person.ContainsKeywordsPredicate;
 import seedu.hirehub.model.person.SearchPredicate;
 
 /**
- * Parses input arguments and creates a new SearchApplicationCommand object
+ * Parses input arguments and creates a new SearchJobCommand object
  */
 public class SearchJobCommandParser implements Parser<SearchJobCommand> {
 
