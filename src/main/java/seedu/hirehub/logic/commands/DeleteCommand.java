@@ -27,6 +27,7 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         Person personToDelete = model.getLastMentionedPerson().get();
         model.deletePerson(personToDelete);
+        model.removeApplications(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
