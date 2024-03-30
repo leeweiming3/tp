@@ -258,6 +258,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public int countVacancy(String jobTitle) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public int countRemainingVacancy(String jobTitle) {
             throw new AssertionError("This method should not be called.");
         }
