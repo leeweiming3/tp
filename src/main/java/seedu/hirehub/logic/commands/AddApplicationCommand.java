@@ -83,7 +83,6 @@ public class AddApplicationCommand extends Command {
         if (status.equals(new Status("ACCEPTED")) && model.countRemainingVacancy(jobTitle) <= 0) {
             throw new CommandException(MESSAGE_EXCEEDS_VACANCY);
         }
-
         model.addApplication(newCandidateApplication);
 
         return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, personMatchingEmail.getName(), jobTitle));
