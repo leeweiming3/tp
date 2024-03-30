@@ -437,10 +437,8 @@ Use case ends.
 
 
 * 4b. Recruiter enters invalid input for confirmation page
-    - 4b1. Hirehub exists the deletion process
-    - 4b2. Recruiter re-attempts to delete the candidate
+    - 4b1. Hirehub prompts the recruiter to enter a valid input
     - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
-    - If the recruiter enters invalid candidate number, the use case resumes from 2a.
     - Use case resumes from step 4
 
 ---
@@ -524,20 +522,21 @@ Use case ends.
 **MSS**
 
 1. Recruiter enters the command to clear the database
-2. Confirmation window opens
-3. Recruiter enters ‘Y’ into the confirmation window to confirm the clearing
-4. The database is cleared and the success message is displayed in the result display text field
+2. HireHub prompts recruiter to confirm the clearing
+3. Recruiter enters input into the command box to confirm the clearing
+4. The database is cleared.
 
 **Extensions**
 
-4a. Recruiter types in additional stuff after ‘clear’ e.g. ‘clear 1’
-- 4a1. Confirmation window opens as usual. Use case resumes from MSS step 3.
+1a. Recruiter types in additional stuff after ‘clear’ e.g. ‘clear 1’
+- 1a1. Confirmation window opens as usual. Use case resumes from MSS step 3.
 
-4b. Recruiter opens the confirmation window and tries to enter additional commands in the command box
-- 4b1. The command box is disabled and he finds that he cannot enter new commands until the confirmation is done. Use case resumes from MSS step 3
+3a. Recruiter tries to enter invalid commands in the command box
+- 3a1. HireHub prompts recruiter to enter valid input
+- 3a2. Use case resumes from MSS step 3.
 
-4c. Recruiter opens the confirmation window and tries to close the window via the x button
-- 4c1. The confirmation window closes and the command box reenables.
+3b. Recruiter aborts the clearing
+- 3b1. HireHub informs recruiter that the clear of the database has been aborted
 
 
 ### Non-Functional Requirements
