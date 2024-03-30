@@ -1,5 +1,7 @@
 package seedu.hirehub.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -8,13 +10,14 @@ import javafx.scene.layout.Region;
 import seedu.hirehub.commons.core.LogsCenter;
 import seedu.hirehub.model.application.Application;
 
-import java.util.logging.Logger;
-
+/**
+ * Panel containing the list of applications.
+ */
 public class ApplicationListPanel extends UiPart<Region> {
     private static final String FXML = "ApplicationListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ApplicationListPanel.class);
 
-    @javafx.fxml.FXML
+    @FXML
     private ListView<Application> applicationListView;
 
     /**

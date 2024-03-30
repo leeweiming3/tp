@@ -1,5 +1,7 @@
 package seedu.hirehub.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -9,8 +11,9 @@ import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.Person;
 
-import java.util.Comparator;
-
+/**
+ * An UI component that displays information of a {@code Application}.
+ */
 public class ApplicationCard extends UiPart<Region> {
     private static final String FXML = "ApplicationListCard.fxml";
 

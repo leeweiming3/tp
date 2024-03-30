@@ -78,11 +78,6 @@ public class AddApplicationCommand extends Command {
 
         model.addApplication(newCandidateApplication);
 
-        // TODO: remove print statements once UI is up and running
-        for (Application app: model.getFilteredApplicationList()) {
-            System.out.println(app);
-        }
-
         return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, personMatchingEmail.getName(), jobTitle));
     }
 
