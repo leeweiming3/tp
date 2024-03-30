@@ -62,6 +62,7 @@ class DeleteTagCommandTest {
 
         assertCommandSuccess(delCommand, model, expectedMessage, expectedModel);
     }
+
     @Test
     void execute_deleteMultipleTagUnfilteredList_success() {
 
@@ -75,7 +76,7 @@ class DeleteTagCommandTest {
                 .withTags(editedTags).build();
 
         DeleteTagCommand delCommand = new DeleteTagCommand(INDEX_SECOND_PERSON,
-                stringsToTags(TAG_1,TAG_2));
+                stringsToTags(TAG_1, TAG_2));
 
         String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_TAG_SUCCESS,
                 Messages.format(editedPerson));
@@ -117,7 +118,7 @@ class DeleteTagCommandTest {
         assertFalse(editedTags.contains(new Tag(TAG_4)));
 
         DeleteTagCommand delCommand = new DeleteTagCommand(INDEX_SECOND_PERSON,
-                stringsToTags(TAG_1,TAG_4));
+                stringsToTags(TAG_1, TAG_4));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -172,7 +173,7 @@ class DeleteTagCommandTest {
 
     private HashSet<Tag> stringsToTags(String... tags) {
         HashSet<Tag> hs = new HashSet<>();
-        for (String t: tags) {
+        for (String t : tags) {
             hs.add(new Tag(t));
         }
         return hs;

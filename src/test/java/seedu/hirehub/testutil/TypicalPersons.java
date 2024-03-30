@@ -28,7 +28,7 @@ public class TypicalPersons {
             .withPhone("94351253").withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withCountry("GB").withEmail("johnd@example.com")
-            .withPhone("98765432").withComment("").withTags("owesMoney", "friends","enthusiastic").build();
+            .withPhone("98765432").withComment("").withTags("owesMoney", "friends", "enthusiastic").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withCountry("DE").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
@@ -55,7 +55,8 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalPersons() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.

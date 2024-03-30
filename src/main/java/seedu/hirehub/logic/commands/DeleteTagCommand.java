@@ -59,7 +59,7 @@ public class DeleteTagCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Set<Tag> newTagList = new HashSet<>(personToEdit.getTags());
-        for (Tag t: tags) {
+        for (Tag t : tags) {
             if (newTagList.contains(t)) {
                 newTagList.remove(t);
             } else {
