@@ -25,7 +25,7 @@ public class StatusCommand extends Command {
             + "the application list to one of the following 5 statuses:\n"
             + "PRESCREEN, IN_PROGRESS, WAITLIST, ACCEPTED, REJECTED\n"
             + "Parameters: INDEX (must be a positive number) s/Status \n"
-            + "Example: " + COMMAND_WORD + " 1 "+ PREFIX_STATUS + "ACCEPTED";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_STATUS + "ACCEPTED";
 
     public static final String MESSAGE_STATUS_PERSON_SUCCESS = "Status of Candidate Successfully"
             + " Updated to %1$s";
