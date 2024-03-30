@@ -100,11 +100,13 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it looks at `Logic`'s `state` and chooses the appropriate `Parser`.
+2. The command is passed to the `Parser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. Based on the `CommandResult`, the `state` of the `Logic` can be modified.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -437,10 +439,8 @@ Use case ends.
 
 
 * 4b. Recruiter enters invalid input for confirmation page
-    - 4b1. Hirehub exists the deletion process
-    - 4b2. Recruiter re-attempts to delete the candidate
+    - 4b1. Hirehub prompts the recruiter to enter a valid input
     - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
-    - If the recruiter enters invalid candidate number, the use case resumes from 2a.
     - Use case resumes from step 4
 
 ---
@@ -524,20 +524,21 @@ Use case ends.
 **MSS**
 
 1. Recruiter enters the command to clear the database
-2. Confirmation window opens
-3. Recruiter enters ‘Y’ into the confirmation window to confirm the clearing
-4. The database is cleared and the success message is displayed in the result display text field
+2. HireHub prompts recruiter to confirm the clearing
+3. Recruiter enters input into the command box to confirm the clearing
+4. The database is cleared.
 
 **Extensions**
 
-4a. Recruiter types in additional stuff after ‘clear’ e.g. ‘clear 1’
-- 4a1. Confirmation window opens as usual. Use case resumes from MSS step 3.
+1a. Recruiter types in additional stuff after ‘clear’ e.g. ‘clear 1’
+- 1a1. Confirmation window opens as usual. Use case resumes from MSS step 3.
 
-4b. Recruiter opens the confirmation window and tries to enter additional commands in the command box
-- 4b1. The command box is disabled and he finds that he cannot enter new commands until the confirmation is done. Use case resumes from MSS step 3
+3a. Recruiter tries to enter invalid commands in the command box
+- 3a1. HireHub prompts recruiter to enter valid input
+- 3a2. Use case resumes from MSS step 3.
 
-4c. Recruiter opens the confirmation window and tries to close the window via the x button
-- 4c1. The confirmation window closes and the command box reenables.
+3b. Recruiter aborts the clearing
+- 3b1. HireHub informs recruiter that the clear of the database has been aborted
 
 
 ### Non-Functional Requirements
