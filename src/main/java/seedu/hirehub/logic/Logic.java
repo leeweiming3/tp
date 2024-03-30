@@ -8,6 +8,7 @@ import seedu.hirehub.logic.commands.CommandResult;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.ReadOnlyAddressBook;
+import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.Person;
 
@@ -36,6 +37,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of jobs */
 
     ObservableList<Job> getFilteredJobList();
+    ObservableList<Application> getFilteredApplicationList();
 
     /**
      * Returns the user prefs' address book file path.
