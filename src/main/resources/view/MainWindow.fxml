@@ -12,6 +12,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Box?>
+<?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -58,6 +59,12 @@
           </padding>
           <StackPane fx:id="jobListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
+          <VBox fx:id= "applicationList" styleClass="pane-with-border" prefWidth="1E10" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="applicationListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
         </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
