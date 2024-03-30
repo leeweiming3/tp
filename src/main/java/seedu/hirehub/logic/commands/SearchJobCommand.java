@@ -2,16 +2,12 @@ package seedu.hirehub.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_VACANCY;
 
 import seedu.hirehub.logic.Messages;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.model.Model;
-import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.SearchPredicate;
 
@@ -45,7 +41,7 @@ public class SearchJobCommand extends Command {
         requireNonNull(model);
         model.updateFilteredJobList(searchPredicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW,
+                String.format(Messages.MESSAGE_JOBS_LISTED_OVERVIEW,
                         model.getFilteredJobList().size())
         );
     }

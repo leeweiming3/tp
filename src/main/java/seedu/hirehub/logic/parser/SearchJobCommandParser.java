@@ -3,8 +3,6 @@ package seedu.hirehub.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.hirehub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_VACANCY;
 
@@ -14,12 +12,9 @@ import java.util.Optional;
 import seedu.hirehub.logic.commands.SearchApplicationCommand;
 import seedu.hirehub.logic.commands.SearchJobCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
-import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.ContainsKeywordsPredicate;
-import seedu.hirehub.model.person.Email;
 import seedu.hirehub.model.person.SearchPredicate;
-import seedu.hirehub.model.status.Status;
 
 /**
  * Parses input arguments and creates a new SearchApplicationCommand object
@@ -56,14 +51,14 @@ public class SearchJobCommandParser implements Parser<SearchJobCommand> {
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
             ContainsKeywordsPredicate<Job, String> descriptionSearch =
-                    new ContainsKeywordsPredicate<>(PREFIX_TITLE, Optional.of(description));
+                    new ContainsKeywordsPredicate<>(PREFIX_DESCRIPTION, Optional.of(description));
             predicateList.add(descriptionSearch);
         }
 
         if (argMultimap.getValue(PREFIX_VACANCY).isPresent()) {
             int vacancy = ParserUtil.parseVacancy(argMultimap.getValue(PREFIX_VACANCY).get());
             ContainsKeywordsPredicate<Job, Integer> vacancySearch =
-                    new ContainsKeywordsPredicate<>(PREFIX_STATUS, Optional.of(vacancy));
+                    new ContainsKeywordsPredicate<>(PREFIX_VACANCY, Optional.of(vacancy));
             predicateList.add(vacancySearch);
         }
 
