@@ -67,7 +67,9 @@ public class TagCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.replaceApplications(personToEdit, editedPerson);
-
+        // TODO: remove print statements once UI is up and running
+        System.out.println(model.getApplicationList());
+        System.out.println(model.getFilteredApplicationList());
         return new CommandResult(String.format(MESSAGE_ADD_TAGS_SUCCESS, Messages.format(editedPerson)));
     }
 
