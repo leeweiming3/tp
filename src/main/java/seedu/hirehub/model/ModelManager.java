@@ -273,18 +273,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int countRemainingVacancy(String jobTitle) {
-        int countAccepted = 0;
-        int countVacancy = 0;
+    public int countVacancy(String jobTitle) {
         Job jobToFind = new Job(jobTitle, "", 1);
         for (Job job : jobList) {
             if (job.isSameJob(jobToFind)) {
-                countVacancy = job.getVacancy();
+                return job.getVacancy();
             }
         }
+        return 0;
+    }
+
+    @Override
+    public int countRemainingVacancy(String jobTitle) {
+        int countAccepted = 0;
+        int countVacancy = countVacancy(jobTitle);
+        Job jobToFind = new Job(jobTitle, "", 1);
+
         for (Application app : applicationList) {
             if (app.getJob().isSameJob(jobToFind) && app.getStatus().equals(new Status("ACCEPTED"))) {
-                    countAccepted += 1;
+                countAccepted += 1;
             }
         }
         return countVacancy - countAccepted;
