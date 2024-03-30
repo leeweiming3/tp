@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.hirehub.commons.core.GuiSettings;
 import seedu.hirehub.model.application.Application;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.Person;
 
@@ -117,11 +118,22 @@ public interface Model {
      */
     void setApplication(Application target, Application editedApplication);
 
-    /* Update all applications in application list with current job to new job*/
-    void replaceApplications(Job oldJob, Job newJob);
+    UniqueApplicationList getApplicationList();
 
-    /* Remove all applications in application list with target job*/
-    void removeApplications(Job job);
+    /* Updates all applications in application list with current person to new person */
+    void replaceApplications(Person target, Person editedPerson);
+
+    /* Updates all applications in application list with current job to new job */
+    void replaceApplications(Job target, Job editedJob);
+
+    /* Removes all applications in application list with target person */
+    void removeApplications(Person target);
+
+    /* Removes all applications in application list with target job */
+    void removeApplications(Job target);
+
+    /* Clears all applications in the model */
+    void clearApplications();
 
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();

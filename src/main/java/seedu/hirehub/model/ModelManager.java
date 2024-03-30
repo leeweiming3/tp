@@ -239,13 +239,17 @@ public class ModelManager implements Model {
         applicationList.setApplication(target, editedApplication);
     }
 
-    /* Update all applications in application list with current job to new job*/
+    public UniqueApplicationList getApplicationList() {
+        return applicationList;
+    }
+
+    /* Updates all applications in application list with current person to new person */
     @Override
-    public void replaceApplications(Job oldJob, Job newJob) {
+    public void replaceApplications(Person target, Person editedPerson) {
         List<Application> applications = new ArrayList<Application>();
-        for (Application app: applicationList) {
-            if (app.getJob().equals(oldJob)) {
-                applications.add(new Application(app.getPerson(), newJob, app.getStatus()));
+        for (Application app : applicationList) {
+            if (app.getPerson().equals(target)) {
+                applications.add(new Application(editedPerson, app.getJob(), app.getStatus()));
             } else {
                 applications.add(app);
             }
@@ -253,16 +257,48 @@ public class ModelManager implements Model {
         applicationList.setApplications(applications);
     }
 
-    /* Remove all applications in application list with target job*/
+    /* Updates all applications in application list with current job to new job */
     @Override
-    public void removeApplications(Job job) {
+    public void replaceApplications(Job target, Job editedJob) {
         List<Application> applications = new ArrayList<Application>();
         for (Application app: applicationList) {
-            if (!app.getJob().equals(job)) {
+            if (app.getJob().equals(target)) {
+                applications.add(new Application(app.getPerson(), editedJob, app.getStatus()));
+            } else {
                 applications.add(app);
             }
         }
         applicationList.setApplications(applications);
+    }
+
+    /* Removes all applications in application list with target person */
+    @Override
+    public void removeApplications(Person target) {
+        List<Application> applications = new ArrayList<Application>();
+        for (Application app: applicationList) {
+            if (!app.getPerson().equals(target)) {
+                applications.add(app);
+            }
+        }
+        applicationList.setApplications(applications);
+    }
+
+    /* Removes all applications in application list with target job */
+    @Override
+    public void removeApplications(Job target) {
+        List<Application> applications = new ArrayList<Application>();
+        for (Application app: applicationList) {
+            if (!app.getJob().equals(target)) {
+                applications.add(app);
+            }
+        }
+        applicationList.setApplications(applications);
+    }
+
+    /* Clears all applications in the model */
+    @Override
+    public void clearApplications() {
+        applicationList.setApplications(new UniqueApplicationList());
     }
 
     //=========== Filtered Application List Accessors ======================================================
