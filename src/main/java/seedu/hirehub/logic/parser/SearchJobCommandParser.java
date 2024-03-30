@@ -34,7 +34,7 @@ public class SearchJobCommandParser implements Parser<SearchJobCommand> {
         }
 
         if (args.trim().isEmpty()) {
-            throw new ParseException(SearchApplicationCommand.MESSAGE_NO_FIELD_PROVIDED);
+            throw new ParseException(SearchJobCommand.MESSAGE_NO_FIELD_PROVIDED);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_VACANCY);
