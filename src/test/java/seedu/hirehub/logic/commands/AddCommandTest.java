@@ -24,6 +24,7 @@ import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ReadOnlyAddressBook;
 import seedu.hirehub.model.ReadOnlyUserPrefs;
 import seedu.hirehub.model.application.Application;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.testutil.PersonBuilder;
@@ -232,12 +233,32 @@ public class AddCommandTest {
         }
 
         @Override
+        public UniqueApplicationList getApplicationList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void replaceApplications(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void replaceApplications(Job oldJob, Job newJob) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public void removeApplications(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void removeApplications(Job job) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearApplications() {
             throw new AssertionError("This method should not be called.");
         }
 

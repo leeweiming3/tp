@@ -48,21 +48,21 @@ public class Application {
     }
 
     /**
-     * Returns job that the candidate applied for.
+     * Returns the job that the candidate applied for.
      */
     public Job getJob() {
         return this.job;
     }
 
     /**
-     * Returns person who applied for that job.
+     * Returns the person who applied for that job.
      */
     public Person getPerson() {
         return this.person;
     }
 
     /**
-     * Returns the status of the job application
+     * Returns the status of the job application.
      */
     public Status getStatus() {
         return this.status;

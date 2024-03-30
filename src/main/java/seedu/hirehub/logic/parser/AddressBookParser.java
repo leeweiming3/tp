@@ -27,6 +27,7 @@ import seedu.hirehub.logic.commands.HelpCommand;
 import seedu.hirehub.logic.commands.InitClearCommand;
 import seedu.hirehub.logic.commands.ListApplicationCommand;
 import seedu.hirehub.logic.commands.ListCommand;
+import seedu.hirehub.logic.commands.SearchApplicationCommand;
 import seedu.hirehub.logic.commands.SearchCommand;
 import seedu.hirehub.logic.commands.StatusCommand;
 import seedu.hirehub.logic.commands.TagCommand;
@@ -107,6 +108,9 @@ public class AddressBookParser {
 
         case DeleteTagCommand.COMMAND_WORD:
             return new DeleteTagCommandParser().parse(arguments);
+
+        case SearchApplicationCommand.COMMAND_WORD:
+            return new SearchApplicationCommandParser().parse(arguments);
 
         case AddJobCommand.COMMAND_WORD:
             return new AddJobCommandParser().parse(arguments);
