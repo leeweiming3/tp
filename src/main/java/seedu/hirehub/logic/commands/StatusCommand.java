@@ -34,6 +34,11 @@ public class StatusCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_STATUS = "This candidate with identical recruitment status %1$s "
             + "already exists in the application list";
+
+    public static final String MESSAGE_EXCEEDS_VACANCY = "The number of accepted candidates already meets the"
+        + " stipulated vacancy.\n If you want accept more candidates, you could increase the vacancy via edit_job"
+        + " command or set status to \"WAITLIST\" via status command.\n"
+        + " You can retrieve vacancy left via slots_left command.";
     private final Email email;
     private final String jobTitle;
     private final Status status;
@@ -57,6 +62,10 @@ public class StatusCommand extends Command {
 
         if (status.equals(applicationToUpdate.status)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_STATUS, status));
+        }
+
+        if (status.equals(new Status("ACCEPTED")) && model.countRemainingVacancy(jobTitle) <= 0) {
+            throw new CommandException(MESSAGE_EXCEEDS_VACANCY);
         }
 
         Application editedApplication = new Application(applicationToUpdate.getPerson(),

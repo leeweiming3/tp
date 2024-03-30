@@ -123,6 +123,9 @@ public interface Model {
     /* Remove all applications in application list with target job*/
     void removeApplications(Job job);
 
+    /** Returns a number of vacancy left for the given job */
+    int countRemainingVacancy(String jotTitle);
+
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();
 

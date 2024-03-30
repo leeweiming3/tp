@@ -242,6 +242,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public int countRemainingVacancy(String jobTitle) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Application> getFilteredApplicationList() {
             throw new AssertionError("This method should not be called.");
         }
