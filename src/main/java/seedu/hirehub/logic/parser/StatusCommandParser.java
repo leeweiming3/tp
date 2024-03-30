@@ -7,7 +7,6 @@ import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_STATUS;
 import java.util.stream.Stream;
 
 import seedu.hirehub.commons.core.index.Index;
-import seedu.hirehub.logic.commands.SlotsLeftCommand;
 import seedu.hirehub.logic.commands.StatusCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.status.Status;
