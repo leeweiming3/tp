@@ -20,9 +20,6 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
         model.clearApplications();
-        // TODO: remove print statements once UI is up and running
-        System.out.println(model.getApplicationList());
-        System.out.println(model.getFilteredApplicationList());
         return new CommandResult(MESSAGE_SUCCESS, CommandBoxState.NORMAL);
     }
 }

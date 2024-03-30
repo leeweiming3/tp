@@ -28,9 +28,6 @@ public class DeleteCommand extends Command {
         Person personToDelete = model.getLastMentionedPerson().get();
         model.deletePerson(personToDelete);
         model.removeApplications(personToDelete);
-        // TODO: remove print statements once UI is up and running
-        System.out.println(model.getApplicationList());
-        System.out.println(model.getFilteredApplicationList());
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
