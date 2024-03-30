@@ -239,6 +239,10 @@ public class ModelManager implements Model {
         applicationList.setApplication(target, editedApplication);
     }
 
+    public UniqueApplicationList getApplicationList() {
+        return applicationList;
+    }
+
     /* Updates all applications in application list with current person to new person */
     @Override
     public void replaceApplications(Person target, Person editedPerson) {
@@ -251,6 +255,14 @@ public class ModelManager implements Model {
             }
         }
         applicationList.setApplications(applications);
+//        for (Application app : filteredApplications) {
+//            if (app.getPerson().equals(target)) {
+//                filteredApplications.add(new Application(editedPerson, app.getJob(), app.getStatus()));
+//            } else {
+//                filteredApplications.add(app);
+//            }
+//            filteredApplications.remove(app); // to preserve ordering of the filtered applications
+//        }
     }
 
     /* Updates all applications in application list with current job to new job */
@@ -265,6 +277,14 @@ public class ModelManager implements Model {
             }
         }
         applicationList.setApplications(applications);
+//        for (Application app : filteredApplications) {
+//            if (app.getJob().equals(target)) {
+//                filteredApplications.add(new Application(app.getPerson(), editedJob, app.getStatus()));
+//            } else {
+//                filteredApplications.add(app);
+//            }
+//            filteredApplications.remove(app); // to preserve ordering of the filtered applications
+//        }
     }
 
     /* Removes all applications in application list with target person */
@@ -277,6 +297,7 @@ public class ModelManager implements Model {
             }
         }
         applicationList.setApplications(applications);
+//        filteredApplications.removeIf(app -> app.getPerson().equals(target));
     }
 
     /* Removes all applications in application list with target job */
@@ -289,12 +310,14 @@ public class ModelManager implements Model {
             }
         }
         applicationList.setApplications(applications);
+//        filteredApplications.removeIf(app -> app.getJob().equals(target));
     }
 
     /* Clears all applications in the model */
     @Override
     public void clearApplications() {
         applicationList.setApplications(new UniqueApplicationList());
+//        filteredApplications.clear();
     }
 
     //=========== Filtered Application List Accessors ======================================================

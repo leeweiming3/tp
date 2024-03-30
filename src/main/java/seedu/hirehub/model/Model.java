@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.hirehub.commons.core.GuiSettings;
 import seedu.hirehub.model.application.Application;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.Person;
 
@@ -116,6 +117,8 @@ public interface Model {
      * existing application in the address book.
      */
     void setApplication(Application target, Application editedApplication);
+
+    UniqueApplicationList getApplicationList();
 
     /* Updates all applications in application list with current person to new person */
     void replaceApplications(Person target, Person editedPerson);
