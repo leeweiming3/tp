@@ -28,6 +28,7 @@ import seedu.hirehub.logic.commands.ListApplicationCommand;
 import seedu.hirehub.logic.commands.ListCommand;
 import seedu.hirehub.logic.commands.SearchApplicationCommand;
 import seedu.hirehub.logic.commands.SearchCommand;
+import seedu.hirehub.logic.commands.SlotsLeftCommand;
 import seedu.hirehub.logic.commands.StatusCommand;
 import seedu.hirehub.logic.commands.TagCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
@@ -125,6 +126,9 @@ public class AddressBookParser {
 
         case ListApplicationCommand.COMMAND_WORD:
             return new ListApplicationCommand();
+
+        case SlotsLeftCommand.COMMAND_WORD:
+            return new SlotsLeftCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

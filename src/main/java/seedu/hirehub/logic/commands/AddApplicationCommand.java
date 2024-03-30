@@ -36,6 +36,10 @@ public class AddApplicationCommand extends Command {
             + "and application has been processed already into the list";
     public static final String MESSAGE_NO_PERSON_IN_LIST = "This candidate is not in the current list of candidates! ";
     public static final String MESSAGE_NO_JOB_IN_LIST = "This job has not been created";
+    public static final String MESSAGE_EXCEEDS_VACANCY = "The number of accepted candidates already meets the"
+            + " stipulated vacancy.\n To accept more candidates, the vacancy for the job can be increased via the"
+            + " edit_job command, or change status for existing application(s) to this job via status command to"
+            + " a status other than ACCEPTED. You can retrieve vacancy left via slots_left command";
 
     private final Email email;
     private final String jobTitle;
@@ -74,6 +78,10 @@ public class AddApplicationCommand extends Command {
 
         if (model.hasApplication(newCandidateApplication)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
+        }
+
+        if (status.equals(new Status("ACCEPTED")) && model.countRemainingVacancy(jobTitle) <= 0) {
+            throw new CommandException(MESSAGE_EXCEEDS_VACANCY);
         }
 
         model.addApplication(newCandidateApplication);

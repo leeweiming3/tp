@@ -19,6 +19,7 @@ import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Person;
+import seedu.hirehub.model.status.Status;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -269,6 +270,31 @@ public class ModelManager implements Model {
             }
         }
         applicationList.setApplications(applications);
+    }
+
+    @Override
+    public int countVacancy(String jobTitle) {
+        Job jobToFind = new Job(jobTitle, "", 1);
+        for (Job job : jobList) {
+            if (job.isSameJob(jobToFind)) {
+                return job.getVacancy();
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public int countRemainingVacancy(String jobTitle) {
+        int countAccepted = 0;
+        int countVacancy = countVacancy(jobTitle);
+        Job jobToFind = new Job(jobTitle, "", 1);
+
+        for (Application app : applicationList) {
+            if (app.getJob().isSameJob(jobToFind) && app.getStatus().equals(new Status("ACCEPTED"))) {
+                countAccepted += 1;
+            }
+        }
+        return countVacancy - countAccepted;
     }
 
     /* Removes all applications in application list with target person */

@@ -135,6 +135,12 @@ public interface Model {
     /* Clears all applications in the model */
     void clearApplications();
 
+    /** Returns a number of initial vacancy for the given job */
+    int countVacancy(String jobTitle);
+
+    /** Returns a number of remaining vacancy left for the given job */
+    int countRemainingVacancy(String jobTitle);
+
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();
 
