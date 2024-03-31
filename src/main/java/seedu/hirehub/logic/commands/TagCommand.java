@@ -6,7 +6,6 @@ import static seedu.hirehub.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 import seedu.hirehub.commons.core.index.Index;
@@ -71,19 +70,18 @@ public class TagCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object other) {
+        if (other == this) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+
+        // instanceof handles nulls
+        if (!(other instanceof TagCommand)) {
             return false;
         }
 
-        TagCommand that = (TagCommand) o;
-
-        if (!Objects.equals(index, that.index)) {
-            return false;
-        }
-        return Objects.equals(tags, that.tags);
+        TagCommand otherTagCommand = (TagCommand) other;
+        return index.equals(otherTagCommand.index)
+                && tags.equals(otherTagCommand.tags);
     }
 }
