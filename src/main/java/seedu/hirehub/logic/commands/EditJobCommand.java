@@ -36,7 +36,8 @@ public class EditJobCommand extends Command {
     public static final String MESSAGE_EDIT_JOB_SUCCESS = "Edited Job: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_JOB = "This job already exists in the address book.";
-
+    public static final String MESSAGE_CANNOT_CHANGE_VACANCY = "The vacancy for this job cannot be changed to %1$d "
+            + "because the number of accepted applications is currently %2$d.";
     private final Index index;
     private final EditJobDescriptor editJobDescriptor;
 
@@ -66,6 +67,14 @@ public class EditJobCommand extends Command {
 
         if (!jobToEdit.isSameJob(editedJob) && model.hasJob(editedJob)) {
             throw new CommandException(MESSAGE_DUPLICATE_JOB);
+        }
+
+        // check if the vacancy can be changed
+        int acceptedApplications = model.countAccepted(jobToEdit);
+        int editedVacancy = editedJob.getVacancy();
+        if (acceptedApplications > editedVacancy) {
+            throw new CommandException(String.format(MESSAGE_CANNOT_CHANGE_VACANCY,
+                    editedVacancy, acceptedApplications));
         }
 
         model.setJob(jobToEdit, editedJob);
