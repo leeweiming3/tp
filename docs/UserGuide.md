@@ -86,11 +86,45 @@ Examples:
 * `add n/John Doe e/johnd@example.com c/Hong Kong`
 * `add n/John Doe e/asdf@gmail.com c/Singapore p/61234567 t/Internal`
 
+### Adding a job: `add_job`
+
+Adds a job to the job list.
+
+Format: `add_job ti/TITLE [d/DESCRIPTION] v/VACANCY`
+
+Examples:
+* `add_job ti/Software Engineer d/Must be proficient in C++ v/10`
+* `add_job ti/ML Engineer v/15`
+
+### Adding an application: `add_app`
+
+Adds a job application, from a candidate, to the application list.
+
+Format: `add_app e/EMAIL ti/TITLE [s/STATUS]`
+
+* If `STATUS` is omitted, then the `STATUS` of the application will be `PRESCREEN`
+
+Examples:
+* `add_app e/acekhoon@gmail.com ti/Quantitative Researcher`
+* `add_app e/john@example.com ti/Software Engineer s/ACCEPTED`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+### Listing all jobs : `list_job`
+
+Shows a list of all jobs in the job list.
+
+Format: `list_job`
+
+### Listing all applications : `list_app`
+
+Shows a list of all applications in the application list.
+
+Format: `list_app`
 
 ### Edit candidate details: `edit`
 
@@ -105,6 +139,7 @@ Format: `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`
 > [!NOTE]
 > 1. Even though you can edit multiple candidate details at once, attribute to edit must be **non-empty**. In other words, you must edit **at least one attribute** specified above.
 > 2. When **editing tags**, the existing tags of the candidate will be **removed**. Thus, you must specify **every tag** you want to keep on the candidate whenever you edit the candidate details.
+> 3. Applications involving the candidate to edit will be updated to involve the edited candidate.
 
 > [!WARNING]
 > **Comment and Interview Status** field for the candidates **cannot be edited** by `edit` as there is a dedicated method for editing them separately.
@@ -118,11 +153,87 @@ This command edits **name**, **email**, and **country of residence** of the cand
 
 *Example 2* : `edit 8 n/Jeb Song e/jebsong@gmail.com t/IMO Gold`
 
-This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, **jebsong@gmail.com**, and **IMO Gold**, respectively. Note that existing tag on this candidate is completely removed and new tag `IMO Gold` is added.
+This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, **jebsong@gmail.com**, and **IMO Gold**, respectively. Note that the existing tag(s) on this candidate is/are completely removed and a new tag `IMO Gold` is added.
 
 ---
 
 If edit command is successfully executed, the app will display the edited candidate with the new attributes.
+
+### Edit a job: `edit_job`
+
+Edits an existing job in the job list.
+
+You can edit any of the valid job details including title, description and vacancy at the specified **INDEX**. Here, **INDEX** refers to the index number of job shown in the displayed job list.
+
+Format: `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]`
+
+Examples:
+* `edit_job 1 ti/Quantitative Trader d/Must have strong statistics background v/3`
+
+> [!NOTE]
+> 1. Even though you can edit multiple job details at once, attribute to edit must be **non-empty**. In other words, you must edit **at least one attribute** specified above.
+> 2. Applications involving the job to edit will be updated to involve the edited job.
+
+### Adding a comment on a candidate: `comment`
+
+Leaves comments on important points to note down for individual candidates during the recruitment process. This overwrites existing comment (if any) and displays the resulting candidate.
+
+* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
+* Any comment format is acceptable as long as comment is non-empty (i.e. user writes nothing in the comment field)
+
+Format: `comment INDEX COMMENT`
+
+Example:
+* `comment 3 Managed to solve every round 3 interview questions. He must be a strong candidate, potentially to be recruited as a quantitative research intern at Jane Street.`
+
+
+### Tag a candidate: `tag`
+
+Appends the tag or tags to a candidate's list of tags.
+
+You can list any number of tags greater than 0, and all of them will be added to the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
+
+Format: `tag INDEX [t/TAG]…​`
+
+* At least one tag must be provided.
+
+*Example 1* : `tag 24 t/smart`
+
+This command adds the tag "smart" to the candidate with index 24.
+
+*Example 2* : `tag 8 t/Exceptional work t/IMO gold t/Male`
+
+This command adds the tags "Exceptional work", "IMO gold" and "Male" to the candidate with index 8.
+
+If tag command is successfully executed, the app will display the candidate with the new tags.
+
+### Delete tag of a candidate: `delete_tag`
+
+Deletes existing tag(s) from a candidate's list of tags
+
+Format: `delete_tag INDEX [t/TAG]…​`
+
+* At least one tag must be provided
+* The specified tag(s) must be in the candidate's list of tags
+
+Example:
+* `delete_tag 1 t/Exceptional work t/IMO gold`
+
+### Change status of an application: `status`
+
+Changes the interview status of an application.
+
+Interview status must be one of the following: `PRESCREEN`, `IN_PROGRESS`, `WAITLIST`, `ACCEPTED`, `REJECTED`.
+When an application is added, by default it has status `PRESCREEN`.
+
+Format: `status INDEX STATUS`
+
+*Example 1* : `status 24 IN_PROGRESS`
+
+This command changes the status of the application with index 24 to `IN_PROGRESS`.
+
+If status command is successfully executed, the app will display the application with the new status.
+
 
 ### Delete a candidate: `delete`
 
@@ -135,12 +246,35 @@ Format: `delete INDEX`
 ---
 > [!NOTE]
 > If INDEX provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion. If ***y*** is selected, it will delete the candidate from the list and display the deleted candidate. If ***n*** is selected, it will display that the delete operation is cancelled.
-
+> Applications involving the candidate to delete will also be deleted.
 ---
 
 *Example* : `delete 3`
 
 This command removes the candidate at third position in the candidate list displayed.
+
+### Delete a job: `delete_job`
+
+Deletes an existing job from the list.
+
+Format: `delete_job INDEX`
+
+---
+> [!NOTE]
+> If INDEX provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion. If ***y*** is selected, it will delete the job from the list and display the deleted job. If ***n*** is selected, it will display that the delete operation is cancelled.
+> Applications involving the job to delete will also be deleted.
+---
+
+### Delete an application: `delete_app`
+
+Deletes an existing application from the list.
+
+Format: `delete_app INDEX`
+
+---
+> [!NOTE]
+> If INDEX provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion. If ***y*** is selected, it will delete the application from the list and display the deleted application. If ***n*** is selected, it will display that the delete operation is cancelled.
+---
 
 ### Clearing all entries : `clear`
 
@@ -154,76 +288,63 @@ Format: `clear`
 
 Searches candidates whose attributes match the specified attributes in the search criteria.
 
-Format: `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]`
+Format: `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [t/TAG]`
 
 * At least one of the optional fields must be provided.
 * The search is case-sensitive, e.g. `hans` will not match `Hans`.
-* For email, country, phone and interview status, only full words will be matched.
+* For email, country and phone, only full words will be matched.
 * For name, comment and tag, partial words will be matched, e.g. `Han` will match `Hans`.
-* The search will fail if either of the email, country, phone or interview status is in an invalid format.
+* The search will fail if either of the email, country, phone is in an invalid format.
 * If multiple fields are specified, only candidates that match **all** the specified attributes will be returned.
 
 Examples:
-* `search n/John s/ACCEPTED` returns candidates whose names contain `John` and whose interview status is `ACCEPTED`.
+* `search n/John c/SG` returns candidates whose names contain `John` and whose country is from `Singapore`.
 * `search t/Internal` returns candidates whose tags contain `Internal`.
+
+### Search for matching jobs : `search_job`
+
+Searches jobs whose attributes match the specified attributes in the search criteria.
+
+Format: `search_job [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]`
+
+* At least one of the optional fields must be provided.
+* The search is case-sensitive, e.g. `engineer` will not match `Engineer`.
+* For title and description, partial words will be matched.
+* For vacancy, only jobs with the same number of vacancies will be matched.
+* If multiple fields are specified, only jobs that match **all** the specified attributes will be returned.
+
+Examples:
+* `search_job ti/Engineer d/C++` returns jobs whose titles contain `Engineer` and whose description contain `C++`.
+* `search_job v/10` returns jobs whose number of vacancies is 10.
+
+### Search for matching applications : `search_app`
+
+Searches applications whose attributes match the specified attributes in the search criteria.
+
+Format: `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]`
+
+* At least one of the optional fields must be provided.
+* The search is case-sensitive, e.g. `engineer` will not match `Engineer`.
+* For title, partial words will be matched.
+* For email and status, only full words will be matched.
+* The search will fail if either email or status is in an invalid format.
+* If multiple fields are specified, only applications that match **all** the specified attributes will be returned.
+
+Examples:
+* `search_app e/alexyeoh@example.com s/PRESCREEN` returns applications from the candidate with email `alexyeoh@example.com` and with status `PRESCREEN`.
+* `search_app e/alexyeoh@example.com ti/Software Engineer` returns the application from candidate with email `alexyeoh@example.com` to the job with title `Software Engineer`.
+* `search_app ti/Software Engineer` returns applications to the job with title `Software Engineer`.
 
 ### Accessing by index: `get`
 
 Access candidates by index
-* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
 
 Format: `get INDEX`
 
+* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
+
 Example:
 * `get 24` returns the candidate with index 24
-
-### Adding a comment on a candidate: `comment`
-
-Leaves comments on important points to note down for individual candidates during the recruitment process. This overwrites existing comment (if any) and displays the resulting candidate.
-
-* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
-* Any comment format is acceptable as long as comment is non-empty (i.e. user writes nothing in the comment field)
-
-Format: `comment INDEX m/COMMENT`
-
-Example:
-* `comment 3 m/Managed to solve every round 3 interview questions. He must be a strong candidate, potentially to be recruited as a quantitative research intern at Jane Street.`
-
-
-### Tag a candidate: `tag`
-
-Appends the tag or tags to a candidate's list of tags.
-
-You can list any number of tags greater than 0, and all of them will be added to the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
-
-Format: `tag INDEX [t/TAG]…​`
-
-At least one tag must be provided.
-
-*Example 1* : `tag 24 t/smart`
-
-This command adds the tag "smart" to the candidate with index 24.
-
-*Example 2* : `tag 8 t/Exceptional work t/IMO gold t/Male`
-
-This command adds the tags "Exceptional work", "IMO gold" and "Male" to the candidate with index 8.
-
-If tag command is successfully executed, the app will display the candidate with the new tags.
-
-### Change status of a candidate: `status`
-
-Changes the interview status of a candidate.
-
-Interview status must be one of the following: `PRESCREEN`, `IN_PROGRESS`, `WAITLIST`, `ACCEPTED`, `REJECTED`.
-When a candidate is added, by default it has status `PRESCREEN`.
-Format: `status INDEX INTERVIEW_STATUS`
-
-*Example 1* : `status 24 IN_PROGRESS`
-
-This command changes the status of the candidate with index 24 to `IN_PROGRESS`.
-
-If status command is successfully executed, the app will display the candidate with the new status.
-
 
 ### Exiting the program : `exit`
 
@@ -268,17 +389,26 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/Singapore p/61234567 t/Internal`
-**Clear** | `clear`
-**Comment** | `comment INDEX m/COMMENT`<br> e.g., `comment 3 m/Managed to solve every round 3 interview questions.`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`<br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/Singapore`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Get** | `get INDEX`<br> e.g., `get 24`
-**Search** | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [s/INTERVIEW_STATUS] [t/TAG]`
-**Tag** | `tag INDEX [t/TAG]…`<br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`
-**Status** | `status INDEX INTERVIEW_STATUS`<br> e.g., `status 24 IN_PROGRESS`
-**List** | `list`
-**Help** | `help`
+| Action                  | Format, Examples                                                                                                                  |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                 | `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/Singapore p/61234567 t/Internal` |
+| **Add job**             | `add_job ti/TITLE [d/DESCRIPTION] v/VACANCY` <br> e.g., `add_job ti/Software Engineer d/Must be proficient in C++ v/10`           |
+| **Add application**     | `add_app e/EMAIL ti/TITLE [s/STATUS]` <br> e.g., `add_app e/john@example.com ti/Software Engineer s/ACCEPTED`                     |
+| **Clear**               | `clear`                                                                                                                           |
+| **Comment**             | `comment INDEX m/COMMENT`<br> e.g., `comment 3 m/Managed to solve every round 3 interview questions.`                             |
+| **Delete**              | `delete INDEX`<br> e.g., `delete 3`                                                                                               |
+| **Delete job**          | `delete_job INDEX`                                                                                                                |
+| **Delete application**  | `delete_app INDEX`                                                                                                                |
+| **Edit**                | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`<br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/Singapore` |
+| **Edit job**            | `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]`                                                                           |
+| **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                        |
+| **Get**                 | `get INDEX`<br> e.g., `get 24`                                                                                                    |
+| **Search**              | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [t/TAG]`                                                             |
+| **Search jobs**         | `search_job [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]`                                                                               |
+| **Search applications** | `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]`                                                                                      |
+| **Tag**                 | `tag INDEX [t/TAG]…`<br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`                                                       |
+| **Status**              | `status INDEX INTERVIEW_STATUS`<br> e.g., `status 24 IN_PROGRESS`                                                                 |
+| **List**                | `list`                                                                                                                            |
+| **List jobs**           | `list_job`                                                                                                                        |
+| **List applications**   | `list_applications`                                                                                                               |
+| **Help**                | `help`                                                                                                                            |
