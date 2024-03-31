@@ -2,7 +2,6 @@ package seedu.hirehub.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.hirehub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.stream.Stream;
 
@@ -22,25 +21,23 @@ public class StatusCommandParser implements Parser<StatusCommand> {
      */
     public StatusCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STATUS);
+        String[] parsedIndexStatus = args.trim().split(" ", 2);
 
-        String trimmedPreamble = argMultimap.getPreamble().trim();
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_STATUS) || trimmedPreamble.isEmpty()) {
+        if (parsedIndexStatus.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StatusCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STATUS);
-        Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-
+        Index index;
         try {
-            Index index = ParserUtil.parseIndex(trimmedPreamble);
-            return new StatusCommand(index, status);
+            index = ParserUtil.parseIndex(parsedIndexStatus[0]);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StatusCommand.MESSAGE_USAGE), pe);
         }
+
+        Status status = ParserUtil.parseStatus(parsedIndexStatus[1]);
+        return new StatusCommand(index, status);
     }
 
     /**
