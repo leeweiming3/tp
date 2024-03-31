@@ -22,9 +22,15 @@ import seedu.hirehub.model.ReadOnlyAddressBook;
 import seedu.hirehub.model.ReadOnlyUserPrefs;
 import seedu.hirehub.model.UserPrefs;
 import seedu.hirehub.model.job.UniqueJobList;
-import seedu.hirehub.model.person.UniquePersonList;
 import seedu.hirehub.model.util.SampleDataUtil;
-import seedu.hirehub.storage.*;
+import seedu.hirehub.storage.AddressBookStorage;
+import seedu.hirehub.storage.JobsStorage;
+import seedu.hirehub.storage.JsonAddressBookStorage;
+import seedu.hirehub.storage.JsonJobsStorage;
+import seedu.hirehub.storage.JsonUserPrefsStorage;
+import seedu.hirehub.storage.Storage;
+import seedu.hirehub.storage.StorageManager;
+import seedu.hirehub.storage.UserPrefsStorage;
 import seedu.hirehub.ui.Ui;
 import seedu.hirehub.ui.UiManager;
 
@@ -66,7 +72,8 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and jobs list, {@code userPrefs}. <br>
+     * Returns a {@code ModelManager} with data
+     * from {@code storage}'s address book and jobs list, {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      * The data from the sample jobs list will be used instead if {@code storage}'s jobs list is not found,

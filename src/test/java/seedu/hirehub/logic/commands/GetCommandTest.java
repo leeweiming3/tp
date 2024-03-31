@@ -19,6 +19,7 @@ import seedu.hirehub.logic.Messages;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ModelManager;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Person;
 
 
@@ -27,9 +28,9 @@ import seedu.hirehub.model.person.Person;
  */
 public class GetCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
 
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
 
     @Test
     public void execute_getPersonAtIndex_success() {

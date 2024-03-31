@@ -1,5 +1,12 @@
 package seedu.hirehub.storage;
 
+import static java.util.Objects.requireNonNull;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import seedu.hirehub.commons.core.LogsCenter;
 import seedu.hirehub.commons.exceptions.DataLoadingException;
 import seedu.hirehub.commons.exceptions.IllegalValueException;
@@ -7,12 +14,7 @@ import seedu.hirehub.commons.util.FileUtil;
 import seedu.hirehub.commons.util.JsonUtil;
 import seedu.hirehub.model.job.UniqueJobList;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -45,7 +47,7 @@ public class JsonJobsStorage implements JobsStorage {
     public Optional<UniqueJobList> readJobList(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableJobList> jsonJobList= JsonUtil.readJsonFile(
+        Optional<JsonSerializableJobList> jsonJobList = JsonUtil.readJsonFile(
             filePath, JsonSerializableJobList.class);
         if (!jsonJobList.isPresent()) {
             return Optional.empty();

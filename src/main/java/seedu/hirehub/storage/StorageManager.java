@@ -10,7 +10,6 @@ import seedu.hirehub.commons.exceptions.DataLoadingException;
 import seedu.hirehub.model.ReadOnlyAddressBook;
 import seedu.hirehub.model.ReadOnlyUserPrefs;
 import seedu.hirehub.model.UserPrefs;
-import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.job.UniqueJobList;
 
 /**
@@ -26,7 +25,8 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage, JobsStorage jobsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage,
+        UserPrefsStorage userPrefsStorage, JobsStorage jobsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.jobsStorage = jobsStorage;
