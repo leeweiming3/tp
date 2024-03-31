@@ -9,6 +9,7 @@ import seedu.hirehub.commons.core.GuiSettings;
 import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.Job;
+import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Person;
 
 /**
@@ -154,6 +155,8 @@ public interface Model {
     public void setLastMentionedApplication(Application app);
 
     public Optional<Application> getLastMentionedApplication();
+
+    UniqueJobList getJobList();
 
     /**
      * Returns true if a job with the same identity as {@code job} exists in the address book.

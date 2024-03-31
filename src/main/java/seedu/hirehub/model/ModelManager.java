@@ -177,6 +177,11 @@ public class ModelManager implements Model {
     //=========== JobList ================================================================================
 
     @Override
+    public UniqueJobList getJobList() {
+        return this.jobList;
+    }
+
+    @Override
     public boolean hasJob(Job job) {
         requireNonNull(job);
         return jobList.containsJob(job);
