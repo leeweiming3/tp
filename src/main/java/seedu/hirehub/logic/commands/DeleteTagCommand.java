@@ -25,8 +25,8 @@ public class DeleteTagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes tags from the person identified "
-            + "by the index number used in the last person listing. \n"
-            + "At least one tag must be present. All tags will be removed.\n"
+            + "by the index number used in the last person listing.\n"
+            + "At least one tag must be present. All tags specified will be removed.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -40,7 +40,7 @@ public class DeleteTagCommand extends Command {
 
     /**
      * @param index of the person in the filtered person list to edit the comment
-     * @param tags  to be added to the person
+     * @param tags to be removed from the person
      */
     public DeleteTagCommand(Index index, Set<Tag> tags) {
         requireAllNonNull(index, tags);
@@ -87,9 +87,6 @@ public class DeleteTagCommand extends Command {
 
         DeleteTagCommand that = (DeleteTagCommand) o;
 
-        if (!Objects.equals(index, that.index)) {
-            return false;
-        }
-        return Objects.equals(tags, that.tags);
+        return Objects.equals(index, that.index) && Objects.equals(tags, that.tags);
     }
 }

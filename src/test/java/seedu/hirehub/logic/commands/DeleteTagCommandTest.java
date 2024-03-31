@@ -113,9 +113,7 @@ class DeleteTagCommandTest {
     public void execute_missingTags_failure() {
 
         Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-
-        HashSet<Tag> editedTags = new HashSet<>(secondPerson.getTags());
-        assertFalse(editedTags.contains(new Tag(TAG_4)));
+        assertFalse(secondPerson.getTags().contains(new Tag(TAG_4)));
 
         DeleteTagCommand delCommand = new DeleteTagCommand(INDEX_SECOND_PERSON,
                 stringsToTags(TAG_1, TAG_4));
