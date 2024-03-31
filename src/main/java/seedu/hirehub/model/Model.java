@@ -49,10 +49,14 @@ public interface Model {
      */
     Path getAddressBookFilePath();
 
+    Path getJobsFilePath();
+
     /**
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
+
+    void setJobsFilePath(Path jobsFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
