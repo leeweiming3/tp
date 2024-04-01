@@ -16,12 +16,12 @@ public class Status {
         PRESCREEN,
         IN_PROGRESS,
         WAITLIST,
-        ACCEPTED,
+        OFFERED,
         REJECTED
     }
 
     public static final String MESSAGE_CONSTRAINTS = "Interview status must be one of the following values: "
-            + "PRESCREEN, IN_PROGRESS, WAITLIST, ACCEPTED, REJECTED";
+            + "PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED";
 
     public final String value;
 

@@ -3,8 +3,6 @@ package seedu.hirehub.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.hirehub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.stream.Stream;
-
 import seedu.hirehub.commons.core.index.Index;
 import seedu.hirehub.logic.commands.StatusCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
@@ -29,6 +27,7 @@ public class StatusCommandParser implements Parser<StatusCommand> {
         }
 
         Index index;
+
         try {
             index = ParserUtil.parseIndex(parsedIndexStatus[0]);
         } catch (ParseException pe) {
@@ -38,13 +37,5 @@ public class StatusCommandParser implements Parser<StatusCommand> {
 
         Status status = ParserUtil.parseStatus(parsedIndexStatus[1]);
         return new StatusCommand(index, status);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
