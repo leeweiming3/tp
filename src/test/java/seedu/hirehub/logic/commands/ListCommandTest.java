@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ModelManager;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.UniqueJobList;
 
 /**
@@ -23,8 +24,10 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UniqueJobList(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs(),
+            new UniqueApplicationList());
+        expectedModel = new ModelManager(model.getAddressBook(), new UniqueJobList(), new UserPrefs(),
+            new UniqueApplicationList());
     }
 
     @Test

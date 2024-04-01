@@ -20,6 +20,7 @@ import seedu.hirehub.logic.commands.SearchCommand.SearchPersonDescriptor;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ModelManager;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.testutil.PersonBuilder;
@@ -29,8 +30,10 @@ import seedu.hirehub.testutil.SearchPersonDescriptorBuilder;
  * Contains integration tests (interaction with the Model) for {@code SearchCommand}.
  */
 public class SearchCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs(),
+        new UniqueApplicationList());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs(),
+        new UniqueApplicationList());
 
     @Test
     public void equals() {
