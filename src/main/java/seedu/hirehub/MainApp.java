@@ -21,11 +21,14 @@ import seedu.hirehub.model.ModelManager;
 import seedu.hirehub.model.ReadOnlyAddressBook;
 import seedu.hirehub.model.ReadOnlyUserPrefs;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.util.SampleDataUtil;
 import seedu.hirehub.storage.AddressBookStorage;
+import seedu.hirehub.storage.ApplicationStorage;
 import seedu.hirehub.storage.JobsStorage;
 import seedu.hirehub.storage.JsonAddressBookStorage;
+import seedu.hirehub.storage.JsonApplicationStorage;
 import seedu.hirehub.storage.JsonJobsStorage;
 import seedu.hirehub.storage.JsonUserPrefsStorage;
 import seedu.hirehub.storage.Storage;
@@ -62,7 +65,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         JobsStorage jobsStorage = new JsonJobsStorage(userPrefs.getJobsFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, jobsStorage);
+        ApplicationStorage applicationStorage = new JsonApplicationStorage(userPrefs.getApplicationsFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, jobsStorage, applicationStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -112,7 +116,22 @@ public class MainApp extends Application {
             initialJobs = new UniqueJobList();
         }
 
-        return new ModelManager(initialData, initialJobs, userPrefs);
+        Optional<UniqueApplicationList> applicationListOptional;
+        UniqueApplicationList initialApplications;
+        try {
+            applicationListOptional = storage.readApplicationList(initialJobs, initialData);
+            if (!applicationListOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getApplicationFilePath()
+                    + " populated with a sample application list.");
+            }
+            //initialApplications = applicationListOptional.orElseGet(SampleDataUtil::get);
+            initialApplications = applicationListOptional.orElseGet(UniqueApplicationList::new);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getApplicationFilePath() + " could not be loaded."
+                + " Will be starting with an empty jobs list.");
+            initialApplications = new UniqueApplicationList();
+        }
+        return new ModelManager(initialData, initialJobs, userPrefs, initialApplications);
     }
 
     private void initLogging(Config config) {

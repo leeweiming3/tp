@@ -14,8 +14,9 @@ import seedu.hirehub.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path jobsFilePath = Paths.get("data" , "jobs.json");
+    private Path addressBookFilePath = Paths.get("data", "addressbook.json");
+    private Path jobsFilePath = Paths.get("data", "jobs.json");
+    private Path applicationsFilePath = Paths.get("data", "applications.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -57,6 +58,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return jobsFilePath;
     }
 
+    public Path getApplicationsFilePath() {
+        return applicationsFilePath;
+    }
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
@@ -65,6 +70,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setJobsFilePath(Path jobsFilePath) {
         requireNonNull(jobsFilePath);
         this.jobsFilePath = jobsFilePath;
+    }
+
+    public void setApplicationsFilePath(Path applicationsFilePath) {
+        this.applicationsFilePath = applicationsFilePath;
     }
 
     @Override
@@ -81,12 +90,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs otherUserPrefs = (UserPrefs) other;
         return guiSettings.equals(otherUserPrefs.guiSettings)
                 && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath)
-                && jobsFilePath.equals(otherUserPrefs.jobsFilePath);
+                && jobsFilePath.equals(otherUserPrefs.jobsFilePath)
+                && applicationsFilePath.equals(otherUserPrefs.applicationsFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, jobsFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, jobsFilePath, applicationsFilePath);
     }
 
     @Override
@@ -94,6 +104,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nJobs location: " + jobsFilePath);
+        sb.append("\nApplications location: " + applicationsFilePath);
         return sb.toString();
     }
 
