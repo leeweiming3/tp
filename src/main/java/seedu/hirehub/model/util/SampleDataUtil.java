@@ -22,10 +22,12 @@ import seedu.hirehub.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    private static final Person PERSON_1 = new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-            new Country("SG"), getTagSet("friends"));
-    private static final Job JOB_1 = new Job("Senior Software Engineer (Singapore)", "10 years of experience in C++, Singaporean citizen", 1);
-    public static final Job JOB_2 = new Job("Software Engineer (London)", "Graduated with FCH, UK citizen", 5);
+    private static final Person PERSON_1 = new Person(new Name("Alex Yeoh"), new Phone("87438807"),
+        new Email("alexyeoh@example.com"), new Country("SG"), getTagSet("friends"));
+    private static final Job JOB_1 = new Job("Senior Software Engineer (Singapore)",
+        "10 years of experience in C++, Singaporean citizen", 1);
+    public static final Job JOB_2 = new Job("Software Engineer (London)",
+        "Graduated with FCH, UK citizen", 5);
 
     public static Person[] getSamplePersons() {
         return new Person[] {
