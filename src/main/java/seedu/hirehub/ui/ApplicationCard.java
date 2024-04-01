@@ -49,6 +49,8 @@ public class ApplicationCard extends UiPart<Region> {
     private Label title;
     @FXML
     private Label description;
+    @FXML
+    private Label status;
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -68,5 +70,6 @@ public class ApplicationCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         title.setText(job.getTitle());
         description.setText(job.getDescription());
+        status.setText(application.getStatus().value);
     }
 }

@@ -34,6 +34,7 @@
             <Label fx:id="comment" styleClass="cell_small_label" text="\$comment" />
             <Label fx:id="title" text="\$first" styleClass="cell_big_label" />
             <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+            <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
         </VBox>
     </GridPane>
 </HBox>

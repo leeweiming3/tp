@@ -303,7 +303,7 @@ public class ModelManager implements Model {
     public int countAccepted(Job jobToFind) {
         int countAccepted = 0;
         for (Application app : applicationList) {
-            if (app.getJob().isSameJob(jobToFind) && app.getStatus().equals(new Status("ACCEPTED"))) {
+            if (app.getJob().isSameJob(jobToFind) && app.getStatus().equals(new Status("OFFERED"))) {
                 countAccepted += 1;
             }
         }
