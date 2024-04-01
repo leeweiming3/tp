@@ -124,8 +124,7 @@ public class MainApp extends Application {
                 logger.info("Creating a new data file " + storage.getApplicationFilePath()
                     + " populated with a sample application list.");
             }
-            //initialApplications = applicationListOptional.orElseGet(SampleDataUtil::get);
-            initialApplications = applicationListOptional.orElseGet(UniqueApplicationList::new);
+            initialApplications = applicationListOptional.orElseGet(SampleDataUtil::getSampleUniqueApplicationList);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getApplicationFilePath() + " could not be loaded."
                 + " Will be starting with an empty jobs list.");
