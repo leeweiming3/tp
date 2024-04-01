@@ -26,11 +26,11 @@ public class SampleDataUtil {
         new Email("alexyeoh@example.com"), new Country("SG"), getTagSet("friends"));
     private static final Job JOB_1 = new Job("Senior Software Engineer (Singapore)",
         "10 years of experience in C++, Singaporean citizen", 1);
-    public static final Job JOB_2 = new Job("Software Engineer (London)",
+    private static final Job JOB_2 = new Job("Software Engineer (London)",
         "Graduated with FCH, UK citizen", 5);
 
     public static Person[] getSamplePersons() {
-        return new Person[] {
+        return new Person[]{
             PERSON_1,
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Country("CN"), getTagSet("colleagues", "friends")),
@@ -46,7 +46,7 @@ public class SampleDataUtil {
     }
 
     public static Job[] getSampleJobs() {
-        return new Job[] {
+        return new Job[]{
             JOB_1,
             new Job("Senior Software Engineer (London)", "10 years of experience in C++, UK citizen", 1),
             new Job("Software Engineer (Singapore)", "Graduated with FCH, Singaporean citizen", 5),
@@ -57,7 +57,7 @@ public class SampleDataUtil {
     }
 
     public static Application[] getSampleApplications() {
-        return new Application[] {
+        return new Application[]{
             new Application(PERSON_1, JOB_1, new Status("PRESCREEN")),
             new Application(PERSON_1, JOB_2, new Status("IN_PROGRESS"))
         };
@@ -65,7 +65,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
+        for (Person samplePerson: getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
@@ -86,13 +86,14 @@ public class SampleDataUtil {
         }
         return applicationList;
     }
+
     /**
      * Returns a tag set containing the list of strings given.
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+            .map(Tag::new)
+            .collect(Collectors.toSet());
     }
 
 }
