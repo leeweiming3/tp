@@ -14,12 +14,13 @@ import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.UniqueJobList;
 
 /**
- * An immutable Application list that is serializable to JSON format.
+ * An immutable application list that is serializable to JSON format.
  */
 @JsonRootName(value = "applications")
 class JsonSerializableApplicationList {
 
-    public static final String MESSAGE_DUPLICATE_APPLICATION = "This Application already exists in the list of open Applications";
+    public static final String MESSAGE_DUPLICATE_APPLICATION =
+        "This application already exists in the list of open applications";
 
     private final List<JsonAdaptedApplication> applications = new ArrayList<>();
 
@@ -43,7 +44,7 @@ class JsonSerializableApplicationList {
     }
 
     /**
-     * Converts this Application list into the model's {@code UniqueApplicationList} object.
+     * Converts this application list into the model's {@code UniqueApplicationList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
