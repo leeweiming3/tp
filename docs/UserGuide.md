@@ -98,37 +98,24 @@ Examples:
 
 ### Adding an application: `add_app`
 
-Adds a job application, from a candidate, to the application list.
+Adds a job application from a candidate to the application list.
 
 Format: `add_app e/EMAIL ti/TITLE [s/STATUS]`
 
-* If `STATUS` is omitted, then the `STATUS` of the application will be `PRESCREEN`
+* The application added will contain the candidate with the specified email and the job with the specified title.
+* If `STATUS` is omitted, then the `STATUS` of the application will be `PRESCREEN`.
+* There cannot be 2 or more applications with the same pair of candidate and job.
+* The addition of an application to a job will fail if these conditions are met:
+  * The status of the application to be added is `OFFERED`.
+  * The number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
 
 Examples:
 * `add_app e/acekhoon@gmail.com ti/Quantitative Researcher`
-* `add_app e/john@example.com ti/Software Engineer s/ACCEPTED`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Listing all jobs : `list_job`
-
-Shows a list of all jobs in the job list.
-
-Format: `list_job`
-
-### Listing all applications : `list_app`
-
-Shows a list of all applications in the application list.
-
-Format: `list_app`
+* `add_app e/john@example.com ti/Software Engineer s/OFFERED`
 
 ### Edit candidate details: `edit`
 
-Edits an existing candidate in the list.
+Edits an existing candidate in the candidate list.
 
 You can edit any of the valid candidate details including name, email, country and tags at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
 
@@ -153,7 +140,7 @@ This command edits **name**, **email**, and **country of residence** of the cand
 
 *Example 2* : `edit 8 n/Jeb Song e/jebsong@gmail.com t/IMO Gold`
 
-This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, **jebsong@gmail.com**, and **IMO Gold**, respectively. Note that the existing tag(s) on this candidate is/are completely removed and a new tag `IMO Gold` is added.
+This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, **jebsong@gmail.com**, and **IMO Gold**, respectively. Note that the existing tag(s) on this candidate (if any) is/are completely removed and a new tag `IMO Gold` is added.
 
 ---
 
@@ -179,13 +166,12 @@ Examples:
 Leaves comments on important points to note down for individual candidates during the recruitment process. This overwrites existing comment (if any) and displays the resulting candidate.
 
 * `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
-* Any comment format is acceptable as long as comment is non-empty (i.e. user writes nothing in the comment field)
 
 Format: `comment INDEX COMMENT`
 
 Example:
 * `comment 3 Managed to solve every round 3 interview questions. He must be a strong candidate, potentially to be recruited as a quantitative research intern at Jane Street.`
-
+* `comment 1` deletes the comment from candidate of index 1.
 
 ### Tag a candidate: `tag`
 
@@ -213,8 +199,8 @@ Deletes existing tag(s) from a candidate's list of tags
 
 Format: `delete_tag INDEX [t/TAG]…​`
 
-* At least one tag must be provided
-* The specified tag(s) must be in the candidate's list of tags
+* At least one tag must be provided.
+* The specified tag(s) must be in the candidate's list of tags.
 
 Example:
 * `delete_tag 1 t/Exceptional work t/IMO gold`
@@ -223,7 +209,7 @@ Example:
 
 Changes the interview status of an application.
 
-Interview status must be one of the following: `PRESCREEN`, `IN_PROGRESS`, `WAITLIST`, `ACCEPTED`, `REJECTED`.
+Interview status must be one of the following: `PRESCREEN`, `IN_PROGRESS`, `WAITLIST`, `OFFERED`, `REJECTED`.
 When an application is added, by default it has status `PRESCREEN`.
 
 Format: `status INDEX STATUS`
@@ -237,7 +223,7 @@ If status command is successfully executed, the app will display the application
 
 ### Delete a candidate: `delete`
 
-Deletes an existing candidate from the list.
+Deletes an existing candidate from the candidate list.
 
 You can delete any candidates in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from ***1*** to ***n***, where ***n*** represents the **number of candidates** in the database.
 
@@ -255,7 +241,7 @@ This command removes the candidate at third position in the candidate list displ
 
 ### Delete a job: `delete_job`
 
-Deletes an existing job from the list.
+Deletes an existing job from the job list.
 
 Format: `delete_job INDEX`
 
@@ -267,7 +253,7 @@ Format: `delete_job INDEX`
 
 ### Delete an application: `delete_app`
 
-Deletes an existing application from the list.
+Deletes an existing application from the application list.
 
 Format: `delete_app INDEX`
 
@@ -332,19 +318,41 @@ Format: `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]`
 
 Examples:
 * `search_app e/alexyeoh@example.com s/PRESCREEN` returns applications from the candidate with email `alexyeoh@example.com` and with status `PRESCREEN`.
-* `search_app e/alexyeoh@example.com ti/Software Engineer` returns the application from candidate with email `alexyeoh@example.com` to the job with title `Software Engineer`.
-* `search_app ti/Software Engineer` returns applications to the job with title `Software Engineer`.
+* `search_app e/alexyeoh@example.com ti/Engineer` returns the application from candidate with email `alexyeoh@example.com` to the job with title containing `Engineer`.
+* `search_app ti/Software Engineer` returns applications to the job with title containing `Software Engineer`.
 
 ### Accessing by index: `get`
 
-Access candidates by index
+Accesses candidates by **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from 1 to n, where n represents the **number of candidates** in the database.
 
 Format: `get INDEX`
 
 * `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
 
 Example:
-* `get 24` returns the candidate with index 24
+* `get 24` returns the candidate with index 24.
+
+## Finding remaining vacancies: `slots left`
+
+Finds the remaining vacancies of a job
+
+### Listing all persons : `list`
+
+Shows a list of all persons in the address book.
+
+Format: `list`
+
+### Listing all jobs : `list_job`
+
+Shows a list of all jobs in the job list.
+
+Format: `list_job`
+
+### Listing all applications : `list_app`
+
+Shows a list of all applications in the application list.
+
+Format: `list_app`
 
 ### Exiting the program : `exit`
 
@@ -356,13 +364,13 @@ Format: `exit`
 
 HireHub data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### Editing the data files
 
-HireHub data are saved automatically as a JSON file `[JAR file location]/data/hirehub.json`. Advanced users are welcome to update data directly by editing that data file.
+HireHub data are saved automatically as JSON files `[JAR file location]/data/hirehub.json`, `[JAR file location]/data/jobs.json` and `[JAR file location]/data/applications.json`. Advanced users are welcome to update data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, HireHub will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause HireHub to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data files makes their format invalid, HireHub will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause HireHub to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data files only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -374,7 +382,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HireHub home folder.
+**A**: Install the app in the other computer and overwrite the empty data files it creates with the files that contain the data of your previous HireHub home folder.
 
 **Q**: What is the difference between `edit` and `tag`?<br>
 **A**: `edit` will overwrite any current tags with new tags, while `tag` will append the new tags to the current ones. For example, suppose that John is candidate 1 with tags `Internal` and `Waitlist`. `edit 1 t/Quant Researcher` will change John's tags to just `Quant Researcher`, while `tag t/Quant Researcher` will change John's tags to `Internal`, `Waitlist` and `Quant Researcher`.
@@ -393,7 +401,7 @@ _Details coming soon ..._
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | **Add**                 | `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/SG p/61234567 t/Internal`        |
 | **Add job**             | `add_job ti/TITLE [d/DESCRIPTION] v/VACANCY` <br> e.g., `add_job ti/Software Engineer d/Must be proficient in C++ v/10`           |
-| **Add application**     | `add_app e/EMAIL ti/TITLE [s/STATUS]` <br> e.g., `add_app e/john@example.com ti/Software Engineer s/ACCEPTED`                     |
+| **Add application**     | `add_app e/EMAIL ti/TITLE [s/STATUS]` <br> e.g., `add_app e/john@example.com ti/Software Engineer s/OFFERED`                      |
 | **Clear**               | `clear`                                                                                                                           |
 | **Comment**             | `comment INDEX m/COMMENT`<br> e.g., `comment 3 m/Managed to solve every round 3 interview questions.`                             |
 | **Delete**              | `delete INDEX`<br> e.g., `delete 3`                                                                                               |
