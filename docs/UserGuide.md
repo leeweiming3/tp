@@ -252,6 +252,9 @@ Format: `delete_job INDEX`
 > Applications involving the job to delete will also be deleted.
 ---
 
+Example:
+* `delete_job 3`
+
 ### Delete an application: `delete_app`
 
 Deletes an existing application from the application list.
@@ -262,6 +265,9 @@ Format: `delete_app INDEX`
 > [!NOTE]
 > If INDEX provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion. If ***y*** is selected, it will delete the application from the list and display the deleted application. If ***n*** is selected, it will display that the delete operation is cancelled.
 ---
+
+Example:
+* `delete_app 3`
 
 ### Clearing all entries : `clear`
 
@@ -341,6 +347,9 @@ The remaining vacancies of the job will be displayed in the message box.
 
 Format: `slots_left INDEX`
 
+Example:
+* `slots_left 3`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
@@ -402,26 +411,25 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                  | Format, Examples                                                                                                                  |
-|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                 | `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/SG p/61234567 t/Internal`        |
-| **Add job**             | `add_job ti/TITLE [d/DESCRIPTION] v/VACANCY` <br> e.g., `add_job ti/Software Engineer d/Must be proficient in C++ v/10`           |
-| **Add application**     | `add_app e/EMAIL ti/TITLE [s/STATUS]` <br> e.g., `add_app e/john@example.com ti/Software Engineer s/OFFERED`                      |
-| **Clear**               | `clear`                                                                                                                           |
-| **Comment**             | `comment INDEX m/COMMENT`<br> e.g., `comment 3 m/Managed to solve every round 3 interview questions.`                             |
-| **Delete**              | `delete INDEX`<br> e.g., `delete 3`                                                                                               |
-| **Delete job**          | `delete_job INDEX`                                                                                                                |
-| **Delete application**  | `delete_app INDEX`                                                                                                                |
-| **Edit**                | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`<br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/Singapore` |
-| **Edit job**            | `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]`                                                                           |
-| **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                        |
-| **Get**                 | `get INDEX`<br> e.g., `get 24`                                                                                                    |
-| **Search**              | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [t/TAG]`                                                             |
-| **Search jobs**         | `search_job [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]`                                                                               |
-| **Search applications** | `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]`                                                                                      |
-| **Tag**                 | `tag INDEX [t/TAG]…`<br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`                                                       |
-| **Status**              | `status INDEX INTERVIEW_STATUS`<br> e.g., `status 24 IN_PROGRESS`                                                                 |
-| **List**                | `list`                                                                                                                            |
-| **List jobs**           | `list_job`                                                                                                                        |
-| **List applications**   | `list_applications`                                                                                                               |
-| **Help**                | `help`                                                                                                                            |
+| Action                  | Format, Examples                                                                                                                                    |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                 | `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/SG p/61234567 t/Internal`                          |
+| **Add job**             | `add_job ti/TITLE [d/DESCRIPTION] v/VACANCY` <br> e.g., `add_job ti/Software Engineer d/Must be proficient in C++ v/10`                             |
+| **Add application**     | `add_app e/EMAIL ti/TITLE [s/STATUS]` <br> e.g., `add_app e/john@example.com ti/Software Engineer s/OFFERED`                                        |
+| **Clear**               | `clear`                                                                                                                                             |
+| **Comment**             | `comment INDEX COMMENT` <br> e.g., `comment 3 Managed to solve every round 3 interview questions.`                                                  |
+| **Delete**              | `delete INDEX` <br> e.g., `delete 3`                                                                                                                |
+| **Delete job**          | `delete_job INDEX` <br> e.g., `delete_job 3`                                                                                                        |
+| **Delete application**  | `delete_app INDEX` <br> e.g., `delete_app 3`                                                                                                        |
+| **Edit**                | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​` <br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/SG`                         |
+| **Edit job**            | `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]` <br> e.g., `edit_job 1 ti/Quantitative Trader d/Must have strong statistics background v/3` |
+| **Get**                 | `get INDEX` <br> e.g., `get 24`                                                                                                                     |
+| **Search**              | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [t/TAG]` <br> e.g., `search n/John c/SG`                                               |
+| **Search jobs**         | `search_job [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]` <br> e.g., `search_job ti/Engineer d/C++`                                                       |
+| **Search applications** | `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]` <br> e.g., `search_app e/alexyeoh@example.com s/PRESCREEN`                                             |
+| **Tag**                 | `tag INDEX [t/TAG]…` <br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`                                                                        |
+| **Status**              | `status INDEX INTERVIEW_STATUS` <br> e.g., `status 24 IN_PROGRESS`                                                                                  |
+| **List**                | `list`                                                                                                                                              |
+| **List jobs**           | `list_job`                                                                                                                                          |
+| **List applications**   | `list_applications`                                                                                                                                 |
+| **Help**                | `help`                                                                                                                                              |
