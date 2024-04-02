@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     @Override
     public void setJobsFilePath(Path jobsFilePath) {
         requireNonNull(jobsFilePath);
-        userPrefs.setAddressBookFilePath(jobsFilePath);
+        userPrefs.setJobsFilePath(jobsFilePath);
     }
 
     //=========== AddressBook ================================================================================

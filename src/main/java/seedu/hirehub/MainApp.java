@@ -97,6 +97,7 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
+        logger.info("Using data file : " + storage.getJobsFilePath());
         Optional<UniqueJobList> jobListOptional;
         UniqueJobList initialJobs;
         try {

@@ -57,7 +57,7 @@ class JsonAdaptedJob {
             throw new IllegalValueException(Job.TITLE_CONSTRAINTS);
         }
 
-        if (vacancy < 0) {
+        if (vacancy <= 0) {
             throw new IllegalValueException(Job.VACANCY_CONSTRAINTS);
         }
 
