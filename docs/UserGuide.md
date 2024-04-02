@@ -160,6 +160,7 @@ Examples:
 > [!NOTE]
 > 1. Even though you can edit multiple job details at once, attribute to edit must be **non-empty**. In other words, you must edit **at least one attribute** specified above.
 > 2. Applications involving the job to edit will be updated to involve the edited job.
+> 3. Editing of the vacancy of a job will fail if the edited vacancy is less than the current number of applications to the job with `OFFERED` status.
 
 ### Adding a comment on a candidate: `comment`
 
@@ -332,9 +333,13 @@ Format: `get INDEX`
 Example:
 * `get 24` returns the candidate with index 24.
 
-## Finding remaining vacancies: `slots left`
+### Finding remaining vacancies: `slots left`
 
-Finds the remaining vacancies of a job
+Finds the remaining vacancies of a job at the specified **INDEX**. The remaining vacancies is the number of vacancies of the job, subtracted by the number of applications to the job with `OFFERED` status.
+
+The remaining vacancies of the job will be displayed in the message box.
+
+Format: `slots_left INDEX`
 
 ### Listing all persons : `list`
 
@@ -369,7 +374,7 @@ HireHub data are saved in the hard disk automatically after any command that cha
 HireHub data are saved automatically as JSON files `[JAR file location]/data/hirehub.json`, `[JAR file location]/data/jobs.json` and `[JAR file location]/data/applications.json`. Advanced users are welcome to update data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data files makes their format invalid, HireHub will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data files makes their format invalid, HireHub will discard all data and start with empty data files at the next run. Hence, it is recommended to take a backup of the files before editing them.<br>
 Furthermore, certain edits can cause HireHub to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data files only if you are confident that you can update it correctly.
 </div>
 
