@@ -26,6 +26,7 @@ import seedu.hirehub.model.ReadOnlyUserPrefs;
 import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.Job;
+import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.testutil.PersonBuilder;
 
@@ -118,7 +119,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getJobsFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setJobsFilePath(Path jobsFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -287,7 +298,12 @@ public class AddCommandTest {
 
         public Optional<Application> getLastMentionedApplication() {
             throw new AssertionError("This method should not be called.");
-        };
+        }
+
+        @Override
+        public UniqueJobList getJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void updateFilteredApplicationList(Predicate<Application> predicate) {

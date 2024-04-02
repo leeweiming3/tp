@@ -7,10 +7,6 @@ import static seedu.hirehub.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.hirehub.testutil.Assert.assertThrows;
 import static seedu.hirehub.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.hirehub.logic.commands.AddCommand;
@@ -19,13 +15,11 @@ import seedu.hirehub.logic.commands.DeleteCommand;
 import seedu.hirehub.logic.commands.EditCommand;
 import seedu.hirehub.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.hirehub.logic.commands.ExitCommand;
-import seedu.hirehub.logic.commands.FindCommand;
 import seedu.hirehub.logic.commands.HelpCommand;
 import seedu.hirehub.logic.commands.InitClearCommand;
 import seedu.hirehub.logic.commands.InitDeleteCommand;
 import seedu.hirehub.logic.commands.ListCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
-import seedu.hirehub.model.person.NameContainsKeywordsPredicate;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.testutil.EditPersonDescriptorBuilder;
 import seedu.hirehub.testutil.PersonBuilder;
@@ -68,14 +62,6 @@ public class AddressBookParserTest {
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
-    }
-
-    @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import seedu.hirehub.model.AddressBook;
 import seedu.hirehub.model.ReadOnlyAddressBook;
+import seedu.hirehub.model.job.Job;
+import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Country;
 import seedu.hirehub.model.person.Email;
 import seedu.hirehub.model.person.Name;
@@ -34,12 +36,31 @@ public class SampleDataUtil {
         };
     }
 
+    public static Job[] getSampleJobs() {
+        return new Job[] {
+            new Job("Senior Software Engineer (Singapore)", "10 years of experience in C++, Singaporean citizen", 1),
+            new Job("Senior Software Engineer (London)", "10 years of experience in C++, UK citizen", 1),
+            new Job("Software Engineer (Singapore)", "Graduated with FCH, Singaporean citizen", 5),
+            new Job("Software Engineer (London)", "Graduated with FCH, UK citizen", 5),
+            new Job("Quantitative Trader", "Good at statistics and machine learning", 2),
+            new Job("Data Analyst", "Adept at handling large datasets and data pipelines", 2)
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static UniqueJobList getSampleUniqueJobList() {
+        UniqueJobList jobList = new UniqueJobList();
+        for (Job job: getSampleJobs()) {
+            jobList.addJob(job);
+        }
+        return jobList;
     }
 
     /**

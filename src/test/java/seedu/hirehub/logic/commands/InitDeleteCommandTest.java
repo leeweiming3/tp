@@ -17,6 +17,7 @@ import seedu.hirehub.logic.Messages;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ModelManager;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.job.UniqueJobList;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,7 +25,7 @@ import seedu.hirehub.model.UserPrefs;
  */
 public class InitDeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -32,7 +33,8 @@ public class InitDeleteCommandTest {
 
         String expectedMessage = String.format(InitDeleteCommand.MESSAGE_SUCCESS);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(),
+            new UniqueJobList(), new UserPrefs());
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }

@@ -42,9 +42,9 @@ public class ModelManager implements Model {
     private final FilteredList<Application> filteredApplications;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, userPrefs, and jobList.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, UniqueJobList jobList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -53,7 +53,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         lastMentionedPerson = Optional.<Person>empty();
-        jobList = new UniqueJobList();
+        this.jobList = jobList;
         filteredJobs = new FilteredList<>(jobList.asUnmodifiableObservableList());
         lastMentionedJob = Optional.<Job>empty();
         applicationList = new UniqueApplicationList();
@@ -62,7 +62,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UniqueJobList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -98,6 +98,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getJobsFilePath() {
+        return userPrefs.getJobsFilePath();
+    }
+
+    @Override
+    public void setJobsFilePath(Path jobsFilePath) {
+        requireNonNull(jobsFilePath);
+        userPrefs.setJobsFilePath(jobsFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -164,6 +175,11 @@ public class ModelManager implements Model {
     }
 
     //=========== JobList ================================================================================
+
+    @Override
+    public UniqueJobList getJobList() {
+        return this.jobList;
+    }
 
     @Override
     public boolean hasJob(Job job) {
