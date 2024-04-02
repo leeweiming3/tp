@@ -36,19 +36,9 @@ public class ApplicationCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label country;
-    @FXML
     private Label email;
     @FXML
-    private Label comment;
-    @FXML
-    private FlowPane tags;
-    @FXML
     private Label title;
-    @FXML
-    private Label description;
     @FXML
     private Label status;
     /**
@@ -59,17 +49,10 @@ public class ApplicationCard extends UiPart<Region> {
         this.application = application;
         this.job = application.getJob();
         this.person = application.getPerson();
-        id.setText(String.valueOf(displayedIndex));
+        id.setText(String.valueOf(displayedIndex) + ".");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        country.setText(person.getCountry().getDisplayCountry());
         email.setText(person.getEmail().value);
-        comment.setText(person.getComment().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         title.setText(job.getTitle());
-        description.setText(job.getDescription());
         status.setText(application.getStatus().value);
     }
 }
