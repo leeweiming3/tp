@@ -83,8 +83,8 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe e/johnd@example.com c/Hong Kong`
-* `add n/John Doe e/asdf@gmail.com c/Singapore p/61234567 t/Internal`
+* `add n/John Doe e/johnd@example.com c/HK`
+* `add n/John Doe e/asdf@gmail.com c/SG p/61234567 t/Internal`
 
 ### Adding a job: `add_job`
 
@@ -133,7 +133,7 @@ Format: `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`
 
 ---
 
-*Example 1* : `edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/Singapore`
+*Example 1* : `edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/SG`
 
 This command edits **name**, **email**, and **country of residence** of the candidate with index 24 to **Johnny Doe**, **johnnydoe@gmail.com**, and **Singapore**, respectively.
 
