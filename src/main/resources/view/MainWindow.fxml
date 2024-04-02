@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Box?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -51,18 +52,36 @@
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
+            <Label text="Candidates"
+                   textAlignment="RIGHT"
+                   HBox.hgrow="ALWAYS"
+                   prefWidth="1E10"
+                   prefHeight="100"
+                   style="-fx-alignment:center; -fx-font-size:32pt; -fx-font-family:Segoe UI Light; -fx-text-fill: white;" />
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
           <VBox fx:id= "jobList" styleClass="pane-with-border" prefWidth="1E10" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
+            <Label text="Jobs"
+                   textAlignment="RIGHT"
+                   HBox.hgrow="ALWAYS"
+                   prefWidth="1E10"
+                   prefHeight="100"
+                   style="-fx-alignment:center; -fx-font-size:32pt; -fx-font-family:Segoe UI Light; -fx-text-fill: white;" />
           <StackPane fx:id="jobListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
           <VBox fx:id= "applicationList" styleClass="pane-with-border" prefWidth="1E10" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
+            <Label text="Applications"
+                   textAlignment="RIGHT"
+                   HBox.hgrow="ALWAYS"
+                   prefWidth="1E10"
+                   prefHeight="100"
+                   style="-fx-alignment:center; -fx-font-size:32pt; -fx-font-family:Segoe UI Light; -fx-text-fill: white;" />
             <StackPane fx:id="applicationListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </HBox>

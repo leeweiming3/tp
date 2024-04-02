@@ -39,7 +39,7 @@ public class AddApplicationCommand extends Command {
     public static final String MESSAGE_EXCEEDS_VACANCY = "The number of accepted candidates already meets the"
             + " stipulated vacancy.\n To accept more candidates, the vacancy for the job can be increased via the"
             + " edit_job command, or change status for existing application(s) to this job via status command to"
-            + " a status other than ACCEPTED.\n You can retrieve vacancies left via slots_left command";
+            + " a status other than OFFERED.\n You can retrieve vacancies left via slots_left command";
 
 
     private final Email email;
@@ -81,7 +81,7 @@ public class AddApplicationCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
         }
 
-        if (status.equals(new Status("ACCEPTED")) && model.countRemainingVacancy(jobTitle) <= 0) {
+        if (status.equals(new Status("OFFERED")) && model.countRemainingVacancy(jobTitle) <= 0) {
             throw new CommandException(MESSAGE_EXCEEDS_VACANCY);
         }
         model.addApplication(newCandidateApplication);
