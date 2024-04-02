@@ -46,21 +46,24 @@ class JsonAdaptedJob {
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "title"));
         }
-        if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
-        }
-        if (vacancy == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "vacancy"));
-        }
+
         String trimmedTitle = title.trim();
         if (!Job.isValidTitle(trimmedTitle)) {
             throw new IllegalValueException(Job.TITLE_CONSTRAINTS);
+        }
+
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
+        }
+
+        if (vacancy == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "vacancy"));
         }
 
         if (vacancy <= 0) {
             throw new IllegalValueException(Job.VACANCY_CONSTRAINTS);
         }
 
-        return new Job(title, description, vacancy);
+        return new Job(trimmedTitle, description, vacancy);
     }
 }
