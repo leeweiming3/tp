@@ -21,7 +21,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {}
+    public UserPrefs() {
+    }
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
@@ -89,9 +90,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs otherUserPrefs = (UserPrefs) other;
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath)
-                && jobsFilePath.equals(otherUserPrefs.jobsFilePath)
-                && applicationsFilePath.equals(otherUserPrefs.applicationsFilePath);
+            && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath)
+            && jobsFilePath.equals(otherUserPrefs.jobsFilePath)
+            && applicationsFilePath.equals(otherUserPrefs.applicationsFilePath);
     }
 
     @Override
@@ -104,8 +105,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
-        sb.append("\nJobs location: " + jobsFilePath);
-        sb.append("\nApplications location: " + applicationsFilePath);
+        sb.append("\nLocal jobs file location : " + jobsFilePath);
+        sb.append("\nLocal applications file location : " + applicationsFilePath);
         return sb.toString();
     }
 
