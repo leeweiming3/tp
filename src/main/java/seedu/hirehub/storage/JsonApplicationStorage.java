@@ -25,8 +25,8 @@ import seedu.hirehub.model.status.Status;
  * A class to access application data stored as a json file on the hard disk.
  */
 public class JsonApplicationStorage implements ApplicationStorage {
-    private static final Logger logger = LogsCenter.getLogger(JsonApplicationStorage.class);
     public static final String EXCEEDS_VACANCY_MESSAGE = "Accepted candidates for %s exceeds stipulated vacancy!";
+    private static final Logger logger = LogsCenter.getLogger(JsonApplicationStorage.class);
 
     private Path filePath;
 
@@ -57,7 +57,7 @@ public class JsonApplicationStorage implements ApplicationStorage {
         requireNonNull(filePath);
 
         Optional<JsonSerializableApplicationList> jsonApplicationList = JsonUtil.readJsonFile(
-                filePath, JsonSerializableApplicationList.class);
+            filePath, JsonSerializableApplicationList.class);
         if (!jsonApplicationList.isPresent()) {
             return Optional.empty();
         }
