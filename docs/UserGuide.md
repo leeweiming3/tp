@@ -105,10 +105,10 @@ Format: `add_app e/EMAIL ti/TITLE [s/STATUS]`
 * The application added will contain the candidate with the specified email and the job with the specified title.
 * If `STATUS` is omitted, then the `STATUS` of the application will be `PRESCREEN`.
 * There cannot be 2 or more applications with the same pair of candidate and job.
-* The addition of an application to a job will fail if these conditions are met:
-  * The status of the application to be added is `OFFERED`.
-  * The number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
-
+* The addition of an application to a job will fail if one of these conditions are met:
+  * The status of the application to be added is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
+  * The candidate list does not contain a candidate with the specified email.
+  * The job list does not contain a job with the specified job title.
 Examples:
 * `add_app e/acekhoon@gmail.com ti/Quantitative Researcher`
 * `add_app e/john@example.com ti/Software Engineer s/OFFERED`
@@ -215,6 +215,9 @@ When an application is added, by default it has status `PRESCREEN`.
 
 Format: `status INDEX STATUS`
 
+* The status update to an application of a job will fail under this condition:
+  * The status of the application to change to is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
+
 *Example 1* : `status 24 IN_PROGRESS`
 
 This command changes the status of the application with index 24 to `IN_PROGRESS`.
@@ -232,7 +235,7 @@ Format: `delete INDEX`
 
 ---
 > [!NOTE]
-> If INDEX provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion. If ***y*** is selected, it will delete the candidate from the list and display the deleted candidate. If ***n*** is selected, it will display that the delete operation is cancelled.
+> If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the candidate from the list and display the deleted candidate. If **N** is selected, it will display that the delete operation is cancelled.
 > Applications involving the candidate to delete will also be deleted.
 ---
 
@@ -248,7 +251,7 @@ Format: `delete_job INDEX`
 
 ---
 > [!NOTE]
-> If INDEX provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion. If ***y*** is selected, it will delete the job from the list and display the deleted job. If ***n*** is selected, it will display that the delete operation is cancelled.
+> If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the job from the list and display the deleted job. If **N** is selected, it will display that the delete operation is cancelled.
 > Applications involving the job to delete will also be deleted.
 ---
 
@@ -263,7 +266,7 @@ Format: `delete_app INDEX`
 
 ---
 > [!NOTE]
-> If INDEX provided is valid, a confirmation message would be displayed where the user would type **y/n** to confirm the deletion. If ***y*** is selected, it will delete the application from the list and display the deleted application. If ***n*** is selected, it will display that the delete operation is cancelled.
+> If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the application from the list and display the deleted application. If **N** is selected, it will display that the delete operation is cancelled.
 ---
 
 Example:
@@ -273,7 +276,7 @@ Example:
 
 Clears all entries from the address book.
 
-* A confirmation message would be displayed. Type in "y" to confirm the deletion.
+* A confirmation message would be displayed. Type in **Y** to confirm the deletion.
 
 Format: `clear`
 
@@ -317,9 +320,10 @@ Searches applications whose attributes match the specified attributes in the sea
 Format: `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]`
 
 * At least one of the optional fields must be provided.
-* The search is case-sensitive, e.g. `engineer` will not match `Engineer`.
 * For title, partial words will be matched.
 * For email and status, only full words will be matched.
+* For email and title, the search is case-sensitive.
+* For status, the search is case-insensitive.
 * The search will fail if either email or status is in an invalid format.
 * If multiple fields are specified, only applications that match **all** the specified attributes will be returned.
 
@@ -339,7 +343,7 @@ Format: `get INDEX`
 Example:
 * `get 24` returns the candidate with index 24.
 
-### Finding remaining vacancies: `slots left`
+### Finding remaining vacancies: `slots_left`
 
 Finds the remaining vacancies of a job at the specified **INDEX**. The remaining vacancies is the number of vacancies of the job, subtracted by the number of applications to the job with `OFFERED` status.
 
@@ -424,12 +428,13 @@ _Details coming soon ..._
 | **Edit**                | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​` <br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/SG`                         |
 | **Edit job**            | `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]` <br> e.g., `edit_job 1 ti/Quantitative Trader d/Must have strong statistics background v/3` |
 | **Get**                 | `get INDEX` <br> e.g., `get 24`                                                                                                                     |
-| **Search**              | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [t/TAG]` <br> e.g., `search n/John c/SG`                                               |
-| **Search jobs**         | `search_job [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]` <br> e.g., `search_job ti/Engineer d/C++`                                                       |
-| **Search applications** | `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]` <br> e.g., `search_app e/alexyeoh@example.com s/PRESCREEN`                                             |
-| **Tag**                 | `tag INDEX [t/TAG]…` <br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`                                                                        |
-| **Status**              | `status INDEX INTERVIEW_STATUS` <br> e.g., `status 24 IN_PROGRESS`                                                                                  |
+| **Help**                | `help`                                                                                                                                              |
 | **List**                | `list`                                                                                                                                              |
 | **List jobs**           | `list_job`                                                                                                                                          |
 | **List applications**   | `list_applications`                                                                                                                                 |
-| **Help**                | `help`                                                                                                                                              |
+| **Search**              | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [t/TAG]` <br> e.g., `search n/John c/SG`                                               |
+| **Search jobs**         | `search_job [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]` <br> e.g., `search_job ti/Engineer d/C++`                                                       |
+| **Search applications** | `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]` <br> e.g., `search_app e/alexyeoh@example.com s/PRESCREEN`                                             |
+| **Slots left**          | `slots_left INDEX` <br> e.g., `slots_left 3`                                                                                                        |
+| **Status**              | `status INDEX INTERVIEW_STATUS` <br> e.g., `status 24 IN_PROGRESS`                                                                                  |
+| **Tag**                 | `tag INDEX [t/TAG]…` <br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`                                                                        |                                                                                |                                                                                                                              |                                                                                                                                         |
