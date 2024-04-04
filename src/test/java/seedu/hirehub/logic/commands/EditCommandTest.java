@@ -24,6 +24,7 @@ import seedu.hirehub.model.AddressBook;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ModelManager;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.testutil.EditPersonDescriptorBuilder;
@@ -34,7 +35,8 @@ import seedu.hirehub.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs(),
+        new UniqueApplicationList());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -45,7 +47,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+            new UniqueJobList(), new UserPrefs(), new UniqueApplicationList());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -67,7 +69,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+            new UniqueJobList(), new UserPrefs(), new UniqueApplicationList());
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -81,7 +83,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+            new UniqueJobList(), new UserPrefs(), new UniqueApplicationList());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -98,7 +100,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+            new UniqueJobList(), new UserPrefs(), new UniqueApplicationList());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

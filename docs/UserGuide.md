@@ -14,15 +14,15 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `hirehub.jar` from [here](https://github.com/AY2324S2-CS2103T-W08-1/tp/releases).
+2. Download the latest `hirehub.jar` from [here](https://github.com/AY2324S2-CS2103T-W08-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your HireHub.
+3. Copy the file to the folder you want to use as the _home folder_ for your HireHub.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hirehub.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hirehub.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -35,7 +35,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -78,6 +78,7 @@ Adds a person to the candidate list.
 
 Format: `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​`
 
+Country provided must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
@@ -105,7 +106,7 @@ Format: `add_app e/EMAIL ti/TITLE [s/STATUS]`
 * The application added will contain the candidate with the specified email and the job with the specified title.
 * If `STATUS` is omitted, then the `STATUS` of the application will be `PRESCREEN`.
 * There cannot be 2 or more applications with the same pair of candidate and job.
-* The addition of an application to a job will fail if one of these conditions are met:
+* The addition of an application to a job will fail if any of these conditions are met:
   * The status of the application to be added is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
   * The candidate list does not contain a candidate with the specified email.
   * The job list does not contain a job with the specified job title.
@@ -123,13 +124,11 @@ Format: `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`
 
 ---
 
-> [!NOTE]
-> 1. Even though you can edit multiple candidate details at once, attribute to edit must be **non-empty**. In other words, you must edit **at least one attribute** specified above.
-> 2. When **editing tags**, the existing tags of the candidate will be **removed**. Thus, you must specify **every tag** you want to keep on the candidate whenever you edit the candidate details.
-> 3. Applications involving the candidate to edit will be updated to involve the edited candidate.
 
-> [!WARNING]
-> **Comment and Interview Status** field for the candidates **cannot be edited** by `edit` as there is a dedicated method for editing them separately.
+* Even though you can edit multiple candidate details at once, attribute to edit must be **non-empty**. In other words, you must edit **at least one attribute** specified above.
+* When **editing tags**, the existing tags of the candidate will be **removed**. Thus, you must specify **every tag** you want to keep on the candidate whenever you edit the candidate details.
+* Applications involving the candidate to edit will be updated to involve the edited candidate.
+* **Comment and Interview Status** field for the candidates **cannot be edited** by `edit` as there is a dedicated method for editing them separately.
 
 ---
 
@@ -157,11 +156,13 @@ Format: `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]`
 Examples:
 * `edit_job 1 ti/Quantitative Trader d/Must have strong statistics background v/3`
 
-> [!NOTE]
-> 1. Even though you can edit multiple job details at once, attribute to edit must be **non-empty**. In other words, you must edit **at least one attribute** specified above.
-> 2. Applications involving the job to edit will be updated to involve the edited job.
-> 3. Editing of the vacancy of a job will fail if the edited vacancy is less than the current number of applications to the job with `OFFERED` status.
+---
 
+* Even though you can edit multiple job details at once, attribute to edit must be **non-empty**. In other words, you must edit **at least one attribute** specified above.
+* Applications involving the job to edit will be updated to involve the edited job.
+* Editing of the vacancy of a job will fail if the edited vacancy is less than the current number of applications to the job with `OFFERED` status.
+
+---
 ### Adding a comment on a candidate: `comment`
 
 Leaves comments on important points to note down for individual candidates during the recruitment process. This overwrites existing comment (if any) and displays the resulting candidate.
@@ -234,9 +235,10 @@ You can delete any candidates in the displayed list at the specified **INDEX**. 
 Format: `delete INDEX`
 
 ---
-> [!NOTE]
-> If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the candidate from the list and display the deleted candidate. If **N** is selected, it will display that the delete operation is cancelled.
-> Applications involving the candidate to delete will also be deleted.
+
+* If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the candidate from the list and display the deleted candidate. If **N** is selected, it will display that the delete operation is cancelled.
+* Applications involving the candidate to delete will also be deleted.
+
 ---
 
 *Example* : `delete 3`
@@ -250,9 +252,8 @@ Deletes an existing job from the job list.
 Format: `delete_job INDEX`
 
 ---
-> [!NOTE]
-> If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the job from the list and display the deleted job. If **N** is selected, it will display that the delete operation is cancelled.
-> Applications involving the job to delete will also be deleted.
+* If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the job from the list and display the deleted job. If **N** is selected, it will display that the delete operation is cancelled.
+* Applications involving the job to delete will also be deleted.
 ---
 
 Example:
@@ -265,8 +266,9 @@ Deletes an existing application from the application list.
 Format: `delete_app INDEX`
 
 ---
-> [!NOTE]
-> If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the application from the list and display the deleted application. If **N** is selected, it will display that the delete operation is cancelled.
+
+* If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the application from the list and display the deleted application. If **N** is selected, it will display that the delete operation is cancelled.
+
 ---
 
 Example:
@@ -274,7 +276,7 @@ Example:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the address book. All applications will be cleared as well.
 
 * A confirmation message would be displayed. Type in **Y** to confirm the deletion.
 
@@ -388,7 +390,7 @@ HireHub data are saved automatically as JSON files `[JAR file location]/data/hir
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data files makes their format invalid, HireHub will discard all data and start with empty data files at the next run. Hence, it is recommended to take a backup of the files before editing them.<br>
-Furthermore, certain edits can cause HireHub to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data files only if you are confident that you can update it correctly.
+Furthermore, certain edits can cause HireHub to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data files only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`

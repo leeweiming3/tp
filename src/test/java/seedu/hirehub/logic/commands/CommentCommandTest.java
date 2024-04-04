@@ -1,4 +1,5 @@
 package seedu.hirehub.logic.commands;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.hirehub.logic.commands.CommandTestUtil.VALID_COMMENT_AMY;
@@ -18,6 +19,7 @@ import seedu.hirehub.model.AddressBook;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ModelManager;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Comment;
 import seedu.hirehub.model.person.Person;
@@ -30,7 +32,8 @@ public class CommentCommandTest {
 
     private static final String COMMENT_STUB = "Some comment";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs(),
+        new UniqueApplicationList());
 
     @Test
     public void execute_addCommentUnfilteredList_success() {
@@ -44,7 +47,7 @@ public class CommentCommandTest {
                 Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+            new UniqueJobList(), new UserPrefs(), new UniqueApplicationList());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(commentCommand, model, expectedMessage, expectedModel);
@@ -62,7 +65,7 @@ public class CommentCommandTest {
                 Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+            new UniqueJobList(), new UserPrefs(), new UniqueApplicationList());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(commentCommand, model, expectedMessage, expectedModel);
@@ -82,7 +85,7 @@ public class CommentCommandTest {
                 Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+            new UniqueJobList(), new UserPrefs(), new UniqueApplicationList());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(commentCommand, model, expectedMessage, expectedModel);
