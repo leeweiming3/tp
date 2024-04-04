@@ -25,15 +25,15 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-* `list` : Lists all contacts.
+   * `list` : Lists all contacts.
 
-* `add n/John Doe e/johnd@example.com c/HK` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe e/johnd@example.com c/HK` : Adds a contact named `John Doe` to the Address Book.
 
-* `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-* `clear` : Deletes all contacts.
+   * `clear` : Deletes all contacts.
 
-* `exit` : Exits the app.
+   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -107,10 +107,10 @@ Format: `add_app e/EMAIL ti/TITLE [s/STATUS]`
 * If `STATUS` is omitted, then the `STATUS` of the application will be `PRESCREEN`.
 * There cannot be 2 or more applications with the same pair of candidate and job.
 * The addition of an application to a job will fail if any of these conditions are met:
-* The status of the application to be added is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
-* The candidate list does not contain a candidate with the specified email.
-* The job list does not contain a job with the specified job title.
-  Examples:
+    * The status of the application to be added is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
+    * The candidate list does not contain a candidate with the specified email.
+    * The job list does not contain a job with the specified job title.
+      Examples:
 * `add_app e/acekhoon@gmail.com ti/Quantitative Researcher`
 * `add_app e/john@example.com ti/Software Engineer s/OFFERED`
 
