@@ -1,7 +1,6 @@
 package seedu.hirehub.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.hirehub.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
@@ -23,9 +22,10 @@ public class StatusCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Update status for an application within "
             + "the application list to one of the following 5 statuses:\n"
-            + "PRESCREEN, IN_PROGRESS, WAITLIST, ACCEPTED, REJECTED\n"
-            + "Parameters: INDEX (must be a positive number) s/Status \n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_STATUS + "ACCEPTED";
+            + "PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED\n"
+            + "Parameters: INDEX (must be a positive integer) STATUS\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + "OFFERED";
 
     public static final String MESSAGE_STATUS_PERSON_SUCCESS = "Status of Candidate Successfully"
             + " Updated to %1$s";
@@ -34,9 +34,9 @@ public class StatusCommand extends Command {
             + "already exists in the application list";
 
     public static final String MESSAGE_EXCEEDS_VACANCY = "The number of accepted candidates already meets the"
-            + " stipulated vacancy.\n To accept more candidates, the vacancy for the job can be increased via the"
+            + " stipulated vacancy.\nTo accept more candidates, the vacancy for the job can be increased via the"
             + " edit_job command, or change status for existing application(s) to this job via status command to"
-            + " a status other than ACCEPTED.\n You can retrieve vacancies left via slots_left command";
+            + " a status other than OFFERED.\nYou can retrieve vacancies left via slots_left command";
     private final Index index;
     private final Status status;
 
@@ -65,7 +65,7 @@ public class StatusCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_STATUS, status));
         }
 
-        if (status.equals(new Status("ACCEPTED"))
+        if (status.equals(new Status("OFFERED"))
                 && model.countRemainingVacancy(applicationToUpdate.getJob().getTitle()) <= 0) {
             throw new CommandException(MESSAGE_EXCEEDS_VACANCY);
         }

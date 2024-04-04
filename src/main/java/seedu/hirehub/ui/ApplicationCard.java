@@ -1,10 +1,7 @@
 package seedu.hirehub.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.hirehub.model.application.Application;
@@ -36,19 +33,11 @@ public class ApplicationCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label country;
-    @FXML
     private Label email;
-    @FXML
-    private Label comment;
-    @FXML
-    private FlowPane tags;
     @FXML
     private Label title;
     @FXML
-    private Label description;
+    private Label status;
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -57,16 +46,10 @@ public class ApplicationCard extends UiPart<Region> {
         this.application = application;
         this.job = application.getJob();
         this.person = application.getPerson();
-        id.setText(String.valueOf(displayedIndex));
+        id.setText(String.valueOf(displayedIndex) + ".");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        country.setText(person.getCountry().getDisplayCountry());
         email.setText(person.getEmail().value);
-        comment.setText(person.getComment().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         title.setText(job.getTitle());
-        description.setText(job.getDescription());
+        status.setText(application.getStatus().value);
     }
 }

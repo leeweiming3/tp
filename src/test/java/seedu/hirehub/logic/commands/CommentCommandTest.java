@@ -18,6 +18,7 @@ import seedu.hirehub.model.AddressBook;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ModelManager;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Comment;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.testutil.PersonBuilder;
@@ -29,7 +30,7 @@ public class CommentCommandTest {
 
     private static final String COMMENT_STUB = "Some comment";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
 
     @Test
     public void execute_addCommentUnfilteredList_success() {
@@ -42,7 +43,8 @@ public class CommentCommandTest {
         String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS,
                 Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+            new UniqueJobList(), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(commentCommand, model, expectedMessage, expectedModel);
@@ -59,7 +61,8 @@ public class CommentCommandTest {
         String expectedMessage = String.format(CommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS,
                 Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+            new UniqueJobList(), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(commentCommand, model, expectedMessage, expectedModel);
@@ -78,7 +81,8 @@ public class CommentCommandTest {
         String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS,
                 Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+            new UniqueJobList(), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(commentCommand, model, expectedMessage, expectedModel);

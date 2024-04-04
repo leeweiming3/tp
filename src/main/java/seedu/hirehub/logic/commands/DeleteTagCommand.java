@@ -16,31 +16,32 @@ import seedu.hirehub.model.person.Person;
 import seedu.hirehub.model.tag.Tag;
 
 /**
- * Appends tags to an existing person in the address book.
+ * Deletes tags from an existing person in the address book.
  */
-public class TagCommand extends Command {
+public class DeleteTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "tag";
+    public static final String COMMAND_WORD = "delete_tag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds tags to the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing tags will not be overwritten by the input.\n"
-            + "At least one tag must be present.\n"
+            + ": Deletes tags from the person identified "
+            + "by the index number used in the last person listing.\n"
+            + "At least one tag must be present. All tags specified will be removed.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "INTERNAL " + PREFIX_TAG + "WAITLIST";
 
-    public static final String MESSAGE_ADD_TAGS_SUCCESS = "Added tags to Person: %1$s";
+    public static final String MESSAGE_DELETE_TAG_SUCCESS = "Removed tags from Person: %1$s";
+    public static final String MESSAGE_TAG_NOT_PRESENT = "Some tags are not present on the person.";
+
     private final Index index;
     private final Set<Tag> tags;
 
     /**
      * @param index of the person in the filtered person list to edit the comment
-     * @param tags  to be added to the person
+     * @param tags to be removed from the person
      */
-    public TagCommand(Index index, Set<Tag> tags) {
+    public DeleteTagCommand(Index index, Set<Tag> tags) {
         requireAllNonNull(index, tags);
 
         this.index = index;
@@ -56,17 +57,22 @@ public class TagCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Set<Tag> newTagList = new HashSet<>();
-        newTagList.addAll(personToEdit.getTags());
-        newTagList.addAll(tags);
+        Set<Tag> newTagList = new HashSet<>(personToEdit.getTags());
+        for (Tag t : tags) {
+            if (newTagList.contains(t)) {
+                newTagList.remove(t);
+            } else {
+                throw new CommandException(DeleteTagCommand.MESSAGE_TAG_NOT_PRESENT);
+            }
+        }
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getCountry(), personToEdit.getComment(), newTagList);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.replaceApplications(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_ADD_TAGS_SUCCESS, Messages.format(editedPerson)));
+
+        return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, Messages.format(editedPerson)));
     }
 
     @Override
@@ -76,12 +82,12 @@ public class TagCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TagCommand)) {
+        if (!(other instanceof DeleteTagCommand)) {
             return false;
         }
 
-        TagCommand otherTagCommand = (TagCommand) other;
-        return index.equals(otherTagCommand.index)
-                && tags.equals(otherTagCommand.tags);
+        DeleteTagCommand otherDeleteTagCommand = (DeleteTagCommand) other;
+        return index.equals(otherDeleteTagCommand.index)
+                && tags.equals(otherDeleteTagCommand.tags);
     }
 }
