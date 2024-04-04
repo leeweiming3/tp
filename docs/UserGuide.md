@@ -6,7 +6,7 @@ title: User Guide
 HireHub is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HireHub can get your candidate management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -25,15 +25,15 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe e/johnd@example.com c/HK` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe e/johnd@example.com c/HK` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -76,7 +76,7 @@ Format: `help`
 
 Adds a person to the candidate list.
 
-Format: `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​`
+Format: `add n/NAME e/EMAIL c/COUNTRY p/PHONE [t/TAG]…​`
 
 Country provided must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -107,9 +107,9 @@ Format: `add_app e/EMAIL ti/TITLE [s/STATUS]`
 * If `STATUS` is omitted, then the `STATUS` of the application will be `PRESCREEN`.
 * There cannot be 2 or more applications with the same pair of candidate and job.
 * The addition of an application to a job will fail if any of these conditions are met:
-  * The status of the application to be added is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
-  * The candidate list does not contain a candidate with the specified email.
-  * The job list does not contain a job with the specified job title.
+    * The status of the application to be added is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
+    * The candidate list does not contain a candidate with the specified email.
+    * The job list does not contain a job with the specified job title.
 Examples:
 * `add_app e/acekhoon@gmail.com ti/Quantitative Researcher`
 * `add_app e/john@example.com ti/Software Engineer s/OFFERED`
@@ -217,7 +217,7 @@ When an application is added, by default it has status `PRESCREEN`.
 Format: `status INDEX STATUS`
 
 * The status update to an application of a job will fail under this condition:
-  * The status of the application to change to is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
+    * The status of the application to change to is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
 
 *Example 1* : `status 24 IN_PROGRESS`
 
@@ -419,7 +419,7 @@ _Details coming soon ..._
 
 | Action                  | Format, Examples                                                                                                                                    |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                 | `add n/NAME e/EMAIL c/COUNTRY [p/PHONE] [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/SG p/61234567 t/Internal`                          |
+| **Add**                 | `add n/NAME e/EMAIL c/COUNTRY p/PHONE [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/SG p/61234567 t/Internal`                            |
 | **Add job**             | `add_job ti/TITLE [d/DESCRIPTION] v/VACANCY` <br> e.g., `add_job ti/Software Engineer d/Must be proficient in C++ v/10`                             |
 | **Add application**     | `add_app e/EMAIL ti/TITLE [s/STATUS]` <br> e.g., `add_app e/john@example.com ti/Software Engineer s/OFFERED`                                        |
 | **Clear**               | `clear`                                                                                                                                             |
@@ -427,6 +427,7 @@ _Details coming soon ..._
 | **Delete**              | `delete INDEX` <br> e.g., `delete 3`                                                                                                                |
 | **Delete job**          | `delete_job INDEX` <br> e.g., `delete_job 3`                                                                                                        |
 | **Delete application**  | `delete_app INDEX` <br> e.g., `delete_app 3`                                                                                                        |
+| **Delete Tag**          | `delete_tag INDEX [t/TAG]…​` <br> e.g. `delete_tag 1 t/Exceptional work t/IMO gold`                                                                                                             |
 | **Edit**                | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​` <br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/SG`                         |
 | **Edit job**            | `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]` <br> e.g., `edit_job 1 ti/Quantitative Trader d/Must have strong statistics background v/3` |
 | **Get**                 | `get INDEX` <br> e.g., `get 24`                                                                                                                     |
