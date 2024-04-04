@@ -1,7 +1,5 @@
 package seedu.hirehub.storage;
 
-import java.util.Iterator;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -27,7 +25,7 @@ class JsonAdaptedApplication {
     private final String status;
 
     /**
-     * Constructs a {@code JsonAdaptedJob} with the given job details.
+     * Constructs a {@code JsonAdaptedApplication} with the given application details.
      */
     @JsonCreator
     public JsonAdaptedApplication(@JsonProperty("personEmail") String personEmail,
@@ -39,7 +37,7 @@ class JsonAdaptedApplication {
     }
 
     /**
-     * Converts a given {@code Job} into this class for Jackson use.
+     * Converts a given {@code Application} into this class for Jackson use.
      */
     public JsonAdaptedApplication(Application source) {
         personEmail = source.getPerson().getEmail().toString();
@@ -48,9 +46,9 @@ class JsonAdaptedApplication {
     }
 
     /**
-     * Converts this Jackson-friendly adapted job object into the model's {@code Application} object.
+     * Converts this Jackson-friendly adapted application object into the model's {@code Application} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted job.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted application.
      */
     public Application toModelType(UniqueJobList jobs,
                                    ReadOnlyAddressBook people) throws IllegalValueException {
@@ -89,33 +87,34 @@ class JsonAdaptedApplication {
     }
 
     /**
-     * Find the job associated with the name
-     * @param jobs joblist containing the job
-     * @return job with correct jobname
+     * Finds the job associated with the this.jobTitle.
+     * Returns null if not found.
+     *
+     * @param jobs Joblist containing the job.
+     * @return Job with correct name.
      */
     private Job getJob(UniqueJobList jobs) {
-        Job appliedJob = null;
-        for (Iterator<Job> it = jobs.iterator(); it.hasNext(); ) {
-            Job j = it.next();
+        for (Job j: jobs) {
             if (j.getTitle().equals(jobTitle)) {
-                appliedJob = j;
+                return j;
             }
         }
-        return appliedJob;
+        return null;
     }
 
     /**
-     * Find the person with the correct email
-     * @param people list of people
-     * @param email email which they have
+     * Finds the person associated with this email.
+     * Returns null if not found.
+     *
+     * @param people List of people.
+     * @param email  Email address to be found.
      */
     private static Person getPerson(ReadOnlyAddressBook people, Email email) {
-        Person temp = null;
         for (Person p: people.getPersonList()) {
             if (p.getEmail().equals(email)) {
-                temp = p;
+                return p;
             }
         }
-        return temp;
+        return null;
     }
 }

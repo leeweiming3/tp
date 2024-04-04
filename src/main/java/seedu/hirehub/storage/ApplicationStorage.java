@@ -21,7 +21,7 @@ public interface ApplicationStorage {
     Path getApplicationFilePath();
 
     /**
-     * Returns job data as a {@link seedu.hirehub.model.application.UniqueApplicationList}.
+     * Returns application data as a {@link seedu.hirehub.model.application.UniqueApplicationList}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.

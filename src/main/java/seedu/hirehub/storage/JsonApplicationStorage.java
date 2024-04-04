@@ -41,7 +41,7 @@ public class JsonApplicationStorage implements ApplicationStorage {
     }
 
     /**
-     * Similar to {@link #readApplicationList(UniqueJobList, ReadOnlyAddressBook)} ()}.
+     * Similar to {@link #readApplicationList(UniqueJobList, ReadOnlyAddressBook)} }.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
