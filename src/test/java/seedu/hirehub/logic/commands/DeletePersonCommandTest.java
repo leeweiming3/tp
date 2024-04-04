@@ -1,7 +1,6 @@
 package seedu.hirehub.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.hirehub.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -92,7 +91,7 @@ public class DeletePersonCommandTest {
     }
 
     @Test
-    public void execute_validIndexUnfilteredList_delete_success() {
+    public void execute_deleteValidIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         model.setLastMentionedPerson(personToDelete);
         Command deleteCommand = new DeletePersonCommand(INDEX_FIRST_PERSON).whenConfirmed();
@@ -108,7 +107,7 @@ public class DeletePersonCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_delete_success() {
+    public void execute_deleteValidIndexFilteredList_success() {
         CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
