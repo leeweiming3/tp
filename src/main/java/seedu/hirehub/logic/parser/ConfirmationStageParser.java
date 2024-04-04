@@ -20,7 +20,7 @@ public class ConfirmationStageParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Logger logger = LogsCenter.getLogger(ClearConfirmationStageParser.class);
+    private static final Logger logger = LogsCenter.getLogger(ConfirmationStageParser.class);
     /**
      * Commands to be run when the user chooses to confirm or deny respectively.
      */

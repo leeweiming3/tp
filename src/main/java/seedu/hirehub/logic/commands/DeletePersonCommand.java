@@ -15,7 +15,7 @@ import seedu.hirehub.model.person.Person;
 /**
  * Pushes the program into the state to delete the person at targetIndex.
  */
-public class NewDeletePersonCommand extends AbstractDeleteCommand {
+public class DeletePersonCommand extends AbstractDeleteCommand {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the person identified by the index number used in the displayed person list.\n"
@@ -28,7 +28,7 @@ public class NewDeletePersonCommand extends AbstractDeleteCommand {
     public static final String MESSAGE_DELETE_PERSON_CANCEL = "Deletion aborted";
     private final Index targetIndex;
 
-    public NewDeletePersonCommand(Index targetIndex) {
+    public DeletePersonCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -66,10 +66,10 @@ public class NewDeletePersonCommand extends AbstractDeleteCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NewDeletePersonCommand)) {
+        if (!(other instanceof DeletePersonCommand)) {
             return false;
         }
-        NewDeletePersonCommand o = (NewDeletePersonCommand) other;
+        DeletePersonCommand o = (DeletePersonCommand) other;
         return (this.targetIndex.equals(o.targetIndex));
     }
 
