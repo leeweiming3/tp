@@ -216,7 +216,8 @@ Format: `status INDEX STATUS`
 * The status update to an application of a job will fail under this condition:
     * The status of the application to change to is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
 
-Example: `status 24 IN_PROGRESS` changes the status of the application with index 24 to `IN_PROGRESS`.
+Example:
+* `status 24 IN_PROGRESS` changes the status of the application with index 24 to `IN_PROGRESS`.
 
 If status command is successfully executed, the app will display the application with the new status.
 
