@@ -44,7 +44,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook, userPrefs, and jobList.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, UniqueJobList jobList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, UniqueJobList jobList, ReadOnlyUserPrefs userPrefs,
+                        UniqueApplicationList applicationList) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -56,13 +57,13 @@ public class ModelManager implements Model {
         this.jobList = jobList;
         filteredJobs = new FilteredList<>(jobList.asUnmodifiableObservableList());
         lastMentionedJob = Optional.<Job>empty();
-        applicationList = new UniqueApplicationList();
+        this.applicationList = applicationList;
         lastMentionedApplication = Optional.<Application>empty();
         filteredApplications = new FilteredList<>(applicationList.asUnmodifiableObservableList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UniqueJobList(), new UserPrefs());
+        this(new AddressBook(), new UniqueJobList(), new UserPrefs(), new UniqueApplicationList());
     }
 
     //=========== UserPrefs ==================================================================================
