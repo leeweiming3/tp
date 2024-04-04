@@ -11,22 +11,21 @@ import seedu.hirehub.commons.core.LogsCenter;
 import seedu.hirehub.logic.commands.AddApplicationCommand;
 import seedu.hirehub.logic.commands.AddCommand;
 import seedu.hirehub.logic.commands.AddJobCommand;
-import seedu.hirehub.logic.commands.ClearCommand;
 import seedu.hirehub.logic.commands.Command;
 import seedu.hirehub.logic.commands.CommentCommand;
-import seedu.hirehub.logic.commands.DeleteApplicationCommand;
-import seedu.hirehub.logic.commands.DeleteCommand;
-import seedu.hirehub.logic.commands.DeleteJobCommand;
 import seedu.hirehub.logic.commands.DeleteTagCommand;
 import seedu.hirehub.logic.commands.EditCommand;
 import seedu.hirehub.logic.commands.EditJobCommand;
 import seedu.hirehub.logic.commands.ExitCommand;
 import seedu.hirehub.logic.commands.GetCommand;
 import seedu.hirehub.logic.commands.HelpCommand;
-import seedu.hirehub.logic.commands.InitClearCommand;
 import seedu.hirehub.logic.commands.ListApplicationCommand;
 import seedu.hirehub.logic.commands.ListCommand;
 import seedu.hirehub.logic.commands.ListJobCommand;
+import seedu.hirehub.logic.commands.NewClearCommand;
+import seedu.hirehub.logic.commands.NewDeleteApplicationCommand;
+import seedu.hirehub.logic.commands.NewDeleteJobCommand;
+import seedu.hirehub.logic.commands.NewDeletePersonCommand;
 import seedu.hirehub.logic.commands.SearchApplicationCommand;
 import seedu.hirehub.logic.commands.SearchCommand;
 import seedu.hirehub.logic.commands.SearchJobCommand;
@@ -75,11 +74,11 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case NewDeletePersonCommand.COMMAND_WORD:
             return new InitDeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new InitClearCommand();
+        case NewClearCommand.COMMAND_WORD:
+            return new NewClearCommand();
 
         case SearchCommand.COMMAND_WORD:
             return new SearchCommandParser().parse(arguments);
@@ -114,7 +113,7 @@ public class AddressBookParser {
         case EditJobCommand.COMMAND_WORD:
             return new EditJobCommandParser().parse(arguments);
 
-        case DeleteJobCommand.COMMAND_WORD:
+        case NewDeleteJobCommand.COMMAND_WORD:
             return new InitDeleteJobCommandParser().parse(arguments);
 
         case SearchJobCommand.COMMAND_WORD:
@@ -123,7 +122,7 @@ public class AddressBookParser {
         case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
 
-        case DeleteApplicationCommand.COMMAND_WORD:
+        case NewDeleteApplicationCommand.COMMAND_WORD:
             return new InitDeleteApplicationCommandParser().parse(arguments);
 
         case SearchApplicationCommand.COMMAND_WORD:

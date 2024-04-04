@@ -13,6 +13,7 @@ import seedu.hirehub.logic.commands.CommandResult;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.logic.parser.AddressBookParser;
 import seedu.hirehub.logic.parser.ClearConfirmationStageParser;
+import seedu.hirehub.logic.parser.ConfirmationStageParser;
 import seedu.hirehub.logic.parser.DeleteApplicationConfirmationStageParser;
 import seedu.hirehub.logic.parser.DeleteConfirmationStageParser;
 import seedu.hirehub.logic.parser.DeleteJobConfirmationStageParser;
@@ -38,6 +39,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final ConfirmationStageParser confirmationStageParser;
     private final ClearConfirmationStageParser clearConfirmationStageParser;
     private final DeleteConfirmationStageParser deleteConfirmationStageParser;
     private final DeleteApplicationConfirmationStageParser deleteApplicationConfirmationStageParser;
@@ -51,6 +53,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        confirmationStageParser = new ConfirmationStageParser();
         clearConfirmationStageParser = new ClearConfirmationStageParser();
         deleteConfirmationStageParser = new DeleteConfirmationStageParser();
         deleteApplicationConfirmationStageParser = new DeleteApplicationConfirmationStageParser();
@@ -67,6 +70,9 @@ public class LogicManager implements Logic {
         switch (state) {
         case NORMAL:
             command = addressBookParser.parseCommand(commandText);
+            break;
+        case CONFIRM:
+            command = confirmationStageParser.parseCommand(commandText);
             break;
         case CLEARCONFIRM:
             command = clearConfirmationStageParser.parseCommand(commandText);
@@ -86,6 +92,7 @@ public class LogicManager implements Logic {
         assert (command != null);
         commandResult = command.execute(model);
         state = commandResult.getCommandBoxState();
+        confirmationStageParser.setNextCommands(command);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -108,6 +115,7 @@ public class LogicManager implements Logic {
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
+
     @Override
     public ObservableList<Job> getFilteredJobList() {
         return model.getFilteredJobList();
