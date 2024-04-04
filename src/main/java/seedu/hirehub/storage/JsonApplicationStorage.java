@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -14,18 +13,14 @@ import seedu.hirehub.commons.exceptions.IllegalValueException;
 import seedu.hirehub.commons.util.FileUtil;
 import seedu.hirehub.commons.util.JsonUtil;
 import seedu.hirehub.model.ReadOnlyAddressBook;
-import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.application.UniqueApplicationList;
-import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.job.UniqueJobList;
-import seedu.hirehub.model.status.Status;
 
 
 /**
  * A class to access application data stored as a json file on the hard disk.
  */
 public class JsonApplicationStorage implements ApplicationStorage {
-    public static final String EXCEEDS_VACANCY_MESSAGE = "Accepted candidates for %s exceeds stipulated vacancy!";
     private static final Logger logger = LogsCenter.getLogger(JsonApplicationStorage.class);
 
     private Path filePath;
@@ -63,17 +58,6 @@ public class JsonApplicationStorage implements ApplicationStorage {
         }
 
         try {
-            UniqueApplicationList applicationList = jsonApplicationList.get().toModelType(jobs, people);
-            HashMap<Job, Integer> offeredCount = new HashMap<>();
-            for (Application a: applicationList) {
-                if (a.getStatus().equals(new Status("OFFERED"))) {
-                    Job offeredJob = a.getJob();
-                    offeredCount.merge(offeredJob, 1, Integer::sum);
-                    if (offeredCount.get(offeredJob) > offeredJob.getVacancy()) {
-                        throw new IllegalValueException(String.format(EXCEEDS_VACANCY_MESSAGE, offeredJob));
-                    }
-                }
-            }
             return Optional.of(jsonApplicationList.get().toModelType(jobs, people));
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());

@@ -15,7 +15,7 @@ import seedu.hirehub.model.person.Person;
 import seedu.hirehub.model.status.Status;
 
 /**
- * Jackson-friendly version of {@link seedu.hirehub.model.application.Application}.
+ * Jackson-friendly version of {@link Application}.
  */
 class JsonAdaptedApplication {
 
@@ -74,17 +74,26 @@ class JsonAdaptedApplication {
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
 
-        Person applicant = null;
         Email email = new Email(personEmail);
-        for (Person p : people.getPersonList()) {
-            if (p.getEmail().equals(email)) {
-                applicant = p;
-            }
-        }
+        Person applicant = getPerson(people, email);
         if (applicant == null) {
             throw new IllegalValueException(String.format(PERSON_NOT_FOUND_FORMAT, email));
         }
 
+        Job appliedJob = getJob(jobs);
+        if (appliedJob == null) {
+            throw new IllegalValueException(String.format(JOB_NOT_FOUND_FORMAT, jobTitle));
+        }
+
+        return new Application(applicant, appliedJob, new Status(status));
+    }
+
+    /**
+     * Find the job associated with the name
+     * @param jobs joblist containing the job
+     * @return job with correct jobname
+     */
+    private Job getJob(UniqueJobList jobs) {
         Job appliedJob = null;
         for (Iterator<Job> it = jobs.iterator(); it.hasNext(); ) {
             Job j = it.next();
@@ -92,10 +101,21 @@ class JsonAdaptedApplication {
                 appliedJob = j;
             }
         }
-        if (appliedJob == null) {
-            throw new IllegalValueException(String.format(JOB_NOT_FOUND_FORMAT, jobTitle));
-        }
+        return appliedJob;
+    }
 
-        return new Application(applicant, appliedJob, new Status(status));
+    /**
+     * Find the person with the correct email
+     * @param people list of people
+     * @param email email which they have
+     */
+    private static Person getPerson(ReadOnlyAddressBook people, Email email) {
+        Person temp = null;
+        for (Person p: people.getPersonList()) {
+            if (p.getEmail().equals(email)) {
+                temp = p;
+            }
+        }
+        return temp;
     }
 }
