@@ -132,13 +132,13 @@ Format: `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`
 * **Comment and Interview Status** field for the candidates **cannot be edited** by `edit` as there is a dedicated method for editing them separately.
 
 ---
-
-*Example 1* : `edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/SG`
+Examples:
+* `edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/SG`
 
 This command edits **name**, **email**, and **country of residence** of the candidate with index 24 to **Johnny Doe**, **johnnydoe@gmail.com**, and **Singapore**, respectively.
 
 
-*Example 2* : `edit 8 n/Jeb Song e/jebsong@gmail.com t/IMO Gold`
+* `edit 8 n/Jeb Song e/jebsong@gmail.com t/IMO Gold`
 
 This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, **jebsong@gmail.com**, and **IMO Gold**, respectively. Note that the existing tag(s) on this candidate (if any) is/are completely removed and a new tag `IMO Gold` is added.
 
@@ -154,7 +154,7 @@ You can edit any of the valid job details including title, description and vacan
 
 Format: `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]`
 
-Examples:
+Example:
 * `edit_job 1 ti/Quantitative Trader d/Must have strong statistics background v/3`
 
 ---
@@ -172,7 +172,7 @@ Leaves comments on important points to note down for individual candidates durin
 
 Format: `comment INDEX COMMENT`
 
-Example:
+Examples:
 * `comment 3 Managed to solve every round 3 interview questions. He must be a strong candidate, potentially to be recruited as a quantitative research intern at Jane Street.`
 * `comment 1` deletes the comment from candidate of index 1.
 
@@ -186,13 +186,9 @@ Format: `tag INDEX [t/TAG]…​`
 
 * At least one tag must be provided.
 
-*Example 1* : `tag 24 t/smart`
-
-This command adds the tag "smart" to the candidate with index 24.
-
-*Example 2* : `tag 8 t/Exceptional work t/IMO gold t/Male`
-
-This command adds the tags "Exceptional work", "IMO gold" and "Male" to the candidate with index 8.
+Examples:
+* `tag 24 t/smart` adds the tag "smart" to the candidate with index 24.
+* `tag 8 t/Exceptional work t/IMO gold t/Male` adds the tags "Exceptional work", "IMO gold" and "Male" to the candidate with index 8.
 
 If tag command is successfully executed, the app will display the candidate with the new tags.
 
@@ -206,7 +202,7 @@ Format: `delete_tag INDEX [t/TAG]…​`
 * The specified tag(s) must be in the candidate's list of tags.
 
 Example:
-* `delete_tag 1 t/Exceptional work t/IMO gold`
+* `delete_tag 1 t/Exceptional work t/IMO gold` removes these tags from the 1st candidate displayed.
 
 ### Change status of an application: `status`
 
@@ -220,9 +216,8 @@ Format: `status INDEX STATUS`
 * The status update to an application of a job will fail under this condition:
     * The status of the application to change to is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
 
-*Example 1* : `status 24 IN_PROGRESS`
-
-This command changes the status of the application with index 24 to `IN_PROGRESS`.
+Example:
+* `status 24 IN_PROGRESS` changes the status of the application with index 24 to `IN_PROGRESS`.
 
 If status command is successfully executed, the app will display the application with the new status.
 
@@ -242,9 +237,7 @@ Format: `delete INDEX`
 
 ---
 
-*Example* : `delete 3`
-
-This command removes the candidate at third position in the candidate list displayed.
+Example : `delete 3` removes the candidate at third position in the candidate list displayed.
 
 ### Delete a job: `delete_job`
 
@@ -258,7 +251,7 @@ Format: `delete_job INDEX`
 ---
 
 Example:
-* `delete_job 3`
+* `delete_job 3` removes the job at third position in the job list displayed.
 
 ### Delete an application: `delete_app`
 
@@ -273,7 +266,7 @@ Format: `delete_app INDEX`
 ---
 
 Example:
-* `delete_app 3`
+* `delete_app 3` removes the application at third position in the application list displayed.
 
 ### Clearing all entries : `clear`
 
