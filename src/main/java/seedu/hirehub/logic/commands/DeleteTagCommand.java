@@ -32,7 +32,7 @@ public class DeleteTagCommand extends Command {
             + PREFIX_TAG + "INTERNAL " + PREFIX_TAG + "WAITLIST";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Removed tags from Person: %1$s";
-    public static final String MESSAGE_TAG_NOT_PRESENT = "Some tags are not present on the person.";
+    public static final String MESSAGE_TAG_NOT_PRESENT = "At least one tag specified is not present on the person.";
 
     private final Index index;
     private final Set<Tag> tags;
