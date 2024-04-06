@@ -104,7 +104,7 @@ Adds a job application from a candidate to the application list.
 Format: `add_app e/EMAIL ti/TITLE [s/STATUS]`
 
 * The application added will contain the candidate with the specified email and the job with the specified title.
-* If `STATUS` is omitted, then the `STATUS` of the application will be `PRESCREEN`.
+* There are 5 valid status: `PRESCREEN`, `REJECTED`, `WAITLIST`, `IN_PROGRESS`, and `OFFERED`. If `STATUS` is omitted, then the `STATUS` of the application will be `PRESCREEN`.
 * There cannot be 2 or more applications with the same pair of candidate and job.
 * The addition of an application to a job will fail if any of these conditions are met:
     * The status of the application to be added is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
@@ -270,7 +270,7 @@ Example:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book. All applications will be cleared as well.
+Clears all entries from hirehub's address book. All applications will be cleared as well.
 
 * A confirmation message would be displayed. Type in **Y** to confirm the deletion.
 
@@ -334,14 +334,14 @@ Accesses candidates by **INDEX**. Here, **INDEX** refers to the index number of 
 
 Format: `get INDEX`
 
-* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
+* `INDEX` must be within the range `1` to `n`, where `n` is the number of candidates currently displayed in the `"Candidates"` column of the app.
 
 Example:
 * `get 24` returns the candidate with index 24.
 
 ### Finding remaining vacancies: `slots_left`
 
-Finds the remaining vacancies of a job at the specified **INDEX**. The remaining vacancies is the number of vacancies of the job, subtracted by the number of applications to the job with `OFFERED` status.
+Finds the remaining vacancies of a job at the specified **INDEX** from the list of jobs displayed in the hirehub app. The remaining vacancies is the number of vacancies of the job, subtracted by the number of applications to the job with `OFFERED` status.
 
 The remaining vacancies of the job will be displayed in the message box.
 
