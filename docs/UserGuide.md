@@ -46,7 +46,33 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.<br>
+  
+* These are the constraints for each of the parameters (this applies to all commands):
+
+  * NAME: cannot be blank, and only alphanumeric characters and spaces are allowed. In particular, special characters such as `/` and `-` are not allowed. This would be part of the planned improvements.
+  * PHONE: cannot be blank. 
+    * International phone numbers should contain a country code in front (+ followed by 1 to 3 digits), then a space, then followed by a combination of digits, spaces, parentheses or hyphens with at least 3 digits.
+    * If country code is omitted, it must be a valid Singapore phone number. It must start with 3, 6, 8 or 9 and must be in the following formats: `XXXXYYYY`, `XXXX-YYYY` or `XXXX YYYY`.
+    * Given a country code, there is no phone validation specific to the country. This would be part of the planned improvements.
+  * EMAIL: must be of the format local-part@domain and adhere to the following constraints:
+    * The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+    * This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
+      - end with a domain label at least 2 characters long
+      - have each domain label start and end with alphanumeric characters
+      - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+  * COUNTRY: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/.
+  * TAG: cannot be blank (except in edit command), and only alphanumeric characters and spaces are allowed.
+  * COMMENT: can be blank and does not have any constraints.
+  * TITLE: cannot be blank and has a character limit of 100.
+  * DESCRIPTION: can be blank and does not have any constraints.
+  * VACANCY: must be a positive integer.
+  * STATUS: must be one of the following 5 statuses (not case-sensitive): PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED
+
+* These are the primary key (i.e. no 2 items can have the same parameter) of candidates, jobs and applications:
+  * candidates: EMAIL
+  * jobs: TITLE
+  * applications: (EMAIL, TITLE)
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
