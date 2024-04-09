@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.hirehub.commons.core.LogsCenter;
 import seedu.hirehub.logic.commands.Command;
+import seedu.hirehub.logic.commands.ConfirmableCommand;
 import seedu.hirehub.logic.commands.HelpCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 
@@ -64,7 +65,7 @@ public class ConfirmationStageParser {
      *
      * @param currentCommand command currently in confirmation stage
      */
-    public void setNextCommands(Command currentCommand) {
+    public void setNextCommands(ConfirmableCommand currentCommand) {
         this.nextConfirmCommand = currentCommand.whenConfirmed();
         this.nextDenyCommand = currentCommand.whenDenied();
     }

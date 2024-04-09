@@ -7,7 +7,7 @@ import seedu.hirehub.model.Model;
 /**
  * Represents a deletion command, which only executes upon confirmation
  */
-public abstract class AbstractDeleteCommand extends Command {
+public abstract class AbstractDeleteCommand extends ConfirmableCommand {
     /**
      * Execute delete command on confirmation, on model
      *

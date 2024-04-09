@@ -10,6 +10,7 @@ import seedu.hirehub.commons.core.GuiSettings;
 import seedu.hirehub.commons.core.LogsCenter;
 import seedu.hirehub.logic.commands.Command;
 import seedu.hirehub.logic.commands.CommandResult;
+import seedu.hirehub.logic.commands.ConfirmableCommand;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.logic.parser.AddressBookParser;
 import seedu.hirehub.logic.parser.ConfirmationStageParser;
@@ -68,7 +69,11 @@ public class LogicManager implements Logic {
         assert (command != null);
         commandResult = command.execute(model);
         state = commandResult.getCommandBoxState();
-        confirmationStageParser.setNextCommands(command);
+        // Confirm state only supports confirmable commands
+        assert (state != CommandBoxState.CONFIRM || command instanceof ConfirmableCommand);
+        if (command instanceof ConfirmableCommand) {
+            confirmationStageParser.setNextCommands((ConfirmableCommand) command);
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());
