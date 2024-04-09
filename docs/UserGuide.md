@@ -51,10 +51,10 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 * These are the constraints for each of the parameters (this applies to all commands):
 
   * NAME: cannot be blank, and only alphanumeric characters and spaces are allowed. In particular, special characters such as `/` and `-` are not allowed. This would be part of the planned improvements.
-  * PHONE: cannot be blank. 
-    * International phone numbers should contain a country code in front (+ followed by 1 to 3 digits), then a space, then followed by a combination of digits, spaces, parentheses or hyphens with at least 3 digits.
+  * PHONE: cannot be blank and must adhere to the following constraints:
+    * International phone numbers should contain a country code in front (+ followed by 1 to 3 digits), then a space, followed by a combination of digits, spaces, parentheses or hyphens with at least 3 digits.
     * If country code is omitted, it must be a valid Singapore phone number. It must start with 3, 6, 8 or 9 and must be in the following formats: `XXXXYYYY`, `XXXX-YYYY` or `XXXX YYYY`.
-    * Given a country code, there is no phone validation specific to the country. This would be part of the planned improvements.
+    * Other than the above constraints, there is no other validation to check if a country code is valid. Furthermore, given a country code, there is no phone validation specific to the country code. This would be part of the planned improvements.
   * EMAIL: must be of the format local-part@domain and adhere to the following constraints:
     * The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
     * This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
@@ -104,7 +104,6 @@ Adds a person to the candidate list.
 
 Format: `add n/NAME e/EMAIL c/COUNTRY p/PHONE [t/TAG]…​`
 
-Country provided must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
