@@ -209,6 +209,18 @@ The following sequence diagram shows how a search operation goes through the var
 Alternatives:
 `SearchPersonDescriptor` may be omitted - in which case, `SearchCommandParser#parse(String)` can directly use the attributes it has parsed to create a `SearchPredicate` object with the relevant attributes and information to search for. However, the methods to test `SearchPersonDescriptor` are readily available, which would ease the testing process.
 
+### SlotsLeft Command
+
+Slots left command finds the remaining vacancies of a specified job at the specified index. The remaining vacancies is the number of vacancies of the job, subtracted by the number of `OFFERED` applications to that job. The slots left operation is executed as follows:
+
+Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
+
+Step 2. The user types `slots_left 3` to find the number of remaining vacancies of the job with index `3`. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `SlotsLeftCommandParser#parse(String)`.
+
+Step 3. `SlotsLeftCommandParser#parse(String)` creates a new `SlotsLeftCommand` object, which contains the index of the job.
+
+Step 4. `SlotsLeftCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where `ModelManager#getFilteredJobList()` is called. `List#get(int)` is then called, which returns a job object. `Job#getTitle()` is then called to return a String (the title of the job), which is then used as an argument for `ModelManager#countRemainingVacancy(String)`, returning the number of remaining vacancies of the job.
+
 
 ### \[Proposed\] Undo/redo feature
 
