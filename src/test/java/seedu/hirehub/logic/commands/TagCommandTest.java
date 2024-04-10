@@ -26,6 +26,7 @@ import seedu.hirehub.model.AddressBook;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ModelManager;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.model.tag.Tag;
@@ -40,7 +41,8 @@ class TagCommandTest {
     private static final String TAG_STUB_2 = "Epic";
     private static final Set<Tag> TAGS_STUB = new HashSet<>(
             Arrays.asList(new Tag(TAG_STUB_1), new Tag(TAG_STUB_2)));
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs(),
+        new UniqueApplicationList());
 
     @Test
     void execute_addTagUnfilteredList_success() {
@@ -57,7 +59,7 @@ class TagCommandTest {
                 Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+            new UniqueJobList(), new UserPrefs(), new UniqueApplicationList());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
@@ -81,7 +83,7 @@ class TagCommandTest {
                 Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+            new UniqueJobList(), new UserPrefs(), new UniqueApplicationList());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);

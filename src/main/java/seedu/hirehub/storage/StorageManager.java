@@ -10,6 +10,7 @@ import seedu.hirehub.commons.exceptions.DataLoadingException;
 import seedu.hirehub.model.ReadOnlyAddressBook;
 import seedu.hirehub.model.ReadOnlyUserPrefs;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.UniqueJobList;
 
 /**
@@ -21,15 +22,18 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private JobsStorage jobsStorage;
+    private ApplicationStorage applicationStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage,
-        UserPrefsStorage userPrefsStorage, JobsStorage jobsStorage) {
+                          UserPrefsStorage userPrefsStorage, JobsStorage jobsStorage,
+                          ApplicationStorage applicationStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.jobsStorage = jobsStorage;
+        this.applicationStorage = applicationStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -105,5 +109,36 @@ public class StorageManager implements Storage {
     public void saveJobList(UniqueJobList jobList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         jobsStorage.saveJobList(jobList, filePath);
+    }
+
+    // ================ ApplicationList methods ==============================
+    @Override
+    public Path getApplicationFilePath() {
+        return applicationStorage.getApplicationFilePath();
+    }
+
+    @Override
+    public Optional<UniqueApplicationList> readApplicationList(UniqueJobList jobs,
+                                                               ReadOnlyAddressBook people) throws DataLoadingException {
+        return readApplicationList(jobs, people, getApplicationFilePath());
+    }
+
+    @Override
+    public Optional<UniqueApplicationList> readApplicationList(UniqueJobList jobs,
+                                                               ReadOnlyAddressBook people,
+                                                               Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return applicationStorage.readApplicationList(jobs, people, filePath);
+    }
+
+    @Override
+    public void saveApplicationList(UniqueApplicationList applicationList) throws IOException {
+        saveApplicationList(applicationList, getApplicationFilePath());
+    }
+
+    @Override
+    public void saveApplicationList(UniqueApplicationList applicationList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        applicationStorage.saveApplicationList(applicationList, filePath);
     }
 }

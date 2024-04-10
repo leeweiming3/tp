@@ -9,6 +9,7 @@ import seedu.hirehub.model.AddressBook;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ModelManager;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.UniqueJobList;
 
 public class ClearCommandTest {
@@ -24,8 +25,10 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs(),
+            new UniqueApplicationList());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs(),
+            new UniqueApplicationList());
         expectedModel.setAddressBook(new AddressBook());
 
         assertCommandSuccess(new ClearCommand().whenConfirmed(),

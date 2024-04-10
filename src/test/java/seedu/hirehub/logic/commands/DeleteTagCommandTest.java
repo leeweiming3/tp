@@ -25,6 +25,7 @@ import seedu.hirehub.model.AddressBook;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ModelManager;
 import seedu.hirehub.model.UserPrefs;
+import seedu.hirehub.model.application.UniqueApplicationList;
 import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.model.tag.Tag;
@@ -39,7 +40,8 @@ class DeleteTagCommandTest {
     private static final String TAG_3 = "enthusiastic";
 
     private static final String TAG_4 = "spiffy";
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UniqueJobList(),
+        new UserPrefs(), new UniqueApplicationList());
 
     @Test
     void execute_deleteTagUnfilteredList_success() {
@@ -58,8 +60,8 @@ class DeleteTagCommandTest {
         String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_TAG_SUCCESS,
                 Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UniqueJobList(),
+            new UserPrefs(), new UniqueApplicationList());
         expectedModel.setPerson(secondPerson, editedPerson);
 
         assertCommandSuccess(delCommand, model, expectedMessage, expectedModel);
@@ -83,8 +85,8 @@ class DeleteTagCommandTest {
         String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_TAG_SUCCESS,
                 Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UniqueJobList(),
+            new UserPrefs(), new UniqueApplicationList());
         expectedModel.setPerson(secondPerson, editedPerson);
 
         assertCommandSuccess(delCommand, model, expectedMessage, expectedModel);
@@ -106,8 +108,8 @@ class DeleteTagCommandTest {
         String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_TAG_SUCCESS,
                 Messages.format(editedPerson));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UniqueJobList(),
+            new UserPrefs(), new UniqueApplicationList());
         expectedModel.setPerson(secondPerson, editedPerson);
 
         assertCommandSuccess(delCommand, model, expectedMessage, expectedModel);
@@ -122,8 +124,8 @@ class DeleteTagCommandTest {
         DeleteTagCommand delCommand = new DeleteTagCommand(INDEX_SECOND_PERSON,
                 stringsToTags(TAG_1, TAG_4));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UniqueJobList(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UniqueJobList(),
+            new UserPrefs(), new UniqueApplicationList());
 
         assertCommandFailure(delCommand, model, DeleteTagCommand.MESSAGE_TAG_NOT_PRESENT);
     }
