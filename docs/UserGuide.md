@@ -79,6 +79,7 @@ Adds a person to the candidate list.
 Format: `add n/NAME e/EMAIL c/COUNTRY p/PHONE [t/TAG]…​`
 
 Country provided must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/.
+Alternatively, you can refer to the appendix for the exact ISO code to use for each country.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
@@ -246,8 +247,10 @@ Deletes an existing job from the job list.
 Format: `delete_job INDEX`
 
 ---
+
 * If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the job from the list and display the deleted job. If **N** is selected, it will display that the delete operation is cancelled.
 * Applications involving the job to delete will also be deleted.
+
 ---
 
 Example:
