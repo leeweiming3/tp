@@ -50,7 +50,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
   
 * These are the constraints for each of the parameters (this applies to all commands):
 
-  * NAME: cannot be blank, and only alphanumeric characters and spaces are allowed. In particular, special characters such as `/` and `-` are not allowed. This would be part of the planned improvements.
+  * NAME: cannot be blank, and only alphanumeric characters and spaces are allowed. In particular, special characters such as `/` and `-` and non-English characters (e.g. Chinese characters) are not allowed. This would be part of the planned improvements.
   * PHONE: cannot be blank and must adhere to the following constraints:
     * International phone numbers should contain a country code in front (+ followed by 1 to 3 digits), then a space, followed by a combination of digits, spaces, parentheses or hyphens with at least 3 digits.
     * If country code is omitted, it must be a valid Singapore phone number. It must start with 3, 6, 8 or 9 and must be in the following formats: `XXXXYYYY`, `XXXX-YYYY` or `XXXX YYYY`.
@@ -61,7 +61,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
       - end with a domain label at least 2 characters long
       - have each domain label start and end with alphanumeric characters
       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  * COUNTRY: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/.
+  * COUNTRY: must be a valid ISO-3166-1 alpha-2 code (case-sensitive) which can be found from https://www.iso.org/obp/ui/#search/code/.
   * TAG: cannot be blank (except in edit command), and only alphanumeric characters and spaces are allowed.
   * COMMENT: can be blank and does not have any constraints.
   * TITLE: cannot be blank and has a character limit of 100.
@@ -69,10 +69,10 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
   * VACANCY: must be a positive integer.
   * STATUS: must be one of the following 5 statuses (not case-sensitive): PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED
 
-* These are the primary key (i.e. no 2 items can have the same parameter) of candidates, jobs and applications:
+* These are the primary key (i.e. no 2 items can have the same parameter) of candidates, jobs and applications respectively:
   * candidates: EMAIL
   * jobs: TITLE
-  * applications: (EMAIL, TITLE)
+  * applications: (EMAIL, TITLE) - either EMAIL or TITLE can be the same, as long as both are not the same.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
