@@ -5,6 +5,13 @@ title: User Guide
 
 HireHub is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HireHub can get your candidate management tasks done faster than traditional GUI apps.
 
+### Tips on using this user guide
+
+* Go through _Quick Start_ to ensure that you are able to use hirehub.
+* Go through _Features_ to familiarise yourself with the terms used. You may want to have a separate pdf for viewing the _Features_, so that you can easily refer to it if you have forgotten any part of it.
+* To navigate to any command quickly, click the corresponding section in the _Table of Contents_.
+* If you are facing any problems, you may want to go to the _FAQ_ section to see if it addresses the problems.
+
 * Table of Contents
   {:toc}
 
