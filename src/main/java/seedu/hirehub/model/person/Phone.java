@@ -12,7 +12,8 @@ public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
             "International phone numbers should only contain a country code "
-                    + "in front (+ followed by 1 to 3 digits), followed by a combination of digits, spaces, "
+                    + "in front (+ followed by 1 to 3 digits), then a space, "
+                    + "followed by a combination of digits, spaces, "
                     + "parentheses or hyphens with at least 3 digits.\n"
                     + "If country code is omitted, it must be a valid Singapore phone number.";
 

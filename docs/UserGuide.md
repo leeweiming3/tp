@@ -46,7 +46,33 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.<br>
+  
+* These are the constraints for each of the parameters (this applies to all commands):
+
+  * NAME: cannot be blank, and only alphanumeric characters and spaces are allowed. In particular, special characters such as `/` and `-` and non-English characters (e.g. Chinese characters) are not allowed. This would be part of the planned improvements.
+  * PHONE: cannot be blank and must adhere to the following constraints:
+    * International phone numbers should contain a country code in front (+ followed by 1 to 3 digits), then a space, followed by a combination of digits, spaces, parentheses or hyphens with at least 3 digits.
+    * If country code is omitted, it must be a valid Singapore phone number. It must start with 3, 6, 8 or 9 and must be in the following formats: `XXXXYYYY`, `XXXX-YYYY` or `XXXX YYYY`.
+    * Other than the above constraints, there is no other validation to check if a country code is valid. Furthermore, given a country code, there is no phone validation specific to the country code. This would be part of the planned improvements.
+  * EMAIL: must be of the format local-part@domain and adhere to the following constraints:
+    * The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+    * This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
+      - end with a domain label at least 2 characters long
+      - have each domain label start and end with alphanumeric characters
+      - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+  * COUNTRY: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS.
+  * TAG: cannot be blank (except in edit command), and only alphanumeric characters and spaces are allowed.
+  * COMMENT: can be blank and does not have any constraints.
+  * TITLE: cannot be blank and has a character limit of 100.
+  * DESCRIPTION: can be blank and does not have any constraints.
+  * VACANCY: must be a positive integer.
+  * STATUS: must be one of the following 5 statuses (not case-sensitive): PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED
+
+* These are the primary key (i.e. no 2 items can have the same parameter) of candidates, jobs and applications respectively:
+  * candidates: EMAIL
+  * jobs: TITLE
+  * applications: (EMAIL, TITLE) - either EMAIL or TITLE can be the same, as long as both are not the same.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -78,7 +104,6 @@ Adds a person to the candidate list.
 
 Format: `add n/NAME e/EMAIL c/COUNTRY p/PHONE [t/TAG]…​`
 
-Country provided must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
@@ -421,7 +446,7 @@ _Details coming soon ..._
 | **Delete**              | `delete INDEX` <br> e.g., `delete 3`                                                                                                                |
 | **Delete job**          | `delete_job INDEX` <br> e.g., `delete_job 3`                                                                                                        |
 | **Delete application**  | `delete_app INDEX` <br> e.g., `delete_app 3`                                                                                                        |
-| **Delete Tag**          | `delete_tag INDEX [t/TAG]…​` <br> e.g. `delete_tag 1 t/Exceptional work t/IMO gold`                                                                                                             |
+| **Delete tag**          | `delete_tag INDEX [t/TAG]…​` <br> e.g. `delete_tag 1 t/Exceptional work t/IMO gold`                                                                 |
 | **Edit**                | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​` <br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/SG`                         |
 | **Edit job**            | `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]` <br> e.g., `edit_job 1 ti/Quantitative Trader d/Must have strong statistics background v/3` |
 | **Get**                 | `get INDEX` <br> e.g., `get 24`                                                                                                                     |
