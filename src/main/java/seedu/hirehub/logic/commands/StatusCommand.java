@@ -14,7 +14,7 @@ import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.status.Status;
 
 /**
- * Updates recruitment status for candidates in the address book.
+ * Updates recruitment status of an application in the address book.
  */
 public class StatusCommand extends Command {
 
@@ -30,7 +30,7 @@ public class StatusCommand extends Command {
     public static final String MESSAGE_STATUS_PERSON_SUCCESS = "Status of application successfully "
             + "updated to %1$s";
 
-    public static final String MESSAGE_DUPLICATE_STATUS = "This candidate with identical recruitment status %1$s "
+    public static final String MESSAGE_DUPLICATE_STATUS = "This application with identical recruitment status %1$s "
             + "already exists in the application list";
 
     public static final String MESSAGE_EXCEEDS_VACANCY = "The number of accepted candidates already meets the"

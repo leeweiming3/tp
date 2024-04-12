@@ -12,7 +12,7 @@ import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.person.SearchPredicate;
 
 /**
- *
+ * Searches all applications whose attributes match the specified attributes.
  */
 public class SearchApplicationCommand extends Command {
 
