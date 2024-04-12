@@ -69,7 +69,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
       - have each domain label start and end with alphanumeric characters
       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
   * COUNTRY: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS.
-  * TAG: cannot be blank (except in edit command), and only alphanumeric characters and spaces are allowed.
+  * TAG: cannot be blank (except in edit command), and only alphanumeric characters and spaces are not allowed.
   * COMMENT: can be blank and does not have any constraints.
   * TITLE: cannot be blank and has a character limit of 100.
   * DESCRIPTION: can be blank and does not have any constraints.
@@ -432,6 +432,9 @@ _Details coming soon ..._
 
 **Q**: What is the difference between `edit` and `tag`?<br>
 **A**: `edit` will overwrite any current tags with new tags, while `tag` will append the new tags to the current ones. For example, suppose that John is candidate 1 with tags `Internal` and `Waitlist`. `edit 1 t/Quant Researcher` will change John's tags to just `Quant Researcher`, while `tag t/Quant Researcher` will change John's tags to `Internal`, `Waitlist` and `Quant Researcher`.
+
+**Q**: Why can't I add/edit a candidate/job respectively?
+**A**: Check the email/title of the candidate/job again. After add/edit operation, no 2 candidates can have the same email (not name), and no 2 jobs can have the same title.
 
 --------------------------------------------------------------------------------------------------------------------
 
