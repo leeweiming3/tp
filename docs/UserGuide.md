@@ -207,6 +207,8 @@ Appends the tag or tags to a candidate's list of tags.
 
 You can list any number of tags greater than 0, and all of them will be added to the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
 
+Duplicate tags or already-present tags will not affect the candidate.
+
 Format: `tag INDEX [t/TAG]…​`
 
 * At least one tag must be provided.
