@@ -27,6 +27,7 @@ public class DeleteTagCommand extends Command {
             + "by the index number used in the last person listing.\n"
             + "At least one tag must be present. All tags specified will be removed.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_TAG + "TAG "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "INTERNAL " + PREFIX_TAG + "WAITLIST";

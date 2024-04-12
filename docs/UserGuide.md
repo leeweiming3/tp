@@ -13,7 +13,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 * If you are facing any problems, you may want to go to the _FAQ_ section to see if it addresses the problems.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 
     * `list` : Lists all contacts.
 
-    * `add n/John Doe e/johnd@example.com c/HK` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe e/johnd@example.com c/HK p/61234567 t/Internal` : Adds a contact named `John Doe` to the Address Book.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -68,8 +68,8 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
       - end with a domain label at least 2 characters long
       - have each domain label start and end with alphanumeric characters
       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  * COUNTRY: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS.
-  * TAG: cannot be blank (except in edit command), and only alphanumeric characters and spaces are allowed.
+  * COUNTRY: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS. Alternatively, you can refer to the appendix for the exact ISO code to use for each country.
+  * TAG: cannot be blank (except in edit command), and only alphanumeric characters are allowed.
   * COMMENT: can be blank and does not have any constraints.
   * TITLE: cannot be blank and has a character limit of 100.
   * DESCRIPTION: can be blank and does not have any constraints.
@@ -116,7 +116,7 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe e/johnd@example.com c/HK`
+* `add n/John Doe e/johnd@example.com c/HK p/61234567`
 * `add n/John Doe e/asdf@gmail.com c/SG p/61234567 t/Internal`
 
 ### Adding a job: `add_job`
@@ -170,9 +170,9 @@ Examples:
 This command edits **name**, **email**, and **country of residence** of the candidate with index 24 to **Johnny Doe**, **johnnydoe@gmail.com**, and **Singapore**, respectively.
 
 
-* `edit 8 n/Jeb Song e/jebsong@gmail.com t/IMO Gold`
+* `edit 8 n/Jeb Song e/jebsong@gmail.com t/IMOGold`
 
-This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, **jebsong@gmail.com**, and **IMO Gold**, respectively. Note that the existing tag(s) on this candidate (if any) is/are completely removed and a new tag `IMO Gold` is added.
+This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, **jebsong@gmail.com**, and **IMOGold**, respectively. Note that the existing tag(s) on this candidate (if any) is/are completely removed and a new tag `IMOGold` is added.
 
 ---
 
@@ -214,13 +214,15 @@ Appends the tag or tags to a candidate's list of tags.
 
 You can list any number of tags greater than 0, and all of them will be added to the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list.
 
-Format: `tag INDEX [t/TAG]…​`
+Duplicate tags or already-present tags will not affect the candidate.
+
+Format: `tag INDEX t/TAG [t/TAG]…​`
 
 * At least one tag must be provided.
 
 Examples:
 * `tag 24 t/smart` adds the tag "smart" to the candidate with index 24.
-* `tag 8 t/Exceptional work t/IMO gold t/Male` adds the tags "Exceptional work", "IMO gold" and "Male" to the candidate with index 8.
+* `tag 8 t/ExceptionalWork t/IMOGold t/Male` adds the tags "ExceptionalWork", "IMOGold" and "Male" to the candidate with index 8.
 
 If tag command is successfully executed, the app will display the candidate with the new tags.
 
@@ -228,13 +230,13 @@ If tag command is successfully executed, the app will display the candidate with
 
 Deletes existing tag(s) from a candidate's list of tags
 
-Format: `delete_tag INDEX [t/TAG]…​`
+Format: `delete_tag INDEX t/TAG [t/TAG]…​`
 
 * At least one tag must be provided.
 * The specified tag(s) must be in the candidate's list of tags.
 
 Example:
-* `delete_tag 1 t/Exceptional work t/IMO gold` removes these tags from the 1st candidate displayed.
+* `delete_tag 1 t/ExceptionalWork t/IMOGold` removes these tags from the 1st candidate displayed.
 
 ### Change status of an application: `status`
 
@@ -278,8 +280,10 @@ Deletes an existing job from the job list.
 Format: `delete_job INDEX`
 
 ---
+
 * If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the job from the list and display the deleted job. If **N** is selected, it will display that the delete operation is cancelled.
 * Applications involving the job to delete will also be deleted.
+
 ---
 
 Example:
@@ -302,7 +306,7 @@ Example:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book. All applications will be cleared as well.
+Clears all entries from Hirehub's address book. All applications will be cleared as well.
 
 * A confirmation message would be displayed. Type in **Y** to confirm the deletion.
 
@@ -366,14 +370,14 @@ Accesses candidates by **INDEX**. Here, **INDEX** refers to the index number of 
 
 Format: `get INDEX`
 
-* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
+* `INDEX` must be within the range `1` to `n`, where `n` is the number of candidates currently displayed in the `"Candidates"` column of the app.
 
 Example:
 * `get 24` returns the candidate with index 24.
 
 ### Finding remaining vacancies: `slots_left`
 
-Finds the remaining vacancies of a job at the specified **INDEX**. The remaining vacancies is the number of vacancies of the job, subtracted by the number of applications to the job with `OFFERED` status.
+Finds the remaining vacancies of a job at the specified **INDEX** from the list of jobs displayed in the Hirehub app. The remaining vacancies is the number of vacancies of the job, subtracted by the number of applications to the job with `OFFERED` status.
 
 The remaining vacancies of the job will be displayed in the message box.
 
@@ -431,7 +435,7 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data files it creates with the files that contain the data of your previous HireHub home folder.
 
 **Q**: What is the difference between `edit` and `tag`?<br>
-**A**: `edit` will overwrite any current tags with new tags, while `tag` will append the new tags to the current ones. For example, suppose that John is candidate 1 with tags `Internal` and `Waitlist`. `edit 1 t/Quant Researcher` will change John's tags to just `Quant Researcher`, while `tag t/Quant Researcher` will change John's tags to `Internal`, `Waitlist` and `Quant Researcher`.
+**A**: `edit` will overwrite any current tags with new tags, while `tag` will append the new tags to the current ones. For example, suppose that John is candidate 1 with tags `Internal` and `Waitlist`. `edit 1 t/QuantResearcher` will change John's tags to just `QuantResearcher`, while `tag t/QuantResearcher` will change John's tags to `Internal`, `Waitlist` and `QuantResearcher`.
 
 **Q**: Why can't I add/edit a candidate/job respectively?
 **A**: Check the email/title of the candidate/job again. After add/edit operation, no 2 candidates can have the same email (not name), and no 2 jobs can have the same title.
@@ -456,7 +460,7 @@ _Details coming soon ..._
 | **Delete**              | `delete INDEX` <br> e.g., `delete 3`                                                                                                                |
 | **Delete job**          | `delete_job INDEX` <br> e.g., `delete_job 3`                                                                                                        |
 | **Delete application**  | `delete_app INDEX` <br> e.g., `delete_app 3`                                                                                                        |
-| **Delete tag**          | `delete_tag INDEX [t/TAG]…​` <br> e.g. `delete_tag 1 t/Exceptional work t/IMO gold`                                                                 |
+| **Delete tag**          | `delete_tag INDEX t/TAG [t/TAG]…​` <br> e.g. `delete_tag 1 t/ExceptionalWork t/IMOGold`                                                             |
 | **Edit**                | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​` <br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/SG`                         |
 | **Edit job**            | `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]` <br> e.g., `edit_job 1 ti/Quantitative Trader d/Must have strong statistics background v/3` |
 | **Get**                 | `get INDEX` <br> e.g., `get 24`                                                                                                                     |
@@ -469,4 +473,4 @@ _Details coming soon ..._
 | **Search applications** | `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]` <br> e.g., `search_app e/alexyeoh@example.com s/PRESCREEN`                                             |
 | **Slots left**          | `slots_left INDEX` <br> e.g., `slots_left 3`                                                                                                        |
 | **Status**              | `status INDEX INTERVIEW_STATUS` <br> e.g., `status 24 IN_PROGRESS`                                                                                  |
-| **Tag**                 | `tag INDEX [t/TAG]…` <br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`                                                                        |                                                                                |                                                                                                                              |                                                                                                                                         |
+| **Tag**                 | `tag INDEX t/TAG [t/TAG]…` <br> e.g., `tag 8 t/ExceptionalWork t/IMOGold t/Male`                                                                    |                                                                                |                                                                                                                              |                                                                                                                                         |
