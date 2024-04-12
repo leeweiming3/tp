@@ -211,7 +211,7 @@ Alternatives:
 
 ### SlotsLeft Command
 
-Slots left command finds the remaining vacancies of a specified job at the specified index. The remaining vacancies is the number of vacancies of the job, subtracted by the number of `OFFERED` applications to that job. The slots left operation is executed as follows:
+Slots left command finds the remaining vacancies of a specified job at the specified index of the displayed list of jobs. The remaining vacancies is the number of vacancies of the job, subtracted by the number of `OFFERED` applications to that job. The slots left operation is executed as follows:
 
 Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
 
