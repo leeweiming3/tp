@@ -61,7 +61,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
       - end with a domain label at least 2 characters long
       - have each domain label start and end with alphanumeric characters
       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  * COUNTRY: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS. Alternatively, you can refer to the appendix for the exact ISO code to use for each country.
+  * COUNTRY: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS. Alternatively, you can refer to the appendix for the exact ISO code to use for each country. Note that the value for country field shown on the UI is the English display name equivalent of the ISO code for user convenience, and what is actually stored in the backend is the ISO code.
   * TAG: cannot be blank (except in edit command), and only alphanumeric characters and spaces are allowed.
   * COMMENT: can be blank and does not have any constraints.
   * TITLE: cannot be blank and has a character limit of 100.
