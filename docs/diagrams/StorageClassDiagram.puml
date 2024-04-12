@@ -20,6 +20,14 @@ Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
+Class "<<interface>>\nJobsStorage" as JobsStorage
+Class JsonJobsStorage
+Class JsonSerializableJobList
+Class JsonAdaptedJob
+Class "<<interface>>\nApplicationStorage" as ApplicationStorage
+Class JsonApplicationStorage
+Class JsonSerializableApplicationList
+Class JsonAdaptedApplication
 }
 
 }
@@ -30,7 +38,11 @@ HiddenOutside ..> Storage
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" JobsStorage
+StorageManager -up-> "1" ApplicationStorage
 
+Storage -left-|> ApplicationStorage
+Storage -left-|> JobsStorage
 Storage -left-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
 
@@ -39,5 +51,13 @@ JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+
+JsonJobsStorage .up.|> JobsStorage
+JsonJobsStorage ..> JsonSerializableJobList
+JsonSerializableJobList --> "*" JsonAdaptedJob
+
+JsonApplicationStorage .up.|> ApplicationStorage
+JsonApplicationStorage ..> JsonSerializableApplicationList
+JsonSerializableApplicationList --> "*" JsonAdaptedApplication
 
 @enduml
