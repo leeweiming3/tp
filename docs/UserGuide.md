@@ -297,7 +297,7 @@ Example:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book. All applications will be cleared as well.
+Clears all entries from Hirehub's address book. All applications will be cleared as well.
 
 * A confirmation message would be displayed. Type in **Y** to confirm the deletion.
 
@@ -361,14 +361,14 @@ Accesses candidates by **INDEX**. Here, **INDEX** refers to the index number of 
 
 Format: `get INDEX`
 
-* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
+* `INDEX` must be within the range `1` to `n`, where `n` is the number of candidates currently displayed in the `"Candidates"` column of the app.
 
 Example:
 * `get 24` returns the candidate with index 24.
 
 ### Finding remaining vacancies: `slots_left`
 
-Finds the remaining vacancies of a job at the specified **INDEX**. The remaining vacancies is the number of vacancies of the job, subtracted by the number of applications to the job with `OFFERED` status.
+Finds the remaining vacancies of a job at the specified **INDEX** from the list of jobs displayed in the Hirehub app. The remaining vacancies is the number of vacancies of the job, subtracted by the number of applications to the job with `OFFERED` status.
 
 The remaining vacancies of the job will be displayed in the message box.
 
