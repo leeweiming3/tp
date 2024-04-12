@@ -27,7 +27,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 
     * `list` : Lists all contacts.
 
-    * `add n/John Doe e/johnd@example.com c/HK` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe e/johnd@example.com c/HK p/61234567 t/Internal` : Adds a contact named `John Doe` to the Address Book.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -109,7 +109,7 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe e/johnd@example.com c/HK`
+* `add n/John Doe e/johnd@example.com c/HK p/61234567`
 * `add n/John Doe e/asdf@gmail.com c/SG p/61234567 t/Internal`
 
 ### Adding a job: `add_job`

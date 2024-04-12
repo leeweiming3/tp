@@ -25,7 +25,7 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label style="-fx-background-color:gray; -fx-font-size:10pt"
@@ -49,7 +49,7 @@
                        prefHeight="22"
                        minWidth="100"
                        alignment="CENTER"/>
-                <Label fx:id="status" styleClass="cell_small_label" text="\$status"/>
+                <Label fx:id="status" styleClass="cell_small_label" text="\$status" wrapText="true"/>
             </HBox>
         </VBox>
     </GridPane>
