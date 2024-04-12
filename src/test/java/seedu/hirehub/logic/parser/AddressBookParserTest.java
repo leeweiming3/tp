@@ -11,13 +11,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.hirehub.logic.commands.AddCommand;
 import seedu.hirehub.logic.commands.ClearCommand;
-import seedu.hirehub.logic.commands.DeleteCommand;
+import seedu.hirehub.logic.commands.DeletePersonCommand;
 import seedu.hirehub.logic.commands.EditCommand;
 import seedu.hirehub.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.hirehub.logic.commands.ExitCommand;
 import seedu.hirehub.logic.commands.HelpCommand;
-import seedu.hirehub.logic.commands.InitClearCommand;
-import seedu.hirehub.logic.commands.InitDeleteCommand;
 import seedu.hirehub.logic.commands.ListCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.person.Person;
@@ -38,15 +36,15 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof InitClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof InitClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
-        InitDeleteCommand command = (InitDeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new InitDeleteCommand(INDEX_FIRST_PERSON), command);
+        DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
+            DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
@@ -54,7 +52,7 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+            + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

@@ -15,15 +15,14 @@ import seedu.hirehub.logic.commands.ClearCommand;
 import seedu.hirehub.logic.commands.Command;
 import seedu.hirehub.logic.commands.CommentCommand;
 import seedu.hirehub.logic.commands.DeleteApplicationCommand;
-import seedu.hirehub.logic.commands.DeleteCommand;
 import seedu.hirehub.logic.commands.DeleteJobCommand;
+import seedu.hirehub.logic.commands.DeletePersonCommand;
 import seedu.hirehub.logic.commands.DeleteTagCommand;
 import seedu.hirehub.logic.commands.EditCommand;
 import seedu.hirehub.logic.commands.EditJobCommand;
 import seedu.hirehub.logic.commands.ExitCommand;
 import seedu.hirehub.logic.commands.GetCommand;
 import seedu.hirehub.logic.commands.HelpCommand;
-import seedu.hirehub.logic.commands.InitClearCommand;
 import seedu.hirehub.logic.commands.ListApplicationCommand;
 import seedu.hirehub.logic.commands.ListCommand;
 import seedu.hirehub.logic.commands.ListJobCommand;
@@ -75,11 +74,11 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new InitDeleteCommandParser().parse(arguments);
+        case DeletePersonCommand.COMMAND_WORD:
+            return new DeletePersonCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new InitClearCommand();
+            return new ClearCommand();
 
         case SearchCommand.COMMAND_WORD:
             return new SearchCommandParser().parse(arguments);
@@ -115,7 +114,7 @@ public class AddressBookParser {
             return new EditJobCommandParser().parse(arguments);
 
         case DeleteJobCommand.COMMAND_WORD:
-            return new InitDeleteJobCommandParser().parse(arguments);
+            return new DeleteJobCommandParser().parse(arguments);
 
         case SearchJobCommand.COMMAND_WORD:
             return new SearchJobCommandParser().parse(arguments);
@@ -124,7 +123,7 @@ public class AddressBookParser {
             return new AddApplicationCommandParser().parse(arguments);
 
         case DeleteApplicationCommand.COMMAND_WORD:
-            return new InitDeleteApplicationCommandParser().parse(arguments);
+            return new DeleteApplicationCommandParser().parse(arguments);
 
         case SearchApplicationCommand.COMMAND_WORD:
             return new SearchApplicationCommandParser().parse(arguments);

@@ -1,28 +1,32 @@
 package seedu.hirehub.logic.parser;
 
 import static seedu.hirehub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.hirehub.logic.Messages.MESSAGE_UNKNOWN_COMMAND_DELETE_CONFIRMATION;
+import static seedu.hirehub.logic.Messages.MESSAGE_UNKNOWN_COMMAND_CLEAR_CONFIRMATION;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.hirehub.commons.core.LogsCenter;
-import seedu.hirehub.logic.commands.AbortDeleteJobCommand;
 import seedu.hirehub.logic.commands.Command;
-import seedu.hirehub.logic.commands.DeleteJobCommand;
+import seedu.hirehub.logic.commands.ConfirmableCommand;
 import seedu.hirehub.logic.commands.HelpCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 
 /**
- * Parses the user input when the user intends to delete a job.
+ * Parses the user input when the user must confirm or deny a previous command.
  */
-public class DeleteJobConfirmationStageParser {
+public class ConfirmationStageParser {
     /**
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Logger logger = LogsCenter.getLogger(ClearConfirmationStageParser.class);
+    private static final Logger logger = LogsCenter.getLogger(ConfirmationStageParser.class);
+    /**
+     * Commands to be run when the user chooses to confirm or deny respectively.
+     */
+    private Command nextConfirmCommand;
+    private Command nextDenyCommand;
 
     /**
      * Parses user input into command for execution.
@@ -47,12 +51,22 @@ public class DeleteJobConfirmationStageParser {
 
         switch (commandWord) {
         case "Y":
-            return new DeleteJobCommand();
+            return nextConfirmCommand;
         case "N":
-            return new AbortDeleteJobCommand();
+            return nextDenyCommand;
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND_DELETE_CONFIRMATION);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND_CLEAR_CONFIRMATION);
         }
+    }
+
+    /**
+     * Retrieves the commands to be run upon confirm or deny from the current one.
+     *
+     * @param currentCommand command currently in confirmation stage
+     */
+    public void setNextCommands(ConfirmableCommand currentCommand) {
+        this.nextConfirmCommand = currentCommand.whenConfirmed();
+        this.nextDenyCommand = currentCommand.whenDenied();
     }
 }

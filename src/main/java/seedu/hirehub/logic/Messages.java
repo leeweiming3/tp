@@ -18,7 +18,8 @@ public class Messages {
             "Unknown command, enter Y to clear or N to abort";
     public static final String MESSAGE_UNKNOWN_COMMAND_DELETE_CONFIRMATION =
             "Unknown command, enter Y to delete or N to abort";
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format or"
+            + " invalid index provided! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX = "The application index provided is"
             + " invalid";

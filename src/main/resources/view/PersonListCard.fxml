@@ -25,7 +25,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="5">
         <Label style="-fx-background-color:gray; -fx-font-size:10pt"
@@ -41,7 +41,7 @@
                prefHeight="22"
                minWidth="70"
                alignment="CENTER"/>
-        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true"/>
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="5">
         <Label style="-fx-background-color:gray; -fx-font-size:10pt"
@@ -49,7 +49,7 @@
                prefHeight="22"
                minWidth="70"
                alignment="CENTER"/>
-        <Label fx:id="country" styleClass="cell_small_label" text="\$country" />
+        <Label fx:id="country" styleClass="cell_small_label" text="\$country" wrapText="true"/>
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="5">
         <Label style="-fx-background-color:gray; -fx-font-size:10pt"
@@ -57,7 +57,7 @@
                prefHeight="22"
                minWidth="70"
                alignment="CENTER"/>
-        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true"/>
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="5">
         <Label style="-fx-background-color:gray; -fx-font-size:10pt"
@@ -65,7 +65,7 @@
                prefHeight="22"
                minWidth="70"
                alignment="CENTER"/>
-        <Label fx:id="comment" styleClass="cell_small_label" text="\$comment" />
+        <Label fx:id="comment" styleClass="cell_small_label" text="\$comment" wrapText="true"/>
       </HBox>
     </VBox>
   </GridPane>

@@ -10,12 +10,10 @@ import seedu.hirehub.commons.core.GuiSettings;
 import seedu.hirehub.commons.core.LogsCenter;
 import seedu.hirehub.logic.commands.Command;
 import seedu.hirehub.logic.commands.CommandResult;
+import seedu.hirehub.logic.commands.ConfirmableCommand;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.logic.parser.AddressBookParser;
-import seedu.hirehub.logic.parser.ClearConfirmationStageParser;
-import seedu.hirehub.logic.parser.DeleteApplicationConfirmationStageParser;
-import seedu.hirehub.logic.parser.DeleteConfirmationStageParser;
-import seedu.hirehub.logic.parser.DeleteJobConfirmationStageParser;
+import seedu.hirehub.logic.parser.ConfirmationStageParser;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ReadOnlyAddressBook;
@@ -31,17 +29,14 @@ public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_FORMAT = "Could not save data due to the following error: %s";
 
     public static final String FILE_OPS_PERMISSION_ERROR_FORMAT =
-            "Could not save data to file %s due to insufficient permissions to write to the file or the folder.";
+        "Could not save data to file %s due to insufficient permissions to write to the file or the folder.";
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
-    private final ClearConfirmationStageParser clearConfirmationStageParser;
-    private final DeleteConfirmationStageParser deleteConfirmationStageParser;
-    private final DeleteApplicationConfirmationStageParser deleteApplicationConfirmationStageParser;
-    private final DeleteJobConfirmationStageParser deleteJobConfirmationStageParser;
+    private final ConfirmationStageParser confirmationStageParser;
     private CommandBoxState state;
 
     /**
@@ -51,10 +46,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
-        clearConfirmationStageParser = new ClearConfirmationStageParser();
-        deleteConfirmationStageParser = new DeleteConfirmationStageParser();
-        deleteApplicationConfirmationStageParser = new DeleteApplicationConfirmationStageParser();
-        deleteJobConfirmationStageParser = new DeleteJobConfirmationStageParser();
+        confirmationStageParser = new ConfirmationStageParser();
         this.state = CommandBoxState.NORMAL;
     }
 
@@ -68,17 +60,8 @@ public class LogicManager implements Logic {
         case NORMAL:
             command = addressBookParser.parseCommand(commandText);
             break;
-        case CLEARCONFIRM:
-            command = clearConfirmationStageParser.parseCommand(commandText);
-            break;
-        case DELETECONFIRM:
-            command = deleteConfirmationStageParser.parseCommand(commandText);
-            break;
-        case DELETEAPPLICATIONCONFIRM:
-            command = deleteApplicationConfirmationStageParser.parseCommand(commandText);
-            break;
-        case DELETEJOBCONFIRM:
-            command = deleteJobConfirmationStageParser.parseCommand(commandText);
+        case CONFIRM:
+            command = confirmationStageParser.parseCommand(commandText);
             break;
         default:
             break;
@@ -86,6 +69,11 @@ public class LogicManager implements Logic {
         assert (command != null);
         commandResult = command.execute(model);
         state = commandResult.getCommandBoxState();
+        // Confirm state only supports confirmable commands
+        assert (state != CommandBoxState.CONFIRM || command instanceof ConfirmableCommand);
+        if (command instanceof ConfirmableCommand) {
+            confirmationStageParser.setNextCommands((ConfirmableCommand) command);
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());
