@@ -12,7 +12,7 @@ import seedu.hirehub.model.Model;
 import seedu.hirehub.model.job.Job;
 
 /**
- * Adds an job application from a candidate to the list of job applications
+ * Finds the remaining vacancies of a job
  */
 public class SlotsLeftCommand extends Command {
     public static final String COMMAND_WORD = "slots_left";

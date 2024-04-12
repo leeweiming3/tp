@@ -12,7 +12,7 @@ import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.SearchPredicate;
 
 /**
- *
+ * Searches all jobs whose attributes match the specified attributes.
  */
 public class SearchJobCommand extends Command {
 

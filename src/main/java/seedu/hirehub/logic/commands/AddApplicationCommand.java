@@ -17,7 +17,7 @@ import seedu.hirehub.model.person.Person;
 import seedu.hirehub.model.status.Status;
 
 /**
- * Adds an job application from a candidate to the list of job applications
+ * Adds a job application from a candidate to the list of job applications
  */
 public class AddApplicationCommand extends Command {
     public static final String COMMAND_WORD = "add_app";

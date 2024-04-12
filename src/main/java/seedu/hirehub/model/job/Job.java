@@ -13,7 +13,7 @@ import seedu.hirehub.commons.util.ToStringBuilder;
  */
 public class Job {
     public static final String TITLE_CONSTRAINTS =
-            "Titles should contain at least one non whitespace character"
+            "Titles should contain at least one non whitespace character "
             + "and have a character limit of 100";
 
     public static final String VACANCY_CONSTRAINTS = "Vacancy must be a positive unsigned integer";
