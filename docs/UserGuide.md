@@ -209,7 +209,7 @@ You can list any number of tags greater than 0, and all of them will be added to
 
 Duplicate tags or already-present tags will not affect the candidate.
 
-Format: `tag INDEX [t/TAG]…​`
+Format: `tag INDEX t/TAG [t/TAG]…​`
 
 * At least one tag must be provided.
 
@@ -223,7 +223,7 @@ If tag command is successfully executed, the app will display the candidate with
 
 Deletes existing tag(s) from a candidate's list of tags
 
-Format: `delete_tag INDEX [t/TAG]…​`
+Format: `delete_tag INDEX t/TAG [t/TAG]…​`
 
 * At least one tag must be provided.
 * The specified tag(s) must be in the candidate's list of tags.
@@ -450,7 +450,7 @@ _Details coming soon ..._
 | **Delete**              | `delete INDEX` <br> e.g., `delete 3`                                                                                                                |
 | **Delete job**          | `delete_job INDEX` <br> e.g., `delete_job 3`                                                                                                        |
 | **Delete application**  | `delete_app INDEX` <br> e.g., `delete_app 3`                                                                                                        |
-| **Delete tag**          | `delete_tag INDEX [t/TAG]…​` <br> e.g. `delete_tag 1 t/Exceptional work t/IMO gold`                                                                 |
+| **Delete tag**          | `delete_tag INDEX t/TAG [t/TAG]…​` <br> e.g. `delete_tag 1 t/Exceptional work t/IMO gold`                                                           |
 | **Edit**                | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​` <br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/SG`                         |
 | **Edit job**            | `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]` <br> e.g., `edit_job 1 ti/Quantitative Trader d/Must have strong statistics background v/3` |
 | **Get**                 | `get INDEX` <br> e.g., `get 24`                                                                                                                     |
@@ -463,4 +463,4 @@ _Details coming soon ..._
 | **Search applications** | `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]` <br> e.g., `search_app e/alexyeoh@example.com s/PRESCREEN`                                             |
 | **Slots left**          | `slots_left INDEX` <br> e.g., `slots_left 3`                                                                                                        |
 | **Status**              | `status INDEX INTERVIEW_STATUS` <br> e.g., `status 24 IN_PROGRESS`                                                                                  |
-| **Tag**                 | `tag INDEX [t/TAG]…` <br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`                                                                        |                                                                                |                                                                                                                              |                                                                                                                                         |
+| **Tag**                 | `tag INDEX t/TAG [t/TAG]…` <br> e.g., `tag 8 t/Exceptional work t/IMO gold t/Male`                                                                  |                                                                                |                                                                                                                              |                                                                                                                                         |
