@@ -61,7 +61,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
       - end with a domain label at least 2 characters long
       - have each domain label start and end with alphanumeric characters
       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  * COUNTRY: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS.
+  * COUNTRY: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS. Alternatively, you can refer to the appendix for the exact ISO code to use for each country.
   * TAG: cannot be blank (except in edit command), and only alphanumeric characters and spaces are allowed.
   * COMMENT: can be blank and does not have any constraints.
   * TITLE: cannot be blank and has a character limit of 100.
@@ -271,8 +271,10 @@ Deletes an existing job from the job list.
 Format: `delete_job INDEX`
 
 ---
+
 * If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the job from the list and display the deleted job. If **N** is selected, it will display that the delete operation is cancelled.
 * Applications involving the job to delete will also be deleted.
+
 ---
 
 Example:
