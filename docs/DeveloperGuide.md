@@ -620,16 +620,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Run the command `java -jar hirehub.jar` in the same directory or double-click the jar file. Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by running the command `java -jar hirehub.jar` in the same directory or double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -646,15 +644,49 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
+Hirehub data is saved locally in three separate files `addressbook.json`, `applications.json` and `jobs.json` automatically after any command.
 
-1. Dealing with missing/corrupted data files
+1. Test case: Data folder is missing
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   a. On app launch, if no data folder is detected, a new Hirehub instance with sample data will be used. 
+   
+   b. Run any command and a new data folder containing `addressbook.json`, `applications.json` and `jobs.json` files will be generated.
+   
+   c. If you do not run any command and quit the app, no data folder or file will be generated.
+  
+2. Test case: All three files `addressbook.json`, `applications.json` and `jobs.json` are missing in the data folder.
 
-1. _{ more test cases …​ }_
+   a. On app launch, if there is a data folder but it is empty, a new Hirehub instance with sample data will be used.
+   
+   b. Run any command and three files `addressbook.json`, `applications.json` and `jobs.json` will be generated in the data folder.
+   
+   c. If you do not run any command and quit the app, no files will be generated.
+   
+3. Test case: `jobs.json` is corrupted i.e does not follow the correct format
+
+   a. On app launch, if any file is corrupted, a new Hirehub instance with only data from `addressbook.json` will be used, assuming `addressbook.json` is not corrupted.
+   
+   b. Run any command and the contents of the three JSON files will be overwritten to contain the new data, which is of a correct format.
+   
+   c. If you do not run any command and quit the app, no changes will be made to the three JSON files.
+
+4. Test case: `addressbook.json` is corrupted i.e does not follow the correct format
+
+   a. On app launch, if any file is corrupted, a new Hirehub instance with only data from `jobs.json` will be used, assuming `jobs.json` is not corrupted.
+   
+   b. Run any command and the contents of the three JSON files will be overwritten to contain the new data, which is of a correct format.
+   
+   c. If you do not run any command and quit the app, no changes will be made to the three JSON files.
+
+
+5. Test case: `applications.json` is corrupted i.e does not follow the correct format
+
+   a. On app launch, if any file is corrupted, a new Hirehub instance with data from both `addressbook.json` and `jobs.json` will be used, assuming the two files are not corrupted.
+   
+   b. Run any command and the contents of the three JSON files will be overwritten to contain the new data, which is of a correct format.
+   
+   c. If you do not run any command and quit the app, no changes will be made to the three JSON files.
 
 ## **Appendix: Planned enhancements**
 1. Currently, the help command opens a new window, which contains a link to the app’s user guide which is hosted online. In future iterations, we intend to add a summarised overview of all commands in the window that pops up with the help command to enhance the user experience, and reduce reliance on an internet connection.
