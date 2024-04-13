@@ -20,10 +20,16 @@ Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
+}
+
+package "Jobs Storage" #F4F6F6{
 Class "<<interface>>\nJobsStorage" as JobsStorage
 Class JsonJobsStorage
 Class JsonSerializableJobList
 Class JsonAdaptedJob
+}
+
+package "Applications Storage" #F4F6F6{
 Class "<<interface>>\nApplicationStorage" as ApplicationStorage
 Class JsonApplicationStorage
 Class JsonSerializableApplicationList
@@ -41,9 +47,9 @@ StorageManager -up-> "1" AddressBookStorage
 StorageManager -up-> "1" JobsStorage
 StorageManager -up-> "1" ApplicationStorage
 
-Storage -left-|> ApplicationStorage
-Storage -left-|> JobsStorage
-Storage -left-|> UserPrefsStorage
+Storage -down-|> ApplicationStorage
+Storage -down-|> JobsStorage
+Storage -down-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
