@@ -444,7 +444,7 @@ _Details coming soon ..._
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 |**Add**                 | `add n/NAME e/EMAIL c/COUNTRY p/PHONE [t/TAG]…​` <br> e.g., `add n/John Doe e/asdf@gmail.com c/SG p/61234567 t/Internal`                            |
 |**Add job**             | `add_job ti/TITLE [d/DESCRIPTION] v/VACANCY` <br> e.g., `add_job ti/Software Engineer d/Must be proficient in C++ v/10`                             |
- |**Add application**     | `add_app e/EMAIL ti/TITLE [s/STATUS]` <br> e.g., `add_app e/john@example.com ti/Software Engineer s/OFFERED`                                        |
+|**Add application**     | `add_app e/EMAIL ti/TITLE [s/STATUS]` <br> e.g., `add_app e/john@example.com ti/Software Engineer s/OFFERED`                                        |
 |**Clear**               | `clear`                                                                                                                                             |
 |**Comment**             | `comment INDEX COMMENT` <br> e.g., `comment 3 Managed to solve every round 3 interview questions.`                                                  |
 |**Delete**              | `delete INDEX` <br> e.g., `delete 3`                                                                                                                |
@@ -468,7 +468,7 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Country codes
-<details>
+<details markdown="block">
   <summary>ISO country codes:</summary>
 
 
