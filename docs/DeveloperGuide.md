@@ -622,3 +622,13 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Planned enhancements**
+1. Currently, the help command opens a new window, which contains a link to the app’s user guide which is hosted online. In future iterations, we intend to add a summarised overview of all commands in the window that pops up with the help command to enhance the user experience, and reduce reliance on an internet connection.
+2. Currently, Hirehub does not verify if the length of a phone number matches the country code provided. In future iterations, we intend to add this verification check.
+3. Currently, Hirehub does not support backslashes or commas for the name fields. In future iterations, we intend to add support for these characters, as well as other special characters that may appear in names.
+4. Currently, the UI may appear to be too small without resizing to full screen. Hence, we plan to increase default UI size to enhance the UI.
+5. Currently, if no details are changed from an edit, the edit operation would go through with a success message. As editing without changing details is likely unintentional, we intend to add a message to inform the user that no details has been changed from the edit.
+6. Currently, we can add duplicate tags to a candidate without any errors, and only one tag would be added to the candidate. We intend to add a message informing the user that they are adding duplicate tags.
+7. Currently, tags only supports alphanumeric characters, which means that whitespaces are not supported. We intend to support tags with multiple words by relaxing the constraints of the tag to allow for whitespaces.
+8. Currently, Hirehub does not support wrapping of tags. We intend to fix this in the future.
