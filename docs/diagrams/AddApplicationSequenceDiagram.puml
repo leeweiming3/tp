@@ -18,7 +18,7 @@ end box
 [-> LogicManager : execute("add_app e/example@gmail.com t/job")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add_app e/example@gmail.com t/job")
+LogicManager -> AddressBookParser : parseCommand("add_app e/example@gmail.com ti/job")
 activate AddressBookParser
 
 create AddApplicationCommandParser
@@ -28,7 +28,7 @@ activate AddApplicationCommandParser
 AddApplicationCommandParser --> AddressBookParser
 deactivate AddApplicationCommandParser
 
-AddressBookParser -> AddApplicationCommandParser : parse("e/example@gmail.com t/job")
+AddressBookParser -> AddApplicationCommandParser : parse("e/example@gmail.com ti/job")
 activate AddApplicationCommandParser
 
 create AddApplicationCommand
