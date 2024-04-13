@@ -470,7 +470,7 @@ _Details coming soon ..._
 ## Appendix: Country codes
 <details>
   <summary>Click to view list of ISO-3166-1 alpha-2 codes</summary>
-
+<pre>
 | Code | Country Name                           |
 |------|----------------------------------------|
 | AD   | Andorra                                |
@@ -722,4 +722,5 @@ _Details coming soon ..._
 | ZA   | South Africa                           |
 | ZM   | Zambia                                 |
 | ZW   | Zimbabwe                               |
+</pre>
 </details>
