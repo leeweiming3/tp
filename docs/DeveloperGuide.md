@@ -577,7 +577,9 @@ Use case ends.
 
 **MSS**
 
-1.
+1.  Recruiter enters the details of the job to be added to the list
+2.  Hirehub adds the job with the corresponding details as requested
+3.  Hirehub displays the details of the added job.
 
 ---
 
