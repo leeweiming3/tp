@@ -7,12 +7,12 @@ import seedu.hirehub.model.AddressBook;
 import seedu.hirehub.model.Model;
 
 /**
- * Pushes the program into the state to clear the database.
+ * Pushes the program into the state to clear the address book.
  */
 public class ClearCommand extends AbstractDeleteCommand {
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_CONFIRM_STAGE = "Clearing the database is irreversible. Proceed? (Y/N)";
-    public static final String MESSAGE_DATABASE_EMPTY = "The database is empty.";
+    public static final String MESSAGE_CONFIRM_STAGE = "Clearing the address book is irreversible. Proceed? (Y/N)";
+    public static final String MESSAGE_DATABASE_EMPTY = "The address book is empty.";
 
     public static final String MESSAGE_CLEAR_CONFIRM = "Address book has been cleared!";
 
