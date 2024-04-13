@@ -174,6 +174,8 @@ Step 3. `EditJobCommandParser#parse(String)` first checks if the given index is 
 
 Step 4. `EditJobCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the old job is updated in the job list with `ModelManager#setJob(Job, Job)`, the filtered job list in the model is updated with `ModelManager#updateFilteredJobList(Predicate<Job>)`, and the applications in the application list are updated to contain the edited job with `ModelManager#replaceApplications(Job, Job)`.
 
+![EditJobSequenceDiagram](images/EditJobSequenceDiagram.png)
+
 ### Get Command
 
 Get command allows the recruiters to retrieve the candidate from the list at specified index in the database. If a recruiter types in `get [INDEX]` with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via following via following steps:
@@ -226,6 +228,10 @@ Step 2. The user types `slots_left 3` to find the number of remaining vacancies 
 Step 3. `SlotsLeftCommandParser#parse(String)` creates a new `SlotsLeftCommand` object, which contains the index of the job.
 
 Step 4. `SlotsLeftCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where `ModelManager#getFilteredJobList()` is called. `List#get(int)` is then called, which returns a job object. `Job#getTitle()` is then called to return a String (the title of the job), which is then used as an argument for `ModelManager#countRemainingVacancy(String)`, returning the number of remaining vacancies of the job.
+
+The following sequence diagram shows how a SlotsLeft operation goes through the various components:
+
+![SlotsLeftSequenceDiagram](images/SlotsLeftSequenceDiagram.png)
 
 ### Add_app Command
 
