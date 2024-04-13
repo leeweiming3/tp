@@ -9,10 +9,10 @@ participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
 participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "c:TagCommand" as TagCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
-participant "t:Tag" as Tag LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
 participant "m:Model" as Model MODEL_COLOR
 end box
 
@@ -35,7 +35,7 @@ activate TagCommandParser
 TagCommandParser -> ParserUtil : parseIndex("1")
 activate ParserUtil
 
-ParserUtil -> TagCommandParser : tags
+ParserUtil -> TagCommandParser : index
 deactivate ParserUtil
 
 TagCommandParser -> ParserUtil : parseTags("t/INTERNAL")
@@ -62,6 +62,13 @@ deactivate AddressBookParser
 
 LogicManager -> TagCommand : execute(m)
 activate TagCommand
+
+create Person
+TagCommand -> Person
+activate Person
+
+Person --> TagCommand
+deactivate Person
 
 TagCommand -> Model : setPerson()
 activate Model

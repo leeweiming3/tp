@@ -7,8 +7,8 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddApplicationCommandParser" as AddApplicationCommandParser LOGIC_COLOR
 participant "c:AddApplicationCommand" as AddApplicationCommand LOGIC_COLOR
-participant "r:CommandResult" as CommandResult LOGIC_COLOR
 participant "a:Application" as Application LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -50,8 +50,20 @@ deactivate AddressBookParser
 LogicManager -> AddApplicationCommand : execute(m)
 activate AddApplicationCommand
 
+AddApplicationCommand -> AddApplicationCommand : findPersonMatchingEmail()
+activate AddApplicationCommand
+
+AddApplicationCommand --> AddApplicationCommand : p
+deactivate AddApplicationCommand
+
+AddApplicationCommand -> AddApplicationCommand : findJobMatchingTitle()
+activate AddApplicationCommand
+
+AddApplicationCommand --> AddApplicationCommand : j
+deactivate AddApplicationCommand
+
 create Application
-AddApplicationCommand -> Application
+AddApplicationCommand -> Application : Application(p, j, PRESCREEN)
 activate Application
 
 Application --> AddApplicationCommand : a
