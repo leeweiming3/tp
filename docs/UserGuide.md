@@ -285,7 +285,7 @@ The following is an example of how the `delete` command can be run in the GUI.
 
 ![DeleteCommand](images/delete/DeleteCommand.png)
 
-A confirmation message will show up. Type **Y** to confirm the deletion
+A confirmation message will show up. Type **Y** to confirm the deletion.
 
 ![DeleteConfirmation](images/delete/DeleteConfirmation.png)
 
