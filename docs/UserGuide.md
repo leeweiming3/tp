@@ -5,6 +5,13 @@ title: User Guide
 
 HireHub is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HireHub can get your candidate management tasks done faster than traditional GUI apps.
 
+### Tips on using this user guide
+
+* Go through _Quick Start_ to ensure that you are able to use hirehub.
+* Go through _Features_ to familiarise yourself with the terms used. You may want to have a separate pdf for viewing the _Features_, so that you can easily refer to it if you have forgotten any part of it.
+* To navigate to any command quickly, click the corresponding section in the _Table of Contents_.
+* If you are facing any problems, you may want to go to the _FAQ_ section to see if it addresses the problems.
+
 * Table of Contents
 {:toc}
 
@@ -430,6 +437,9 @@ _Details coming soon ..._
 **Q**: What is the difference between `edit` and `tag`?<br>
 **A**: `edit` will overwrite any current tags with new tags, while `tag` will append the new tags to the current ones. For example, suppose that John is candidate 1 with tags `Internal` and `Waitlist`. `edit 1 t/QuantResearcher` will change John's tags to just `QuantResearcher`, while `tag t/QuantResearcher` will change John's tags to `Internal`, `Waitlist` and `QuantResearcher`.
 
+**Q**: Why can't I add/edit a candidate/job respectively?
+**A**: Check the email/title of the candidate/job again. After add/edit operation, no 2 candidates can have the same email (not name), and no 2 jobs can have the same title.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
@@ -468,9 +478,9 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Country codes
-<details markdown="block">
-  <summary>Click to view list of ISO-3166-1 alpha-2 codes</summary>
-<pre>
+
+This is the list of ISO-3166-1 alpha-2 codes:
+
 | Code | Country Name                           |
 |------|----------------------------------------|
 | AD   | Andorra                                |
@@ -722,5 +732,5 @@ _Details coming soon ..._
 | ZA   | South Africa                           |
 | ZM   | Zambia                                 |
 | ZW   | Zimbabwe                               |
-</pre>
-</details>
+
+---
