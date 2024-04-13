@@ -86,6 +86,18 @@ deactivate FilteredList
 ModelManager --> EditJobCommand
 deactivate ModelManager
 
+EditJobCommand -> ModelManager : updateFilteredJobList(x -> true)
+activate ModelManager
+
+ModelManager --> EditJobCommand
+deactivate ModelManager
+
+EditJobCommand -> ModelManager : replaceApplications(Job, editedJob)
+activate ModelManager
+
+ModelManager --> EditJobCommand
+deactivate ModelManager
+
 create CommandResult
 EditJobCommand -> CommandResult
 activate CommandResult

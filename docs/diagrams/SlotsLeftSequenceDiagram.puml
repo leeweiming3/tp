@@ -65,7 +65,7 @@ deactivate ModelManager
 SlotsLeftCommand -> ModelManager : countRemainingVacancy(Job)
 activate ModelManager
 
-ModelManager --> SlotsLeftCommand : r
+ModelManager --> SlotsLeftCommand : vacancy left
 deactivate ModelManager
 
 create CommandResult
