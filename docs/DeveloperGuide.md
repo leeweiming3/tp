@@ -565,6 +565,21 @@ Use case ends.
 3b. Recruiter aborts the clearing
 - 3b1. HireHub informs recruiter that the clear of the database has been aborted
 
+---
+
+### Add job
+
+**System**: Hirehub (Candidate Management System for Company Recruiters)
+
+**Use case**: UC05 - Add jobs to the list
+
+**Actor**: Recruiter
+
+**MSS**
+
+1.
+
+---
 
 ### Non-Functional Requirements
 
