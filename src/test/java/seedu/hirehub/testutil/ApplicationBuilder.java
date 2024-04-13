@@ -9,7 +9,7 @@ import seedu.hirehub.model.person.Person;
 import seedu.hirehub.model.status.Status;
 
 /**
- * A utility class to help with building Job objects.
+ * A utility class to help with building Application objects.
  */
 public class ApplicationBuilder {
 
@@ -22,7 +22,7 @@ public class ApplicationBuilder {
     private Person person;
 
     /**
-     * Creates a {@code JobBuilder} with the default details.
+     * Creates a {@code ApplicationBuilder} with the default details.
      */
     public ApplicationBuilder() {
         job = DEFAULT_JOB;

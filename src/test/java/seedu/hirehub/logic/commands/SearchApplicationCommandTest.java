@@ -68,7 +68,7 @@ public class SearchApplicationCommandTest {
         // null -> returns false
         assertFalse(searchApplicationSecondCommand.equals(null));
 
-        // different Job Predicates -> returns false
+        // different Application Predicates -> returns false
         assertFalse(searchApplicationFirstCommand.equals(searchApplicationSecondCommand));
     }
 
@@ -85,7 +85,7 @@ public class SearchApplicationCommandTest {
     }
 
     /**
-     * Test search_application method for searching a matching job in an uniqueFilteredApplicationList
+     * Test search_app method for searching a matching job in an uniqueFilteredApplicationList
      */
     @Test
     public void execute_matchJob() {
@@ -121,7 +121,7 @@ public class SearchApplicationCommandTest {
     }
 
     /**
-     * Test search_application method for searching a matching person in an uniqueFilteredApplicationList
+     * Test search_app method for searching a matching person in an uniqueFilteredApplicationList
      */
     @Test
     public void execute_matchPerson() {
@@ -157,7 +157,7 @@ public class SearchApplicationCommandTest {
     }
 
     /**
-     * Test search_application method for searching a matching status in an uniqueFilteredApplicationList
+     * Test search_app method for searching a matching status in an uniqueFilteredApplicationList
      */
     @Test
     public void execute_matchStatus() {
@@ -185,7 +185,7 @@ public class SearchApplicationCommandTest {
     }
 
     /**
-     * Test for search_application method given multiple searching criteria
+     * Test for search_app method given multiple searching criteria
      */
     @Test
     public void execute_matchMultipleFields() {
@@ -199,7 +199,7 @@ public class SearchApplicationCommandTest {
 
         String expectedMessage = String.format(MESSAGE_APPLICATIONS_LISTED_OVERVIEW, 1);
         SearchPredicate<Application> firstMultipleFieldPredicate = new SearchApplicationPredicateBuilder()
-                .withJob(FRONT_END).withPerson(CARL).withStatus(new Status("WAITLIST")).build();
+                .withPerson(CARL).withJob(FRONT_END).withStatus(new Status("WAITLIST")).build();
         SearchApplicationCommand command = new SearchApplicationCommand(firstMultipleFieldPredicate);
         expectedModel.updateFilteredApplicationList(x -> firstMultipleFieldPredicate.test(x));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
