@@ -50,29 +50,29 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 
 * These are the constraints for each of the parameters (this applies to all commands):
 
-  * NAME: cannot be blank, and only alphanumeric characters and spaces are allowed. In particular, special characters such as `/` and `-` and non-English characters (e.g. Chinese characters) are not allowed. This would be part of the planned improvements.
-  * PHONE: cannot be blank and must adhere to the following constraints:
+  * **NAME**: cannot be blank, and only alphanumeric characters and spaces are allowed. In particular, special characters such as `/` and `-` and non-English characters (e.g. Chinese characters) are not allowed. This would be part of the planned improvements.
+  * **PHONE**: cannot be blank and must adhere to the following constraints:
     * International phone numbers should contain a country code in front (+ followed by 1 to 3 digits), then a space, followed by a combination of digits, spaces, parentheses or hyphens with at least 3 digits.
     * If country code is omitted, it must be a valid Singapore phone number. It must start with 3, 6, 8 or 9 and must be in the following formats: `XXXXYYYY`, `XXXX-YYYY` or `XXXX YYYY`.
     * Other than the above constraints, there is no other validation to check if a country code is valid. Furthermore, given a country code, there is no phone validation specific to the country code. This would be part of the planned improvements.
-  * EMAIL: must be of the format local-part@domain and adhere to the following constraints:
+  * **EMAIL**: must be of the format local-part@domain and adhere to the following constraints:
     * The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
     * This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
       - end with a domain label at least 2 characters long
       - have each domain label start and end with alphanumeric characters
       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  * COUNTRY: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS. Alternatively, you can refer to the [appendix](#appendix-country-codes) for the exact ISO code to use for each country. Note that the value for country field shown on the UI is the English display name equivalent of the ISO code for user convenience, and what is actually stored in the backend is the ISO code.
-  * TAG: cannot be blank (except in edit command), and only alphanumeric characters are allowed.
-  * COMMENT: can be blank and does not have any constraints.
-  * TITLE: cannot be blank and has a character limit of 100.
-  * DESCRIPTION: can be blank and does not have any constraints.
-  * VACANCY: must be a positive integer.
-  * STATUS: must be one of the following 5 statuses (not case-sensitive): PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED
+  * **COUNTRY**: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS. Alternatively, you can refer to the [appendix](#appendix-country-codes) for the exact ISO code to use for each country. Note that the value for country field shown on the UI is the English display name equivalent of the ISO code for user convenience, and what is actually stored in the backend is the ISO code.
+  * **TAG**: cannot be blank (except in edit command), and only alphanumeric characters are allowed.
+  * **COMMENT**: can be blank and does not have any constraints.
+  * **TITLE**: cannot be blank and has a character limit of 100.
+  * **DESCRIPTION**: can be blank and does not have any constraints.
+  * **VACANCY**: must be a positive integer.
+  * **STATUS**: must be one of the following 5 statuses (not case-sensitive): PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED
 
 * These are the primary key (i.e. no 2 items can have the same parameter) of candidates, jobs and applications respectively:
-  * candidates: EMAIL
-  * jobs: TITLE
-  * applications: (EMAIL, TITLE) - either EMAIL or TITLE can be the same, as long as both are not the same.
+  * **Candidates**: EMAIL
+  * **Jobs**: TITLE
+  * **Applications**: (EMAIL, TITLE) - either EMAIL or TITLE can be the same, as long as both are not the same.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
