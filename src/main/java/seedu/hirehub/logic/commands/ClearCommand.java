@@ -12,7 +12,7 @@ import seedu.hirehub.model.Model;
 public class ClearCommand extends AbstractDeleteCommand {
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_CONFIRM_STAGE = "Clearing the address book is irreversible. Proceed? (Y/N)";
-    public static final String MESSAGE_DATABASE_EMPTY = "The address book is empty.";
+    public static final String MESSAGE_ADDRESS_BOOK_EMPTY = "The address book is empty.";
 
     public static final String MESSAGE_CLEAR_CONFIRM = "Address book has been cleared!";
 
@@ -22,7 +22,7 @@ public class ClearCommand extends AbstractDeleteCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         if (model.getAddressBook().getPersonList().isEmpty()) {
-            return new CommandResult(MESSAGE_DATABASE_EMPTY, CommandBoxState.NORMAL);
+            return new CommandResult(MESSAGE_ADDRESS_BOOK_EMPTY, CommandBoxState.NORMAL);
         }
         return new CommandResult(MESSAGE_CONFIRM_STAGE, CommandBoxState.CONFIRM);
     }
