@@ -468,6 +468,9 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Country codes
+<details>
+  <summary>ISO country codes:</summary>
+
 
 | Code | Country Name                           |
 |------|----------------------------------------|
@@ -720,3 +723,5 @@ _Details coming soon ..._
 | ZA   | South Africa                           |
 | ZM   | Zambia                                 |
 | ZW   | Zimbabwe                               |
+
+</details>
