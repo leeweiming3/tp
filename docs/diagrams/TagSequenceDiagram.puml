@@ -5,73 +5,91 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":AddApplicationCommandParser" as AddApplicationCommandParser LOGIC_COLOR
-participant "c:AddApplicationCommand" as AddApplicationCommand LOGIC_COLOR
+participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "c:TagCommand" as TagCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
-participant "a:Application" as Application LOGIC_COLOR
+participant "t:Tag" as Tag LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add_app e/example@gmail.com t/job")
+[-> LogicManager : execute("tag 1 t/INTERNAL")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add_app e/example@gmail.com ti/job")
+LogicManager -> AddressBookParser : parseCommand("tag 1 t/INTERNAL")
 activate AddressBookParser
 
-create AddApplicationCommandParser
-AddressBookParser -> AddApplicationCommandParser
-activate AddApplicationCommandParser
+create TagCommandParser
+AddressBookParser -> TagCommandParser
+activate TagCommandParser
 
-AddApplicationCommandParser --> AddressBookParser
-deactivate AddApplicationCommandParser
+TagCommandParser --> AddressBookParser
+deactivate TagCommandParser
 
-AddressBookParser -> AddApplicationCommandParser : parse("e/example@gmail.com ti/job")
-activate AddApplicationCommandParser
+AddressBookParser -> TagCommandParser : parse("1 t/INTERNAL")
+activate TagCommandParser
 
-create AddApplicationCommand
-AddApplicationCommandParser -> AddApplicationCommand
-activate AddApplicationCommand
+TagCommandParser -> ParserUtil : parseIndex("1")
+activate ParserUtil
 
-AddApplicationCommand --> AddApplicationCommandParser : c
-deactivate AddApplicationCommand
+ParserUtil -> TagCommandParser : tags
+deactivate ParserUtil
 
-AddApplicationCommandParser --> AddressBookParser : c
-deactivate AddApplicationCommandParser
+TagCommandParser -> ParserUtil : parseTags("t/INTERNAL")
+activate ParserUtil
+
+ParserUtil -> TagCommandParser : tags
+deactivate ParserUtil
+
+create TagCommand
+TagCommandParser -> TagCommand
+activate TagCommand
+
+TagCommand --> TagCommandParser : c
+deactivate TagCommand
+
+TagCommandParser --> AddressBookParser : c
+deactivate TagCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddApplicationCommandParser -[hidden]-> AddressBookParser
-destroy AddApplicationCommandParser
+TagCommandParser -[hidden]-> AddressBookParser
+destroy TagCommandParser
 
 AddressBookParser --> LogicManager : c
 deactivate AddressBookParser
 
-LogicManager -> AddApplicationCommand : execute(m)
-activate AddApplicationCommand
+LogicManager -> TagCommand : execute(m)
+activate TagCommand
 
-create Application
-AddApplicationCommand -> Application
-activate Application
-
-Application --> AddApplicationCommand : a
-deactivate Application
-
-AddApplicationCommand -> Model : addApplication(a)
+TagCommand -> Model : setPerson()
 activate Model
 
-Model --> AddApplicationCommand
+Model --> TagCommand
+deactivate Model
+
+TagCommand -> Model : updateFilteredPersonList()
+activate Model
+
+Model --> TagCommand
+deactivate Model
+
+TagCommand -> Model : replaceApplications()
+activate Model
+
+Model --> TagCommand
 deactivate Model
 
 create CommandResult
-AddApplicationCommand -> CommandResult
+TagCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddApplicationCommand
+CommandResult --> TagCommand
 deactivate CommandResult
 
-AddApplicationCommand --> LogicManager : r
-deactivate AddApplicationCommand
+TagCommand --> LogicManager : r
+deactivate TagCommand
 
 [<--LogicManager
 deactivate LogicManager

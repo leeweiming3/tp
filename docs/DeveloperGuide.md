@@ -239,6 +239,22 @@ The following sequence diagram shows how a add_app operation goes through the va
 
 ![AddApplicationSequenceDiagram](images/AddApplicationSequenceDiagram.png)
 
+### Tag Command
+
+Tag command adds one or more tags to a person. The person retains all tags it had before.
+
+Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state. We assume that there is an existing person in the initial address book state - a person at index 1 with tag `t/tag0`.
+
+Step 2. The user enters `tag 1 t/tag1 t/tag2` to add tags to the candidate at 1st entry in the list displayed by UI. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `TagCommandParser#parse(String)`.
+
+Step 3. `TagCommandParser#parse(String)` creates a new `TagCommand` object, which contains the index that a `Person` object should match, and the `Set<Tag>` of tags to add. In this case, it contains the index 1 and a `Set<Tag>` `[t/tag1, t/tag2]`.
+
+Step 4.`TagCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` is found and the union of tags present and tags to add is calculated. A new person is created using the tag union and the old person's data. Then, the old person is updated in the person list with `ModelManager#setPerson(Person, Person)`, the filtered person list in the model is updated with `ModelManager#updateFilteredPersonList(Predicate<Person>)`, and the applications in the application list are updated to contain the edited person with `ModelManager#replaceApplications(Person, Person)`.
+
+The following sequence diagram shows how a tag operation goes through the various components:
+
+![TagSequenceDiagram](images/TagSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
