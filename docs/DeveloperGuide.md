@@ -421,10 +421,10 @@ Use case ends.
     - Use case resumes from step 2.
 
 
-* 1e. Recruiter does not enter either name, email or country in the attribute field.
-    - 1e1. Hirehub raises an error and asks the recruiter to provide name, email and country of the candidate to be added.
-    - 1e2. Recruiter attempts to add the candidate with name, email and country.
-    - Steps 1e1-1e2 are repeated until the recruiter enters name, email and country.
+* 1e. Recruiter does not enter either name, email, country or phone in the attribute field.
+    - 1e1. Hirehub raises an error and asks the recruiter to provide name, email, country or phone of the candidate to be added.
+    - 1e2. Recruiter attempts to add the candidate with name, email, country and phone.
+    - Steps 1e1-1e2 are repeated until the recruiter enters name, email, country and phone.
     - Use case resumes from step 2.
 
 ---
