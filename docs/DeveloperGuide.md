@@ -174,6 +174,21 @@ Step 3. `EditJobCommandParser#parse(String)` first checks if the given index is 
 
 Step 4. `EditJobCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the old job is updated in the job list with `ModelManager#setJob(Job, Job)`, the filtered job list in the model is updated with `ModelManager#updateFilteredJobList(Predicate<Job>)`, and the applications in the application list are updated to contain the edited job with `ModelManager#replaceApplications(Job, Job)`.
 
+Design considerations:
+Aspect: Format of edit_job command:
+
+Alternative 1 (current choice): Use index as argument
+
+Pros: It is easier for the user to type out the index to use the command.
+Cons: This choice requires the user to know the index, which can only be observed from the UI. If there is a long list of jobs in the UI, observing from the UI may not be so feasible.
+
+We choose this alternative because we have a search_job command which supports narrowing down of the jobs list to find the desired job.
+
+Alternative 2: Use job title as argument.
+
+Pros: Job title is usually known beforehand, and job title is the unique primary key for all jobs in the list.
+Cons: Job title can be quite long and cumbersome for users to type out.
+
 ### Get Command
 
 Get command allows the recruiters to retrieve the candidate from the list at specified index in the database. If a recruiter types in `get [INDEX]` with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via following via following steps:
