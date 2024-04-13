@@ -235,6 +235,10 @@ Step 3. `AddApplicationCommandParser#parse(String)` creates a new `AddApplicatio
 
 Step 4.`AddApplicationCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` and `Job` are found, and an `Application` object containing the `Person` and the `Job` is created. `model#addApplication(Application)` is then called and the `Application` is added to the list of `Application`s in `model`.
 
+The following sequence diagram shows how a search operation goes through the various components:
+
+![AddApplicationSequenceDiagram](images/AddApplicationSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
