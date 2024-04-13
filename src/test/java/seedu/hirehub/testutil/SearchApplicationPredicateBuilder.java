@@ -46,8 +46,8 @@ public class SearchApplicationPredicateBuilder {
     }
 
     /**
-     * Sets the {@code titlePredicate} that we are building such that the
-     * ContainsKeywordsPredicate contains Optional of a job title.
+     * Sets the {@code titlePredicate} with the given String input for title such that
+     * the ContainsKeywordsPredicate contains Optional of a job title.
      */
     public SearchApplicationPredicateBuilder withJob(Job job) {
         titlePredicate = titlePredicate.of(new ContainsKeywordsPredicate<>(PREFIX_TITLE, Optional.of(job.getTitle())));
@@ -55,8 +55,8 @@ public class SearchApplicationPredicateBuilder {
     }
 
     /**
-     * Sets the {@code emailPredicate} that we are building such that the
-     * ContainsKeywordsPredicate contains Optional of a person's email.
+     * Sets the {@code emailPredicate} with the email of given person's input such that
+     * the ContainsKeywordsPredicate contains Optional of an email.
      */
     public SearchApplicationPredicateBuilder withPerson(Person person) {
         emailPredicate = emailPredicate.of(
@@ -65,8 +65,8 @@ public class SearchApplicationPredicateBuilder {
     }
 
     /**
-     * Sets the {@code statusPredicate} that we are building such that the
-     * ContainsKeywordsPredicate contains Optional of a candidate's status.
+     * Sets the {@code statusPredicate} with the given Status input such that
+     * the ContainsKeywordsPredicate contains Optional of a status.
      */
     public SearchApplicationPredicateBuilder withStatus(Status status) {
         statusPredicate = statusPredicate.of(

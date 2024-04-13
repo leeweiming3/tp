@@ -42,7 +42,7 @@ public class SearchJobPredicateBuilder {
     }
 
     /**
-     * Sets the {@code predicate} of the {@code jobPredicate} that we are building such that
+     * Sets the {@code titlePredicate} with the given String input for title such that
      * the ContainsKeywordsPredicate contains Optional of a job title.
      */
     public SearchJobPredicateBuilder withTitle(String title) {
@@ -51,7 +51,7 @@ public class SearchJobPredicateBuilder {
     }
 
     /**
-     * Sets the {@code predicate} of the {@code jobPredicate} that we are building such that
+     * Sets the {@code descriptionPredicate} with the given String input for description such that
      * the ContainsKeywordsPredicate contains Optional of a job description.
      */
     public SearchJobPredicateBuilder withDescription(String description) {
@@ -61,9 +61,10 @@ public class SearchJobPredicateBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code SearchPersonDescriptor} that we are building.
+     * Sets the {@code vacancyPredicate} with the given Integer input for vacancy such that
+     * the ContainsKeywordsPredicate contains Optional of a job vacancy.
      */
-    public SearchJobPredicateBuilder withVacancy(Integer vacancy) {
+    public SearchJobPredicateBuilder withVacancy(int vacancy) {
         vacancyPredicate = vacancyPredicate.of(
                 new ContainsKeywordsPredicate<>(PREFIX_VACANCY, Optional.of(vacancy)));
         return this;
