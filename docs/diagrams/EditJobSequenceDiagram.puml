@@ -13,7 +13,6 @@ end box
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 participant ":FilteredList<Job>" as FilteredList MODEL_COLOR
-participant ":Job" as Job MODEL_COLOR
 end box
 
 [-> LogicManager : execute("edit_job 2 ti/Data Analyst")
@@ -36,38 +35,38 @@ create EditJobCommand
 EditJobCommandParser -> EditJobCommand
 activate EditJobCommand
 
+EditJobCommand --> EditJobCommandParser : e
+deactivate EditJobCommand
+
+EditJobCommandParser -> EditJobCommand
+activate EditJobCommand
+
 EditJobCommand --> EditJobCommandParser : editJobDescriptor
 deactivate EditJobCommand
 
-EditJobCommandParser --> AddressBookParser : editJobDescriptor
+EditJobCommandParser --> AddressBookParser : e, editJobDescriptor
 deactivate EditJobCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 EditJobCommandParser -[hidden]-> AddressBookParser
 destroy EditJobCommandParser
 
-AddressBookParser --> LogicManager : editJobDescriptor
+AddressBookParser --> LogicManager : e, editJobDescriptor
 deactivate AddressBookParser
 
 LogicManager -> EditJobCommand : execute(m)
 activate EditJobCommand
 
-EditJobCommand -> ModelManager
+EditJobCommand -> ModelManager: getFilteredJobList()
 activate ModelManager
 
-ModelManager -> FilteredList : getFilteredJobList()
+ModelManager --> EditJobCommand
+deactivate ModelManager
+
+EditJobCommand -> FilteredList: get(2)
 activate FilteredList
 
-FilteredList -> Job : get(2)
-activate Job
-
-Job --> FilteredList : Job
-deactivate Job
-
-FilteredList --> ModelManager : Job
+FilteredList --> EditJobCommand: Job
 deactivate FilteredList
-
-ModelManager --> EditJobCommand : Job
-deactivate ModelManager
 
 EditJobCommand -> EditJobCommand : createEditedJob(Job, editJobDescriptor)
 activate EditJobCommand

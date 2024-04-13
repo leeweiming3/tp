@@ -13,7 +13,6 @@ end box
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 participant ":FilteredList<Job>" as FilteredList MODEL_COLOR
-participant ":Job" as Job MODEL_COLOR
 end box
 
 [-> LogicManager : execute("slots_left 2")
@@ -51,17 +50,11 @@ deactivate AddressBookParser
 LogicManager -> SlotsLeftCommand : execute(m)
 activate SlotsLeftCommand
 
-SlotsLeftCommand -> ModelManager
+SlotsLeftCommand -> ModelManager : getFilteredJobList()
 activate ModelManager
 
-ModelManager --> FilteredList : getFilteredJobList()
+ModelManager -> FilteredList : get(2)
 activate FilteredList
-
-FilteredList --> Job : get(2)
-activate Job
-
-Job --> FilteredList : Job
-deactivate Job
 
 FilteredList --> ModelManager : Job
 deactivate FilteredList
@@ -72,7 +65,7 @@ deactivate ModelManager
 SlotsLeftCommand -> ModelManager : countRemainingVacancy(Job)
 activate ModelManager
 
-ModelManager --> SlotsLeftCommand : Slots Left
+ModelManager --> SlotsLeftCommand : r
 deactivate ModelManager
 
 create CommandResult
