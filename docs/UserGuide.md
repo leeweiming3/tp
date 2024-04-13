@@ -468,7 +468,7 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Country codes
-<details>
+<details markdown="block">
   <summary>Click to view list of ISO-3166-1 alpha-2 codes</summary>
 
 | Code | Country Name                           |
