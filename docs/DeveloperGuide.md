@@ -620,13 +620,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Run the command `java -jar hirehub.jar` in the same directory or double-click the jar file. Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Run the command `java -jar hirehub.jar` on the command line in the same directory or double-click the jar file. Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by running the command `java -jar hirehub.jar` in the same directory or double-clicking the jar file.<br>
+   1. Re-launch the app by running the command `java -jar hirehub.jar` on the command line in the same directory or double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 ### Deleting a person
