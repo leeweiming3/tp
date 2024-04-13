@@ -12,6 +12,8 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 * To navigate to any command quickly, click the corresponding section in the _Table of Contents_.
 * If you are facing any problems, you may want to go to the _FAQ_ section to see if it addresses the problems.
 
+
+
 * Table of Contents
 {:toc}
 
