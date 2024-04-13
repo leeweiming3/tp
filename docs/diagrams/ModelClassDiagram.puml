@@ -14,13 +14,12 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Country
-Class Email
-Class Name
-Class Phone
-Class Status
-Class Comment
-Class Tag
+
+Class UniqueApplicationList
+Class Application
+
+Class UniqueJobList
+Class Job
 
 Class I #FFFFFF
 }
@@ -31,28 +30,37 @@ HiddenOutside ..> Model
 AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+Model .down.> ReadOnlyUserPrefs
+Model .down.> ReadOnlyAddressBook
+ModelManager -down-> "1" AddressBook
+ModelManager -down-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Country
-Person *--> Status
-Person *--> Comment
-Person *--> "*" Tag
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Country
-Country -[hidden]right-> Email
-
 ModelManager --> "~* filtered" Person
+
+AddressBook *--> "1" UniqueApplicationList
+UniqueApplicationList --> "~* all" Application
+
+Application -[hidden]up--> I
+UniqueApplicationList -[hidden]left-> I
+
+ModelManager --> "~* filtered" Application
+
+AddressBook *--> "1" UniqueJobList
+UniqueJobList --> "~* all" Job
+
+Job -[hidden]up--> I
+UniqueJobList -[hidden]right-> I
+
+ModelManager --> "~* filtered" Job
+
+Person -right-> Job: applies
+(Person, Job) .. Application
+
 @enduml
