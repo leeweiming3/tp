@@ -384,9 +384,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | recruiter          | keep track of the candidate's interview status                      | facilitate the interview process                                                                                          |
 | `* * *`  | recruiter          | clear the database in one single command                            | avoid typing multiple delete commands                                                                                     |
 | `* * *`  | recruiter          | view the details of a candidate of a particular row in the database | have an absolute reference of the singular candidate that I am interested in                                              |
+| `* * *`  | recruiter          | filter candidates by the jobs they applied                          | see what jobs they apply for                                                                                              |
+| `* * *`  | recruiter          | filter applications by job                                          | have an overview of all the applications for a particular job for easier processing                                       |
+| `* * *`  | recruiter          | delete specific tags                                                | undo mistakes made when adding tags                                                                                       |
+| `* * `   | recruiter          | view the number of vacancies left for each role                     | know when to stop hiring/accepting new candidates                                                                         |
+| `* * `   | recruiter          | view the contact details of potential candidates in tabular format  | see the fields clearly highlighted and defined in the UI                                                                  |
 | `* *`    | careless recruiter | confirm the clearing of the database                                | avoid any accidental deletion of the database                                                                             |
 
-*{More to be added}*
 
 ### Use cases
 
