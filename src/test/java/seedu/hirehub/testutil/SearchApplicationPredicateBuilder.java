@@ -25,7 +25,7 @@ public class SearchApplicationPredicateBuilder {
     private Optional<ContainsKeywordsPredicate<Application, Status>> statusPredicate;
 
     /**
-     * Instantiates SearchJobPredicateBuilder instance
+     * Instantiates SearchApplicationPredicateBuilder instance
      */
     public SearchApplicationPredicateBuilder() {
         titlePredicate = Optional.empty();
