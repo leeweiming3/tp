@@ -291,7 +291,7 @@ A confirmation message will show up. Type **Y** to confirm the deletion.
 
 After the person has been successfully added, a success message will be shown in the output box. You can see the person deleted from the person list, and all corresponding applications associated with the deleted person have been removed as well, as seen below.
 
-![AddAppOutput](images/add-app/AddAppOutput.png)
+![DeleteCommandOutput](images/delete/DeleteCommandOutput.png)
 
 ### Delete a job: `delete_job`
 
