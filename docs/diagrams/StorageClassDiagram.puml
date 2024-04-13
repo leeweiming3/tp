@@ -22,6 +22,20 @@ Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
 
+package "Jobs Storage" #F4F6F6{
+Class "<<interface>>\nJobsStorage" as JobsStorage
+Class JsonJobsStorage
+Class JsonSerializableJobList
+Class JsonAdaptedJob
+}
+
+package "Applications Storage" #F4F6F6{
+Class "<<interface>>\nApplicationStorage" as ApplicationStorage
+Class JsonApplicationStorage
+Class JsonSerializableApplicationList
+Class JsonAdaptedApplication
+}
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -30,8 +44,12 @@ HiddenOutside ..> Storage
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" JobsStorage
+StorageManager -up-> "1" ApplicationStorage
 
-Storage -left-|> UserPrefsStorage
+Storage -down-|> ApplicationStorage
+Storage -down-|> JobsStorage
+Storage -down-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
@@ -39,5 +57,13 @@ JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+
+JsonJobsStorage .up.|> JobsStorage
+JsonJobsStorage ..> JsonSerializableJobList
+JsonSerializableJobList --> "*" JsonAdaptedJob
+
+JsonApplicationStorage .up.|> ApplicationStorage
+JsonApplicationStorage ..> JsonSerializableApplicationList
+JsonSerializableApplicationList --> "*" JsonAdaptedApplication
 
 @enduml
