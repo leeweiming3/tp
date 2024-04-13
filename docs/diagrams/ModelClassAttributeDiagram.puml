@@ -62,7 +62,7 @@ Job -[hidden]down--> I
 Title -[hidden]right-> Description
 Description -[hidden]right-> Vacancy
 
-Person - Job: applies
+Job - Person: < applies
 (Person, Job) .. Application
 
 

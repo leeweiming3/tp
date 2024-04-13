@@ -60,7 +60,7 @@ UniqueJobList -[hidden]right-> I
 
 ModelManager --> "~* filtered" Job
 
-Person -right-> Job: applies
+Job - Person: applies <
 (Person, Job) .. Application
 
 @enduml
