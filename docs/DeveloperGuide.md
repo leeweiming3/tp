@@ -245,7 +245,7 @@ Step 2. The user enters `tag 1 t/tag1 t/tag2` to add tags to the candidate at 1s
 
 Step 3. `TagCommandParser#parse(String)` creates a new `TagCommand` object, which contains the index that a `Person` object should match, and the `Set<Tag>` of tags to add. In this case, it contains the index 1 and a `Set<Tag>` `[t/tag1, t/tag2]`. 
 
-Step 4.`TagCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` is found and the union of tags present and tags to add is calculated. Then, the old person is updated in the person list with `ModelManager#setPerson(Person, Person)`, the filtered person list in the model is updated with `ModelManager#updateFilteredPersonList(Predicate<Person>)`, and the applications in the application list are updated to contain the edited person with `ModelManager#replaceApplications(Person, Person)`.
+Step 4.`TagCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` is found and the union of tags present and tags to add is calculated. A new person is created using the tag union and the old person's data. Then, the old person is updated in the person list with `ModelManager#setPerson(Person, Person)`, the filtered person list in the model is updated with `ModelManager#updateFilteredPersonList(Predicate<Person>)`, and the applications in the application list are updated to contain the edited person with `ModelManager#replaceApplications(Person, Person)`.
 
 ### \[Proposed\] Undo/redo feature
 
