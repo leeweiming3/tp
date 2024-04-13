@@ -177,7 +177,7 @@ Step 4. `EditJobCommand#execute(Model)` is then called in `LogicManager#execute(
 Design considerations:
 Aspect: Format of edit_job command:
 
-Alternative 1 (current choice): Use index as argument
+Alternative 1 (current choice): Use index as argument.
 
 Pros: It is easier for the user to type out the index to use the command.
 Cons: This choice requires the user to know the index, which can only be observed from the UI. If there is a long list of jobs in the UI, observing from the UI may not be so feasible.
