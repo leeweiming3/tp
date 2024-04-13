@@ -119,17 +119,21 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-W08-1/tp/blob/master/src/main/java/seedu/hirehub/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="550" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person`, `Job`, and `Application` objects (which are contained in a `UniquePersonList`, `UniqueJobList` and `UniqueApplicationList` object, respectively).
+* stores the currently 'selected' `Person`, `Job`, and `Application` objects (e.g., results of a search queries for each `Person`, `Job`, and `Application` object) as a separate _filtered_ list (`filteredPersonList`, `filteredJobList`, and `filteredApplicationList` respectively) which is exposed to outsiders as an unmodifiable `ObservableList<Person>`, `ObservableList<Job>`, and `ObservableList<Application>`, respectively, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+Association between Person, Job and Application classes with attributes of respective classes is represented with greater detail in the following UML Diagram:
+
+<img src="images/ModelClassAttributeDiagram.png" width="550" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -140,7 +144,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-W08-1/tp/blob/master/src/main/java/seedu/hirehub/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -159,7 +163,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### EditJob command 
+### EditJob command
 The EditJob command allows the recruiters to edit the details (job title, description, vacancy) for a particular job at a specified index from the job list. Given below is an example usage scenario and how the EditJob mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
@@ -168,7 +172,7 @@ Step 2. The user types `edit_job 2 d/Good at OOP` to change the description of t
 
 Step 3. `EditJobCommandParser#parse(String)` first checks if the given index is valid, before creating a new `EditJobDescriptor` object, which contains the attributes with the edited information that the `Job` object should have, if present. In this case, it contains `Good at OOP` for its `description` and `null` for the rest. `EditJobCommandParser#parse(String)` then parses the command to return a new `EditJobCommand` object containing the `EditJobDescriptor` object.
 
-Step 4. `EditJobCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the old job is updated in the job list with `ModelManager#setJob(Job, Job)`, the filtered job list in the model is updated with `ModelManager#updateFilteredJobList(Predicate<Job>)`, and the applications in the application list are updated to contain the edited job with `ModelManager#replaceApplications(Job, Job)`. 
+Step 4. `EditJobCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the old job is updated in the job list with `ModelManager#setJob(Job, Job)`, the filtered job list in the model is updated with `ModelManager#updateFilteredJobList(Predicate<Job>)`, and the applications in the application list are updated to contain the edited job with `ModelManager#replaceApplications(Job, Job)`.
 
 ### Get Command
 
@@ -225,7 +229,7 @@ Step 4. `SlotsLeftCommand#execute(Model)` is then called in `LogicManager#execut
 
 ### Add_app Command
 
-Add_app adds an application containing a job and a person 
+Add_app adds an application containing a job and a person
 
 Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state. We assume that there is an existing person and job in the initial address book state - a person with an email `example@gmail.com` and a job with title `job`.
 
@@ -243,17 +247,13 @@ The following sequence diagram shows how a add_app operation goes through the va
 
 Tag command adds one or more tags to a person. The person retains all tags it had before.
 
-Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state. We assume that there is an existing person in the initial address book state - a person at index 1 with tag `t/tag0`.
+Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state. We assume that there is an existing person in the initial address book state - a person at index 1 with tag `t/tag0`. 
 
 Step 2. The user enters `tag 1 t/tag1 t/tag2` to add tags to the candidate at 1st entry in the list displayed by UI. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `TagCommandParser#parse(String)`.
 
-Step 3. `TagCommandParser#parse(String)` creates a new `TagCommand` object, which contains the index that a `Person` object should match, and the `Set<Tag>` of tags to add. In this case, it contains the index 1 and a `Set<Tag>` `[t/tag1, t/tag2]`.
+Step 3. `TagCommandParser#parse(String)` creates a new `TagCommand` object, which contains the index that a `Person` object should match, and the `Set<Tag>` of tags to add. In this case, it contains the index 1 and a `Set<Tag>` `[t/tag1, t/tag2]`. 
 
 Step 4.`TagCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` is found and the union of tags present and tags to add is calculated. A new person is created using the tag union and the old person's data. Then, the old person is updated in the person list with `ModelManager#setPerson(Person, Person)`, the filtered person list in the model is updated with `ModelManager#updateFilteredPersonList(Predicate<Person>)`, and the applications in the application list are updated to contain the edited person with `ModelManager#replaceApplications(Person, Person)`.
-
-The following sequence diagram shows how a tag operation goes through the various components:
-
-![TagSequenceDiagram](images/TagSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -388,9 +388,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | recruiter          | keep track of the candidate's interview status                      | facilitate the interview process                                                                                          |
 | `* * *`  | recruiter          | clear the database in one single command                            | avoid typing multiple delete commands                                                                                     |
 | `* * *`  | recruiter          | view the details of a candidate of a particular row in the database | have an absolute reference of the singular candidate that I am interested in                                              |
+| `* * *`  | recruiter          | filter candidates by the jobs they applied                          | see what jobs they apply for                                                                                              |
+| `* * *`  | recruiter          | filter applications by job                                          | have an overview of all the applications for a particular job for easier processing                                       |
+| `* * *`  | recruiter          | delete specific tags                                                | undo mistakes made when adding tags                                                                                       |
+| `* * `   | recruiter          | view the number of vacancies left for each role                     | know when to stop hiring/accepting new candidates                                                                         |
+| `* * `   | recruiter          | view the contact details of potential candidates in tabular format  | see the fields clearly highlighted and defined in the UI                                                                  |
 | `* *`    | careless recruiter | confirm the clearing of the database                                | avoid any accidental deletion of the database                                                                             |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -620,16 +624,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Run the command `java -jar hirehub.jar` on the command line in the same directory or double-click the jar file. Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by running the command `java -jar hirehub.jar` on the command line in the same directory or double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -646,12 +648,56 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
+Hirehub data is saved locally in three separate files `addressbook.json`, `applications.json` and `jobs.json` automatically after any command.
 
-1. Dealing with missing/corrupted data files
+1. Test case: Data folder is missing
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   a. On app launch, if no data folder is detected, a new Hirehub instance with sample data will be used. 
+   
+   b. Run any command and a new data folder containing `addressbook.json`, `applications.json` and `jobs.json` files will be generated.
+   
+   c. If you do not run any command and quit the app, no data folder or file will be generated.
+  
+2. Test case: All three files `addressbook.json`, `applications.json` and `jobs.json` are missing in the data folder.
 
-1. _{ more test cases …​ }_
+   a. On app launch, if there is a data folder but it is empty, a new Hirehub instance with sample data will be used.
+   
+   b. Run any command and three files `addressbook.json`, `applications.json` and `jobs.json` will be generated in the data folder.
+   
+   c. If you do not run any command and quit the app, no files will be generated.
+   
+3. Test case: `jobs.json` is corrupted i.e. does not follow the correct format
+
+   a. On app launch, if any file is corrupted, a new Hirehub instance with only data from `addressbook.json` will be used, assuming `addressbook.json` is not corrupted.
+   
+   b. Run any command and the contents of the three JSON files will be overwritten to contain the new data, which is of a correct format.
+   
+   c. If you do not run any command and quit the app, no changes will be made to the three JSON files.
+
+4. Test case: `addressbook.json` is corrupted i.e. does not follow the correct format
+
+   a. On app launch, if any file is corrupted, a new Hirehub instance with only data from `jobs.json` will be used, assuming `jobs.json` is not corrupted.
+   
+   b. Run any command and the contents of the three JSON files will be overwritten to contain the new data, which is of a correct format.
+   
+   c. If you do not run any command and quit the app, no changes will be made to the three JSON files.
+
+
+5. Test case: `applications.json` is corrupted i.e. does not follow the correct format
+
+   a. On app launch, if any file is corrupted, a new Hirehub instance with data from both `addressbook.json` and `jobs.json` will be used, assuming the two files are not corrupted.
+   
+   b. Run any command and the contents of the three JSON files will be overwritten to contain the new data, which is of a correct format.
+   
+   c. If you do not run any command and quit the app, no changes will be made to the three JSON files.
+
+## **Appendix: Planned enhancements**
+1. Currently, the help command opens a new window, which contains a link to the app’s user guide which is hosted online. In future iterations, we intend to add a summarised overview of all commands in the window that pops up with the help command to enhance the user experience, and reduce reliance on an internet connection.
+2. Currently, in the event when country code is provided, Hirehub does not verify that the country code is correct. Hirehub also does not verify if the phone number is valid with the given country code. In future iterations, we intend to add the corresponding validation checks.
+3. Currently, Hirehub does not support backslashes or commas for the name fields. In future iterations, we intend to add support for these characters, as well as other special characters that may appear in names.
+4. Currently, the UI may appear to be too small without resizing to full screen. Hence, we plan to increase default UI size to enhance the UI.
+5. Currently, if no details are changed from an edit, the edit operation would go through with a success message. As editing without changing details is likely unintentional, we intend to add a message to inform the user that no details has been changed from the edit.
+6. Currently, we can add duplicate tags to a candidate without any errors, and only one of the duplicate tags would be added to the candidate. We intend to add a message informing the user that they are adding duplicate tags.
+7. Currently, tags only support alphanumeric characters, which means that whitespaces are not supported. We intend to support tags with multiple words by relaxing the constraints of the tag to allow for whitespaces.
+8. Currently, the UI does not support wrapping of tags. We intend to fix this in the future to allow users to view tags with long names.
