@@ -72,7 +72,9 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `JobListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Each one of `Job`, `Applicaton` and `Person` has an associated `ListPanel` and `Card`, as indicated with `XXXListPanel` and `XXXCard`.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -117,7 +119,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-W08-1/tp/blob/master/src/main/java/seedu/hirehub/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -138,13 +140,13 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-W08-1/tp/blob/master/src/main/java/seedu/hirehub/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from `AddressBookStorage`, `ApplicationStorage`, `JobsStorage`, and `UserPrefsStorage`, which means it can be treated as any combination of the four storage interfaces (if only the functionality of a subset is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -209,6 +211,29 @@ The following sequence diagram shows how a search operation goes through the var
 Alternatives:
 `SearchPersonDescriptor` may be omitted - in which case, `SearchCommandParser#parse(String)` can directly use the attributes it has parsed to create a `SearchPredicate` object with the relevant attributes and information to search for. However, the methods to test `SearchPersonDescriptor` are readily available, which would ease the testing process.
 
+### SlotsLeft Command
+
+Slots left command finds the remaining vacancies of a specified job at the specified index of the displayed list of jobs. The remaining vacancies is the number of vacancies of the job, subtracted by the number of `OFFERED` applications to that job. The slots left operation is executed as follows:
+
+Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
+
+Step 2. The user types `slots_left 3` to find the number of remaining vacancies of the job with index `3`. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `SlotsLeftCommandParser#parse(String)`.
+
+Step 3. `SlotsLeftCommandParser#parse(String)` creates a new `SlotsLeftCommand` object, which contains the index of the job.
+
+Step 4. `SlotsLeftCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where `ModelManager#getFilteredJobList()` is called. `List#get(int)` is then called, which returns a job object. `Job#getTitle()` is then called to return a String (the title of the job), which is then used as an argument for `ModelManager#countRemainingVacancy(String)`, returning the number of remaining vacancies of the job.
+
+### Add_app Command
+
+Add_app adds an application containing a job and a person 
+
+Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state. We assume that there is an existing person and job in the initial address book state - a person with an email `example@gmail.com` and a job with title `job`.
+
+Step 2. The user enters `add_app e/example@gmail.com ti/job` to add an application for the person uniquely identified by the email `exampel@gmail.com`, for the job with the title `job`. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `AddApplicationCommandParser#parse(String)`.
+
+Step 3. `AddApplicationCommandParser#parse(String)` creates a new `AddApplicationCommand` object, which contains the email that a `Person` object should match, and the job title the `Job` should match. In this case, it contains `example@gmail.com` for its `email` attribute and `job` for its `title` attribute, and `PRESCREEN` for the `status` attribute by default.
+
+Step 4.`AddApplicationCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` and `Job` are found, and an `Application` object containing the `Person` and the `Job` is created. `model#addApplication(Application)` is then called and the `Application` is added to the list of `Application`s in `model`.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -610,3 +635,13 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Planned enhancements**
+1. Currently, the help command opens a new window, which contains a link to the app’s user guide which is hosted online. In future iterations, we intend to add a summarised overview of all commands in the window that pops up with the help command to enhance the user experience, and reduce reliance on an internet connection.
+2. Currently, in the event when country code is provided, Hirehub does not verify that the country code is correct. Hirehub also does not verify if the phone number is valid with the given country code. In future iterations, we intend to add the corresponding validation checks.
+3. Currently, Hirehub does not support backslashes or commas for the name fields. In future iterations, we intend to add support for these characters, as well as other special characters that may appear in names.
+4. Currently, the UI may appear to be too small without resizing to full screen. Hence, we plan to increase default UI size to enhance the UI.
+5. Currently, if no details are changed from an edit, the edit operation would go through with a success message. As editing without changing details is likely unintentional, we intend to add a message to inform the user that no details has been changed from the edit.
+6. Currently, we can add duplicate tags to a candidate without any errors, and only one of the duplicate tags would be added to the candidate. We intend to add a message informing the user that they are adding duplicate tags.
+7. Currently, tags only support alphanumeric characters, which means that whitespaces are not supported. We intend to support tags with multiple words by relaxing the constraints of the tag to allow for whitespaces.
+8. Currently, the UI does not support wrapping of tags. We intend to fix this in the future to allow users to view tags with long names.
