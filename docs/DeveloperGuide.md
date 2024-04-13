@@ -439,7 +439,7 @@ Use case ends.
 
 **MSS**
 
-1. Recruiter finds a candidate number to delete from the list displayed in the app.
+1. Recruiter finds a candidate index to delete from the list displayed in the app.
 2. Recruiter deletes the candidate.
 3. Hirehub requests the recruiter to confirm the deletion.
 4. Recruiter confirms deletion.
@@ -450,10 +450,10 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Recruiter enters invalid candidate number.
-    - 2a1. Hirehub raises an error and asks recruiter to provide valid candidate number.
-    - 2a2. Recruiter attempts to delete the candidate with valid candidate number.
-    - Steps 2a1-2a2 are repeated until the candidate number entered is correct.
+* 2a. Recruiter enters invalid candidate index.
+    - 2a1. Hirehub raises an error and asks recruiter to provide valid candidate index.
+    - 2a2. Recruiter attempts to delete the candidate with valid candidate index.
+    - Steps 2a1-2a2 are repeated until the candidate index entered is correct.
     - Use case resumes from step 2.
 
 
@@ -479,7 +479,7 @@ Use case ends.
 
 **MSS**
 
-1. Recruiter finds a candidate number to edit from the list displayed in the app.
+1. Recruiter finds a candidate index to edit from the list displayed in the app.
 2. Recruiter enters the candidate details to update in the list.
 3. Hirehub updates the candidate details as requested.
 4. Hirehub displays the edited candidate with the edited attributes.
@@ -489,10 +489,10 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Recruiter enters a candidate number that is not a positive integer.
-    - 2a1. Hirehub raises an error and asks recruiter to provide valid candidate number.
-    - 2a2. Recruiter attempts to edit the candidate with valid candidate number.
-    - Steps 2a1-2a2 are repeated until the candidate number entered is valid.
+* 2a. Recruiter enters a candidate index that is not a positive integer.
+    - 2a1. Hirehub raises an error and asks recruiter to provide valid candidate index.
+    - 2a2. Recruiter attempts to edit the candidate with valid candidate index.
+    - Steps 2a1-2a2 are repeated until the candidate index entered is valid.
     - Use case resumes from step 3.
 
 
@@ -531,10 +531,10 @@ Use case ends.
     - Use case resumes from step 3.
 
 
-* 2g. Recruiter enters a positive integer for candidate number that is out of range.
-    - 2g1. Hirehub raises an error and asks the recruiter to provide correct candidate number from 1 to the number of candidates in the list.
-    - 2g2. Recruiter attempts to edit the candidate with valid candidate number within the range.
-    - Steps 2g1-2g2 are repeated until recruiter enters valid candidate number.
+* 2g. Recruiter enters a positive integer for candidate index that is out of range.
+    - 2g1. Hirehub raises an error and asks the recruiter to provide correct candidate index from 1 to the number of candidates in the list.
+    - 2g2. Recruiter attempts to edit the candidate with valid candidate index within the range.
+    - Steps 2g1-2g2 are repeated until recruiter enters valid candidate index.
     - Use case resumes from step 3.
 
 ---
@@ -615,7 +615,7 @@ Use case ends.
 
 **MSS**
 
-1. Recruiter finds a job number to delete from the list displayed in the app.
+1. Recruiter finds a job index to delete from the list displayed in the app.
 2. Recruiter deletes the job.
 3. Hirehub requests the recruiter to confirm the deletion.
 4. Recruiter confirms deletion.
@@ -625,10 +625,10 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Recruiter enters invalid job number.
-  - 2a1. Hirehub raises an error and asks recruiter to provide valid job number.
-  - 2a2. Recruiter attempts to delete the job with valid job number.
-  - Steps 2a1-2a2 are repeated until the job number entered is correct.
+* 2a. Recruiter enters invalid job index.
+  - 2a1. Hirehub raises an error and asks recruiter to provide valid job index.
+  - 2a2. Recruiter attempts to delete the job with valid job index.
+  - Steps 2a1-2a2 are repeated until the job index entered is correct.
   - Use case resumes from step 2.
 
 
@@ -654,7 +654,7 @@ Use case ends.
 
 **MSS**
 
-1. Recruiter finds a job number to edit from the list displayed in the app.
+1. Recruiter finds a job index to edit from the list displayed in the app.
 2. Recruiter enters the job details to update in the list.
 3. Hirehub updates the job details as requested.
 4. Hirehub displays the edited job with the edited attributes.
@@ -663,10 +663,10 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Recruiter enters invalid job number that is not a positive integer.
-  - 2a1. Hirehub raises an error and asks recruiter to provide a valid job number.
-  - 2a2. Recruiter attempts to edit the job with a valid job number.
-  - Steps 2a1-2a2 are repeated until the job number entered is correct.
+* 2a. Recruiter enters invalid job index that is not a positive integer.
+  - 2a1. Hirehub raises an error and asks recruiter to provide a valid job index.
+  - 2a2. Recruiter attempts to edit the job with a valid job index.
+  - Steps 2a1-2a2 are repeated until the job index entered is correct.
   - Use case resumes from step 3.
 
 
@@ -691,10 +691,10 @@ Use case ends.
   - Use case resumes from step 3.
 
 
-* 2e. Recruiter enters a positive integer for job number that is out of range.
-  - 2e1. Hirehub raises an error and asks the recruiter to provide correct job number from 1 to the number of jobs in the list.
-  - 2e2. Recruiter attempts to edit the job with valid job number within the range.
-  - Steps 2e1-2e2 are repeated until recruiter enters valid job number.
+* 2e. Recruiter enters a positive integer for job index that is out of range.
+  - 2e1. Hirehub raises an error and asks the recruiter to provide correct job index from 1 to the number of jobs in the list.
+  - 2e2. Recruiter attempts to edit the job with valid job index within the range.
+  - Steps 2e1-2e2 are repeated until recruiter enters valid job index.
   - Use case resumes from step 3.
 
 
@@ -771,7 +771,7 @@ Use case ends.
 
 **MSS**
 
-1. Recruiter finds an application number to delete from the application list displayed in the app.
+1. Recruiter finds an application index to delete from the application list displayed in the app.
 2. Recruiter deletes the application.
 3. Hirehub requests the recruiter to confirm the deletion.
 4. Recruiter confirms deletion.
@@ -781,10 +781,10 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Recruiter enters invalid application number.
-  - 2a1. Hirehub raises an error and asks recruiter to provide valid application number.
-  - 2a2. Recruiter attempts to delete the application with valid application number.
-  - Steps 2a1-2a2 are repeated until the application number entered is correct.
+* 2a. Recruiter enters invalid application index.
+  - 2a1. Hirehub raises an error and asks recruiter to provide valid application index.
+  - 2a2. Recruiter attempts to delete the application with valid application index.
+  - Steps 2a1-2a2 are repeated until the application index entered is correct.
   - Use case resumes from step 3.
 
 
