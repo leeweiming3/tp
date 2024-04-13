@@ -663,7 +663,7 @@ Hirehub data is saved locally in three separate files `addressbook.json`, `appli
    
    c. If you do not run any command and quit the app, no files will be generated.
    
-3. Test case: `jobs.json` is corrupted i.e does not follow the correct format
+3. Test case: `jobs.json` is corrupted i.e. does not follow the correct format
 
    a. On app launch, if any file is corrupted, a new Hirehub instance with only data from `addressbook.json` will be used, assuming `addressbook.json` is not corrupted.
    
@@ -671,7 +671,7 @@ Hirehub data is saved locally in three separate files `addressbook.json`, `appli
    
    c. If you do not run any command and quit the app, no changes will be made to the three JSON files.
 
-4. Test case: `addressbook.json` is corrupted i.e does not follow the correct format
+4. Test case: `addressbook.json` is corrupted i.e. does not follow the correct format
 
    a. On app launch, if any file is corrupted, a new Hirehub instance with only data from `jobs.json` will be used, assuming `jobs.json` is not corrupted.
    
@@ -680,7 +680,7 @@ Hirehub data is saved locally in three separate files `addressbook.json`, `appli
    c. If you do not run any command and quit the app, no changes will be made to the three JSON files.
 
 
-5. Test case: `applications.json` is corrupted i.e does not follow the correct format
+5. Test case: `applications.json` is corrupted i.e. does not follow the correct format
 
    a. On app launch, if any file is corrupted, a new Hirehub instance with data from both `addressbook.json` and `jobs.json` will be used, assuming the two files are not corrupted.
    
