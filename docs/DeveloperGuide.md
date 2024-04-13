@@ -410,8 +410,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Recruiter enters the details of the candidate to be added to the list
-2.  Hirehub adds the candidate with the corresponding details as requested
+1.  Recruiter enters the details of the candidate to be added to the list.
+2.  Hirehub adds the candidate with the corresponding details as requested.
 3.  Hirehub displays the details of the added candidate.
 
 Use case ends.
@@ -419,38 +419,38 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Recruiter enters invalid email address
-    - 2a1. Hirehub raises an error and asks recruiter to provide valid email address
-    - 2a2. Recruiter attempts to add the candidate with valid email address
-    - Steps 2a1-2a2 are repeated until the email address entered is in a correct format.
+* 1a. Recruiter enters invalid email address.
+    - 1a1. Hirehub raises an error and asks recruiter to provide valid email address.
+    - 1a2. Recruiter attempts to add the candidate with valid email address.
+    - Steps 1a1-1a2 are repeated until the email address entered is in a correct format.
     - Use case resumes from step 2.
 
 
-* 2b. Recruiter enters invalid phone number
-    - 2b1. Hirehub raises an error and asks recruiter to provide phone number in a correct format
-    - 2b2. Recruiter attempts to add the candidate with valid phone number
-    - Steps 2b1-2b2 are repeated until the phone number entered is in the correct format.
+* 1b. Recruiter enters invalid phone number.
+    - 1b1. Hirehub raises an error and asks recruiter to provide phone number in a correct format.
+    - 1b2. Recruiter attempts to add the candidate with valid phone number.
+    - Steps 1b1-1b2 are repeated until the phone number entered is in the correct format.
     - Use case resumes from step 2.
 
 
-* 2c. Recruiter enters invalid country name
-    - 2c1. Hirehub raises an error and asks recruiter to provide available country name listed in the user guide
-    - 2c2. Recruiter attempts to add the candidate with valid country name
-    - Steps 2c1-2c2 are repeated until the country name entered is in the list of available country names in the user guide.
+* 1c. Recruiter enters invalid country code.
+    - 1c1. Hirehub raises an error and asks recruiter to provide available country code listed in the user guide.
+    - 1c2. Recruiter attempts to add the candidate with valid country code.
+    - Steps 1c1-1c2 are repeated until the country code entered is in the list of available country codes in the user guide.
     - Use case resumes from step 2.
 
 
-* 2d. Recruiter attempts to add the comment field of candidate
-    - 2d1. Hirehub raises an error and asks recruiter to use other method to add candidate comment
-    - 2d2. Recruiter attempts to add the candidate without the comment field
-    - Steps 2d1-2d2 are repeated until the recruiter stops attempting to add the comment field.
+* 1d. Recruiter attempts to add the comment field of candidate.
+    - 1d1. Hirehub raises an error and asks recruiter to use other method to add candidate comment.
+    - 1d2. Recruiter attempts to add the candidate without the comment field.
+    - Steps 1d1-1d2 are repeated until the recruiter stops attempting to add the comment field.
     - Use case resumes from step 2.
 
 
-* 2e. Recruiter does not enter either name, email or country in the attribute field
-    - 2e1. Hirehub raises an error and asks the recruiter to provide name, email and country of the candidate to be added
-    - 2e2. Recruiter attempts to add the candidate with name, email and country
-    - Steps 2e1-2e2 are repeated until the recruiter enters name, email and country.
+* 1e. Recruiter does not enter either name, email, country or phone in the attribute field.
+    - 1e1. Hirehub raises an error and asks the recruiter to provide name, email, country and phone of the candidate to be added.
+    - 1e2. Recruiter attempts to add the candidate with name, email, country and phone.
+    - Steps 1e1-1e2 are repeated until the recruiter enters name, email, country and phone.
     - Use case resumes from step 2.
 
 ---
@@ -465,35 +465,34 @@ Use case ends.
 
 **MSS**
 
-1. Recruiter finds a candidate number to delete from the list displayed in the app
-2. Recruiter deletes the candidate
-3. Hirehub requests the recruiter to confirm the deletion
-4. Recruiter confirms deletion
-5. Hirehub deletes the candidate from the list and displays the deleted candidate with its attributes
+1. Recruiter finds a candidate index to delete from the list displayed in the app.
+2. Recruiter deletes the candidate.
+3. Hirehub requests the recruiter to confirm the deletion.
+4. Recruiter confirms deletion.
+5. Hirehub deletes the candidate from the list and displays the deleted candidate with its attributes.
+
+Use case ends.
 
 
 **Extensions**
 
-* 2a. Recruiter enters invalid candidate number
-    - 2a1. Hirehub raises an error and asks recruiter to provide valid candidate number
-    - 2a2. Recruiter attempts to delete the candidate with valid candidate number
-    - Steps 2a1-2a2 are repeated until the candidate number entered is correct.
-    - Use case resumes from step 2.
+* 2a. Recruiter enters invalid candidate index.
+    - 2a1. Hirehub raises an error and asks recruiter to provide valid candidate index.
+    - 2a2. Recruiter attempts to delete the candidate with valid candidate index.
+    - Steps 2a1-2a2 are repeated until the candidate index entered is correct.
+    - Use case resumes from step 3.
 
 
-* 4a. Recruiter cancels deletion in confirmation stage
-    - 4a1. Hirehub exits the deletion process
-    - 4a2. Recruiter re-attempts to delete the candidate
-    - Use case 4a is repeated if the recruiter cancels the deletion again.
-    - If the recruiter enters invalid candidate number, the use case resumes from 2a.
-    - Use case resumes from step 4.
+* 4a. Recruiter cancels deletion in confirmation stage.
+    - 4a1. Hirehub exits the deletion process.
+    - Use case ends.
 
 
-* 4b. Recruiter enters invalid input for confirmation page
-    - 4b1. Hirehub prompts the recruiter to enter a valid input
+* 4b. Recruiter enters invalid input for confirmation page.
+    - 4b1. Hirehub prompts the recruiter to enter a valid input.
     - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
-    - Use case resumes from step 4
-
+    - Use case resumes from step 5 if recruiter confirms deletion.
+    - Use case resumes from step 4a if recruiter cancels deletion.
 ---
 
 ### Edit candidate details
@@ -506,61 +505,63 @@ Use case ends.
 
 **MSS**
 
-1. Recruiter finds a candidate number to edit from the list displayed in the app
-2. Recruiter enters the candidate details to update in the list
-3. Hirehub updates the candidate details as requested
-4. Hirehub displays the edited candidate with the edited attributes
+1. Recruiter finds a candidate index to edit from the list displayed in the app.
+2. Recruiter enters the candidate details to update in the list.
+3. Hirehub updates the candidate details as requested.
+4. Hirehub displays the edited candidate with the edited attributes.
+
+Use case ends.
 
 
 **Extensions**
 
-* 3a. Recruiter enters invalid candidate number
-    - 3a1. Hirehub raises an error and asks recruiter to provide valid candidate number
-    - 3a2. Recruiter attempts to delete the candidate with valid candidate number
-    - Steps 3a1-3a2 are repeated until the candidate number entered is correct.
-    - Use case resumes from step 2.
+* 2a. Recruiter enters a candidate index that is not a positive integer.
+    - 2a1. Hirehub raises an error and asks recruiter to provide valid candidate index.
+    - 2a2. Recruiter attempts to edit the candidate with valid candidate index.
+    - Steps 2a1-2a2 are repeated until the candidate index entered is valid.
+    - Use case resumes from step 3.
 
 
-* 3b. Recruiter enters invalid email address
-    - 3b1. Hirehub raises an error and asks recruiter to provide valid email address
-    - 3b2. Recruiter attempts to edit the candidate with valid email address
-    - Steps 3b1-3b2 are repeated until the email address entered is in a correct format.
-    - Use case resumes from step 2.
+* 2b. Recruiter enters invalid email address.
+    - 2b1. Hirehub raises an error and asks recruiter to provide valid email address.
+    - 2b2. Recruiter attempts to edit the candidate with valid email address.
+    - Steps 2b1-2b2 are repeated until the email address entered is in a correct format.
+    - Use case resumes from step 3.
 
 
-* 3c. Recruiter enters invalid phone number
-    - 3c1. Hirehub raises an error and asks recruiter to provide phone number in a correct format
-    - 3c2. Recruiter attempts to edit the candidate with valid phone number
-    - Steps 3c1-3c2 are repeated until the phone number entered is in the correct format.
-    - Use case resumes from step 2.
+* 2c. Recruiter enters invalid phone number.
+    - 2c1. Hirehub raises an error and asks recruiter to provide phone number in a correct format.
+    - 2c2. Recruiter attempts to edit the candidate with valid phone number.
+    - Steps 2c1-2c2 are repeated until the phone number entered is in the correct format.
+    - Use case resumes from step 3.
 
 
-* 3d. Recruiter enters invalid country name
-    - 3d1. Hirehub raises an error and asks recruiter to provide available country name listed in the user guide
-    - 3d2. Recruiter attempts to edit the candidate with valid country name
-    - Steps 3d1-3d2 are repeated until the country name entered is in the list of available country names in the user guide.
-    - Use case resumes from step 2.
+* 2d. Recruiter enters invalid country code.
+    - 2d1. Hirehub raises an error and asks recruiter to provide available country code listed in the user guide.
+    - 2d2. Recruiter attempts to edit the candidate with valid country code.
+    - Steps 2d1-2d2 are repeated until the country code entered is in the list of available country codes in the user guide.
+    - Use case resumes from step 3.
 
 
-* 3e. Recruiter attempts to edit the comment field of candidate
-    - 3e1. Hirehub raises an error and asks recruiter to use other method to update candidate comment
-    - 3e2. Recruiter attempts to edit the candidate without the comment field
-    - Steps 3e1-3e2 are repeated until the recruiter stops attempting to update the comment field.
-    - Use case resumes from step 2.
+* 2e. Recruiter attempts to edit the comment field of candidate.
+    - 2e1. Hirehub raises an error and asks recruiter to use other method to update candidate comment.
+    - 2e2. Recruiter attempts to edit the candidate without the comment field.
+    - Steps 2e1-2e2 are repeated until the recruiter stops attempting to update the comment field.
+    - Use case resumes from step 3.
 
 
-* 3f. No attributes are provided by recruiter to update in the attribute field
-    - 3f1. Hirehub raises an error and asks the recruiter to provide at least one attribute to update
-    - 3f2. Recruiter attempts to edit the candidate with at least one attribute to update
-    - Steps 3f1-3f2 are repeated until recruiter enters at least one attribute to update
-    - Use case resumes from step 2.
+* 2f. No attributes are provided by recruiter to update.
+    - 2f1. Hirehub raises an error and asks the recruiter to provide at least one attribute to update.
+    - 2f2. Recruiter attempts to edit the candidate with at least one attribute to update.
+    - Steps 2f1-2f2 are repeated until recruiter enters at least one attribute to update.
+    - Use case resumes from step 3.
 
 
-* 3g. Recruiter enters invalid candidate number
-    - 3g1. Hirehub raises an error and asks the recruiter to provide correct candidate number from 1 to the number of candidates in the list
-    - 3g2. Recruiter attempts to edit the candidate with valid candidate number within the range
-    - Steps 3g1-3g2 are repeated until recruiter enters valid candidate number
-    - Use case resumes from step 2.
+* 2g. Recruiter enters a positive integer for candidate index that is out of range.
+    - 2g1. Hirehub raises an error and asks the recruiter to provide correct candidate index from 1 to the number of candidates in the list.
+    - 2g2. Recruiter attempts to edit the candidate with valid candidate index within the range.
+    - Steps 2g1-2g2 are repeated until recruiter enters valid candidate index.
+    - Use case resumes from step 3.
 
 ---
 
@@ -574,23 +575,259 @@ Use case ends.
 
 **MSS**
 
-1. Recruiter enters the command to clear the database
-2. HireHub prompts recruiter to confirm the clearing
-3. Recruiter enters input into the command box to confirm the clearing
+1. Recruiter enters the command to clear the database.
+2. HireHub prompts recruiter to confirm the clearing.
+3. Recruiter enters input into the command box to confirm the clearing.
 4. The database is cleared.
+
+Use case ends.
 
 **Extensions**
 
-1a. Recruiter types in additional stuff after ‘clear’ e.g. ‘clear 1’
-- 1a1. Confirmation window opens as usual. Use case resumes from MSS step 3.
+1a. Recruiter types in additional stuff after ‘clear’ e.g. ‘clear 1’.
+- Use case resumes from step 2.
 
-3a. Recruiter tries to enter invalid commands in the command box
-- 3a1. HireHub prompts recruiter to enter valid input
-- 3a2. Use case resumes from MSS step 3.
+3a. Recruiter tries to enter invalid commands in the command box.
+- 3a1. HireHub prompts recruiter to enter valid input.
+- Use case 3a is repeated if the recruiter enters invalid input for the confirmation page again.
+- Use case resumes from step 4 if recruiter confirms deletion.
+- Use case resumes from step 3b if recruiter cancels deletion.
 
-3b. Recruiter aborts the clearing
-- 3b1. HireHub informs recruiter that the clear of the database has been aborted
+3b. Recruiter aborts the clearing.
+- 3b1. HireHub informs recruiter that the clear of the database has been aborted.
+- Use case ends.
 
+---
+
+### Add job
+
+**System**: Hirehub (Candidate Management System for Company Recruiters)
+
+**Use case**: UC05 - Add jobs to the list
+
+**Actor**: Recruiter
+
+**MSS**
+
+1.  Recruiter enters the details of the job to be added to the list.
+2.  Hirehub adds the job with the corresponding details as requested.
+3.  Hirehub displays the details of the added job.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. Recruiter enters invalid job title.
+  - 1a1. Hirehub raises an error and asks recruiter to provide valid job title.
+  - 1a2. Recruiter attempts to add the job with valid job title.
+  - Steps 1a1-1a2 are repeated until the job title entered is in a correct format.
+  - Use case resumes from step 2.
+
+
+* 1b. Recruiter enters invalid vacancy.
+  - 1b1. Hirehub raises an error and asks recruiter to provide valid vacancy.
+  - 1b2. Recruiter attempts to add the job with valid vacancy.
+  - Steps 1b1-1b2 are repeated until the vacancy entered is valid.
+  - Use case resumes from step 2.
+
+---
+
+### Delete job
+
+**System**: Hirehub (Candidate Management System for Company Recruiters)
+
+**Use case**: UC06 - Delete job from the List
+
+**Actor**: Recruiter
+
+**MSS**
+
+1. Recruiter finds a job index to delete from the list displayed in the app.
+2. Recruiter deletes the job.
+3. Hirehub requests the recruiter to confirm the deletion.
+4. Recruiter confirms deletion.
+5. Hirehub deletes the job from the list and displays the deleted job with its attributes.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Recruiter enters invalid job index.
+  - 2a1. Hirehub raises an error and asks recruiter to provide valid job index.
+  - 2a2. Recruiter attempts to delete the job with valid job index.
+  - Steps 2a1-2a2 are repeated until the job index entered is correct.
+  - Use case resumes from step 3.
+
+
+* 4a. Recruiter cancels deletion in confirmation stage.
+  - 4a1. Hirehub exits the deletion process.
+  - Use case ends.
+
+
+* 4b. Recruiter enters invalid input for confirmation page.
+  - 4b1. Hirehub prompts the recruiter to enter a valid input.
+  - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
+  - Use case resumes from step 5 if recruiter confirms deletion.
+  - Use case resumes from step 4a if recruiter cancels deletion.
+
+---
+
+### Edit job details
+
+**System**: Hirehub (Candidate Management System for Company Recruiters)
+
+**Use case**: UC07 - Edit Job from the List
+
+**Actor**: Recruiter
+
+**MSS**
+
+1. Recruiter finds a job index to edit from the list displayed in the app.
+2. Recruiter enters the job details to update in the list.
+3. Hirehub updates the job details as requested.
+4. Hirehub displays the edited job with the edited attributes.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Recruiter enters invalid job index that is not a positive integer.
+  - 2a1. Hirehub raises an error and asks recruiter to provide a valid job index.
+  - 2a2. Recruiter attempts to edit the job with a valid job index.
+  - Steps 2a1-2a2 are repeated until the job index entered is correct.
+  - Use case resumes from step 3.
+
+
+* 2b. Recruiter enters invalid job title.
+  - 2b1. Hirehub raises an error and asks recruiter to provide a valid job title.
+  - 2b2. Recruiter attempts to edit the job with a valid job title.
+  - Steps 2b1-2b2 are repeated until the job title entered is in a correct format.
+  - Use case resumes from step 3.
+
+
+* 2c. Recruiter enters invalid vacancy.
+  - 2c1. Hirehub raises an error and asks recruiter to provide a valid vacancy.
+  - 2c2. Recruiter attempts to edit the job with valid vacancy.
+  - Steps 2c1-2c2 are repeated until the vacancy entered is valid.
+  - Use case resumes from step 3.
+
+
+* 2d. No attributes are provided by recruiter to update.
+  - 2d1. Hirehub raises an error and asks the recruiter to provide at least one attribute to update.
+  - 2d2. Recruiter attempts to edit the job with at least one attribute to update.
+  - Steps 2d1-2d2 are repeated until recruiter enters at least one attribute to update.
+  - Use case resumes from step 3.
+
+
+* 2e. Recruiter enters a positive integer for job index that is out of range.
+  - 2e1. Hirehub raises an error and asks the recruiter to provide correct job index from 1 to the number of jobs in the list.
+  - 2e2. Recruiter attempts to edit the job with valid job index within the range.
+  - Steps 2e1-2e2 are repeated until recruiter enters valid job index.
+  - Use case resumes from step 3.
+
+
+* 2f. Recruiter enters a vacancy that is fewer than the current number of OFFERED applications to the job.
+  - 2f1. Hirehub raises an error and asks the recruiter to provide a larger vacancy.
+  - 2f2. Recruiter attempts to edit the job with a vacancy that is not fewer than the current number of OFFERED applications to the job.
+  - Steps 2f1-2f2 are repeated until recruiter enters a vacancy that is not fewer than the current number of OFFERED applications to the job.
+  - Use case resumes from step 3.
+
+---
+
+### Add application
+
+**System**: Hirehub (Candidate Management System for Company Recruiters)
+
+**Use case**: UC08 - Add application to the List
+
+**Actor**: Recruiter
+
+**MSS**
+
+1.  Recruiter enters the details of the application to be added to the list.
+2.  Hirehub adds the application with the corresponding details as requested.
+3.  Hirehub displays the details of the added application.
+
+Use case ends.
+
+
+**Extensions**
+
+* 1a. Recruiter enters invalid email address.
+  - 1a1. Hirehub raises an error and asks recruiter to provide valid email address.
+  - 1a2. Recruiter attempts to add the application of a person with valid email address.
+  - Steps 1a1-1a2 are repeated until the email address entered is in a correct format.
+  - Use case resumes from step 2.
+
+
+* 1b. Recruiter enters invalid job title.
+  - 1b1. Hirehub raises an error and asks recruiter to provide valid job title.
+  - 1b2. Recruiter attempts to add the application to a job with a valid job title.
+  - Steps 1b1-1b2 are repeated until the job title entered is in the correct format.
+  - Use case resumes from step 2.
+
+
+* 1c. Recruiter enters invalid status.
+  - 1c1. Hirehub raises an error and asks recruiter to provide valid status.
+  - 1c2. Recruiter attempts to add the application with valid status.
+  - Steps 1c1-1c2 are repeated until the status entered is a valid status.
+  - Use case resumes from step 2.
+
+  
+* 1d. Recruiter enters an email address that is not in the person list.
+  - 1d1. Hirehub raises an error and asks recruiter to provide an email address that is in the list.
+  - 1d2. Recruiter attempts to add the application of an existing person.
+  - Steps 1d1-1d2 are repeated until the email address entered is an email address of an existing person.
+  - Use case resumes from step 2. 
+
+
+* 1e. Recruiter enters a job title that is not in the job list.
+  - 1e1. Hirehub raises an error and asks recruiter to provide a job title that is in the list.
+  - 1e2. Recruiter attempts to add the application to an existing job.
+  - Steps 1e1-1e2 are repeated until the job title entered is a job title of an existing job.
+  - Use case resumes from step 2.
+
+---
+
+### Delete application
+
+**System**: Hirehub (Candidate Management System for Company Recruiters)
+
+**Use case**: UC09 - Delete application from the List
+
+**Actor**: Recruiter
+
+**MSS**
+
+1. Recruiter finds an application index to delete from the application list displayed in the app.
+2. Recruiter deletes the application.
+3. Hirehub requests the recruiter to confirm the deletion.
+4. Recruiter confirms deletion.
+5. Hirehub deletes the application from the list and displays the deleted application with its attributes.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Recruiter enters invalid application index.
+  - 2a1. Hirehub raises an error and asks recruiter to provide valid application index.
+  - 2a2. Recruiter attempts to delete the application with valid application index.
+  - Steps 2a1-2a2 are repeated until the application index entered is correct.
+  - Use case resumes from step 3.
+
+
+* 4a. Recruiter cancels deletion in confirmation stage.
+  - 4a1. Hirehub exits the deletion process.
+  - Use case ends.
+
+
+* 4b. Recruiter enters invalid input for confirmation page.
+  - 4b1. Hirehub prompts the recruiter to enter a valid input.
+  - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
+  - Use case resumes from step 5 if recruiter confirms deletion.
+  - Use case resumes from step 4a if recruiter cancels deletion.
+
+---
 
 ### Non-Functional Requirements
 
