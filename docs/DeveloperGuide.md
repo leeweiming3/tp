@@ -72,7 +72,9 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `JobListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Each one of `Job`, `Applicaton` and `Person` has an associated `ListPanel` and `Card`, as indicated with `XXXListPanel` and `XXXCard`.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -221,6 +223,17 @@ Step 3. `SlotsLeftCommandParser#parse(String)` creates a new `SlotsLeftCommand` 
 
 Step 4. `SlotsLeftCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where `ModelManager#getFilteredJobList()` is called. `List#get(int)` is then called, which returns a job object. `Job#getTitle()` is then called to return a String (the title of the job), which is then used as an argument for `ModelManager#countRemainingVacancy(String)`, returning the number of remaining vacancies of the job.
 
+### Add_app Command
+
+Add_app adds an application containing a job and a person 
+
+Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state. We assume that there is an existing person and job in the initial address book state - a person with an email `example@gmail.com` and a job with description `job`.
+
+Step 2. The user enters `add_app e/example@gmail.com ti/job` to add an application for the person uniquely identified by the email `exampel@gmail.com`, for the job `job`. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `AddApplicationCommandParser#parse(String)`.
+
+Step 3. `AddApplicationCommandParser#parse(String)` creates a new `AddApplicationCommand` object, which contains the email that a `Person` object should match, and the job title the `Job` should match. In this case, it contains `example@gmail.com` for its `email` attribute and `job` for its `title` attribute, and `PRESCREEN` for the `status` attribute by default.
+
+Step 4.`AddApplicationCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` and `Job` are found, and an `Application` object containing the `Person` and the `Job` is created. `model#addApplication(Application)` is then called and the `Application` is added to the list of `Application`s in `model`.
 
 ### \[Proposed\] Undo/redo feature
 
