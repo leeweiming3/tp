@@ -454,7 +454,7 @@ Use case ends.
     - 2a1. Hirehub raises an error and asks recruiter to provide valid candidate index.
     - 2a2. Recruiter attempts to delete the candidate with valid candidate index.
     - Steps 2a1-2a2 are repeated until the candidate index entered is correct.
-    - Use case resumes from step 2.
+    - Use case resumes from step 3.
 
 
 * 4a. Recruiter cancels deletion in confirmation stage.
@@ -465,8 +465,8 @@ Use case ends.
 * 4b. Recruiter enters invalid input for confirmation page.
     - 4b1. Hirehub prompts the recruiter to enter a valid input.
     - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
-    - Use case resumes from step 4.
-
+    - Use case resumes from step 5 if recruiter confirms deletion.
+    - Use case resumes from step 4a if recruiter cancels deletion.
 ---
 
 ### Edit candidate details
@@ -564,7 +564,8 @@ Use case ends.
 3a. Recruiter tries to enter invalid commands in the command box.
 - 3a1. HireHub prompts recruiter to enter valid input.
 - Use case 3a is repeated if the recruiter enters invalid input for the confirmation page again.
-- Use case resumes from step 4.
+- Use case resumes from step 4 if recruiter confirms deletion.
+- Use case resumes from step 3b if recruiter cancels deletion.
 
 3b. Recruiter aborts the clearing.
 - 3b1. HireHub informs recruiter that the clear of the database has been aborted.
@@ -593,11 +594,11 @@ Use case ends.
 * 1a. Recruiter enters invalid job title.
   - 1a1. Hirehub raises an error and asks recruiter to provide valid job title.
   - 1a2. Recruiter attempts to add the job with valid job title.
-  - Steps 1a1-1a2 are repeated until the email address entered is in a correct format.
+  - Steps 1a1-1a2 are repeated until the job title entered is in a correct format.
   - Use case resumes from step 2.
 
 
-* 1b. Recruiter enters invalid vacancy
+* 1b. Recruiter enters invalid vacancy.
   - 1b1. Hirehub raises an error and asks recruiter to provide valid vacancy.
   - 1b2. Recruiter attempts to add the job with valid vacancy.
   - Steps 1b1-1b2 are repeated until the vacancy entered is valid.
@@ -629,7 +630,7 @@ Use case ends.
   - 2a1. Hirehub raises an error and asks recruiter to provide valid job index.
   - 2a2. Recruiter attempts to delete the job with valid job index.
   - Steps 2a1-2a2 are repeated until the job index entered is correct.
-  - Use case resumes from step 2.
+  - Use case resumes from step 3.
 
 
 * 4a. Recruiter cancels deletion in confirmation stage.
@@ -640,7 +641,8 @@ Use case ends.
 * 4b. Recruiter enters invalid input for confirmation page.
   - 4b1. Hirehub prompts the recruiter to enter a valid input.
   - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
-  - Use case resumes from step 4.
+  - Use case resumes from step 5 if recruiter confirms deletion.
+  - Use case resumes from step 4a if recruiter cancels deletion.
 
 ---
 
@@ -796,7 +798,8 @@ Use case ends.
 * 4b. Recruiter enters invalid input for confirmation page.
   - 4b1. Hirehub prompts the recruiter to enter a valid input.
   - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
-  - Use case resumes from step 4.
+  - Use case resumes from step 5 if recruiter confirms deletion.
+  - Use case resumes from step 4a if recruiter cancels deletion.
 
 ---
 
