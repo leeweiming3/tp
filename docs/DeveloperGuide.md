@@ -407,10 +407,10 @@ Use case ends.
     - Use case resumes from step 2.
 
 
-* 1c. Recruiter enters invalid country name.
-    - 1c1. Hirehub raises an error and asks recruiter to provide available country name listed in the user guide.
-    - 1c2. Recruiter attempts to add the candidate with valid country name.
-    - Steps 1c1-1c2 are repeated until the country name entered is in the list of available country names in the user guide.
+* 1c. Recruiter enters invalid country code.
+    - 1c1. Hirehub raises an error and asks recruiter to provide available country code listed in the user guide.
+    - 1c2. Recruiter attempts to add the candidate with valid country code.
+    - Steps 1c1-1c2 are repeated until the country code entered is in the list of available country codes in the user guide.
     - Use case resumes from step 2.
 
 
@@ -510,10 +510,10 @@ Use case ends.
     - Use case resumes from step 3.
 
 
-* 2d. Recruiter enters invalid country name.
-    - 2d1. Hirehub raises an error and asks recruiter to provide available country name listed in the user guide.
-    - 2d2. Recruiter attempts to edit the candidate with valid country name.
-    - Steps 2d1-2d2 are repeated until the country name entered is in the list of available country names in the user guide.
+* 2d. Recruiter enters invalid country code.
+    - 2d1. Hirehub raises an error and asks recruiter to provide available country code listed in the user guide.
+    - 2d2. Recruiter attempts to edit the candidate with valid country code.
+    - Steps 2d1-2d2 are repeated until the country code entered is in the list of available country codes in the user guide.
     - Use case resumes from step 3.
 
 
