@@ -47,7 +47,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.<br>
-  
+
 * These are the constraints for each of the parameters (this applies to all commands):
 
   * NAME: cannot be blank, and only alphanumeric characters and spaces are allowed. In particular, special characters such as `/` and `-` and non-English characters (e.g. Chinese characters) are not allowed. This would be part of the planned improvements.
@@ -722,7 +722,4 @@ _Details coming soon ..._
 | ZA | South Africa |
 | ZM | Zambia |
 | ZW | Zimbabwe |
-
-Process finished with exit code 0
-
 </details>
