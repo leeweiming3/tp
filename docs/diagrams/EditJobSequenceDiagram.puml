@@ -1,0 +1,113 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditJobCommandParser" as EditJobCommandParser LOGIC_COLOR
+participant "e:EditJobCommand" as EditJobCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":FilteredList<Job>" as FilteredList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit_job 2 ti/Data Analyst")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit_job 2 ti/Data Analyst")
+activate AddressBookParser
+
+create EditJobCommandParser
+AddressBookParser -> EditJobCommandParser
+activate EditJobCommandParser
+
+EditJobCommandParser --> AddressBookParser
+deactivate EditJobCommandParser
+
+AddressBookParser -> EditJobCommandParser : parse("2 ti/Data Analyst")
+activate EditJobCommandParser
+
+create EditJobCommand
+EditJobCommandParser -> EditJobCommand
+activate EditJobCommand
+
+EditJobCommand --> EditJobCommandParser : e
+deactivate EditJobCommand
+
+EditJobCommandParser -> EditJobCommand
+activate EditJobCommand
+
+EditJobCommand --> EditJobCommandParser : editJobDescriptor
+deactivate EditJobCommand
+
+EditJobCommandParser --> AddressBookParser : e, editJobDescriptor
+deactivate EditJobCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditJobCommandParser -[hidden]-> AddressBookParser
+destroy EditJobCommandParser
+
+AddressBookParser --> LogicManager : e, editJobDescriptor
+deactivate AddressBookParser
+
+LogicManager -> EditJobCommand : execute(m)
+activate EditJobCommand
+
+EditJobCommand -> ModelManager: getFilteredJobList()
+activate ModelManager
+
+ModelManager --> EditJobCommand
+deactivate ModelManager
+
+EditJobCommand -> FilteredList: get(2)
+activate FilteredList
+
+FilteredList --> EditJobCommand: Job
+deactivate FilteredList
+
+EditJobCommand -> EditJobCommand : createEditedJob(Job, editJobDescriptor)
+activate EditJobCommand
+
+EditJobCommand --> EditJobCommand : editedJob
+deactivate EditJobCommand
+
+EditJobCommand -> ModelManager
+activate ModelManager
+
+ModelManager -> FilteredList : setJob(Job, editedJob)
+activate FilteredList
+
+FilteredList --> ModelManager
+deactivate FilteredList
+
+ModelManager --> EditJobCommand
+deactivate ModelManager
+
+EditJobCommand -> ModelManager : updateFilteredJobList(x -> true)
+activate ModelManager
+
+ModelManager --> EditJobCommand
+deactivate ModelManager
+
+EditJobCommand -> ModelManager : replaceApplications(Job, editedJob)
+activate ModelManager
+
+ModelManager --> EditJobCommand
+deactivate ModelManager
+
+create CommandResult
+EditJobCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditJobCommand
+deactivate CommandResult
+
+EditJobCommand --> LogicManager : r
+deactivate EditJobCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
