@@ -144,8 +144,16 @@ Format: `add_app e/EMAIL ti/TITLE [s/STATUS]`
     * The job list does not contain a job with the specified job title.
 
 Examples:
-* `add_app e/acekhoon@gmail.com ti/Quantitative Researcher`
-* `add_app e/john@example.com ti/Software Engineer s/OFFERED`
+* `add_app e/lidavid@example.com ti/Software Engineer (Singapore)`
+* `add_app e/berniceyu@example.com ti/Software Engineer (Singapore) s/OFFERED`
+
+The following is an example of how the `add_app` command can be run in the GUI.
+
+![AddAppCommand](images/add-app/AddAppCommand.png)
+
+After the application has been successfully added, a success message will be shown in the output box. You can also see your new application in the application list display as seen below.
+
+![AddAppOutput](images/add-app/AddAppOutput.png)
 
 ### Edit candidate details: `edit`
 
@@ -271,7 +279,19 @@ Format: `delete INDEX`
 
 ---
 
-Example : `delete 3` removes the candidate at third position in the candidate list displayed.
+Example : `delete 1` removes the candidate at first position in the candidate list displayed.
+
+The following is an example of how the `delete` command can be run in the GUI.
+
+![DeleteCommand](images/delete/DeleteCommand.png)
+
+A confirmation message will show up. Type **Y** to confirm the deletion.
+
+![DeleteConfirmation](images/delete/DeleteConfirmation.png)
+
+After the person has been successfully added, a success message will be shown in the output box. You can see the person deleted from the person list, and all corresponding applications associated with the deleted person have been removed as well, as seen below.
+
+![DeleteCommandOutput](images/delete/DeleteCommandOutput.png)
 
 ### Delete a job: `delete_job`
 
