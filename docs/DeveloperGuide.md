@@ -208,7 +208,7 @@ Given below is an example usage scenario and how the get command mechanism behav
 
 Step 1. The user launches the application for the first time. `HireHub` will be initialized with the initial address book state.
 
-Step 2. The user executes `get 3` command to retrieve candidate at 3rd entry in the list displayed by UI. Subsequently, `get 3` command calls `GetCommandParser#parse()`, parsing the command and creating a new `GetCommand` object by calling constructor `GetCommand(3)`
+Step 2. The user executes `get 3` command to retrieve candidate at 3rd entry in the list displayed by UI. Subsequently, `get 3` command calls `GetCommandParser#parse()`, parsing the command and creating a new `GetCommand` object by calling constructor `GetCommand(3)`.
 
 Step 3. `GetCommand#execute()` checks whether index 3 is valid argument, and if it is within the valid range, it creates `CommandResult` object to deliver success messages to `LogicManager` class.
 
@@ -236,7 +236,7 @@ Cons: Email could possibly be a bit long and cumbersome for users to type out.
 
 ### search command
 
-search command searches candidates whose attributes match all the corresponding attributes (i.e. intersection of all the matches). Phone, email and country are matched by equality, while name, comment, tag are matched by substring of the candidate attributes. The search operation is executed as follows:
+The search command searches candidates whose attributes match all the corresponding attributes (i.e. intersection of all the matches). Phone, email and country are matched by equality, while name, comment, tag are matched by substring of the candidate attributes. The search operation is executed as follows:
 
 Step 1. The user launches the application for the first time. `HireHub` will be initialized with the initial address book state.
 
@@ -292,7 +292,7 @@ At the outset, there were discussions centered around whether `vacancy` attribut
 
 ### add_app command
 
-The add_app command adds an application containing a job and a person
+The add_app command adds an application containing a job and a person.
 
 Step 1. The user launches the application for the first time. `HireHub` will be initialized with the initial address book state. We assume that there is an existing person and job in the initial address book state - a person with an email `example@gmail.com` and a job with title `job`.
 
@@ -314,7 +314,7 @@ Cons: It is harder for the users to type out the email of a candidate and job ti
 
 We choose this alternative because recruiters can reduce the probability of adding incorrect application by enforcing them to explicitly type out a candidate's email and a job title that the candidate applies for.
 
-**Alternative 2:** Use an index of Candidate (`Person`) in the candidate list and an index of job in the job list as an input
+**Alternative 2:** Use an index of Candidate (`Person`) in the candidate list and an index of job in the job list as an input.
 
 Pros: It is easier for the users to type out index of candidates and jobs displayed in their respective lists than writing email and job title everytime.
 
