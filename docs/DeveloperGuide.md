@@ -458,23 +458,23 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​            | I want to …​                                                        | So that I can…​                                                                                                           |
-|----------|--------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | recruiter          | update the contact details of potential candidates                  | quickly fix mistakes or update outdated data                                                                              |
-| `* * *`  | recruiter          | view the contact details of potential candidates in tabular format  | read the data more easily                                                                                                 |
-| `* * *`  | recruiter          | add new candidates to the database                                  | expand my network of contacts                                                                                             |
-| `* * *`  | recruiter          | delete candidates from the database                                 | comply with candidates' request to delete information in accordance with privacy acts or when the information is outdated |
-| `* * *`  | recruiter          | add tags to categorise candidates                                   | easily find candidates fulfilling a particular criteria (tag)                                                             |
-| `* * *`  | recruiter          | filter candidates by their attributes                               | easily seek out for the relevant candidates                                                                               |
-| `* * *`  | recruiter          | leave a comment on the candidate profile                            | take note of the important aspects of the candidate for future reference                                                  |
-| `* * *`  | recruiter          | keep track of the candidate's interview status                      | facilitate the interview process                                                                                          |
-| `* * *`  | recruiter          | clear the database in one single command                            | avoid typing multiple delete commands                                                                                     |
-| `* * *`  | recruiter          | view the details of a candidate of a particular row in the database | have an absolute reference of the singular candidate that I am interested in                                              |
-| `* * *`  | recruiter          | filter candidates by the jobs they applied                          | see what jobs they apply for                                                                                              |
-| `* * *`  | recruiter          | filter applications by job                                          | have an overview of all the applications for a particular job for easier processing                                       |
-| `* * *`  | recruiter          | delete specific tags                                                | undo mistakes made when adding tags                                                                                       |
-| `* * `   | recruiter          | view the number of vacancies left for each role                     | know when to stop hiring/accepting new candidates                                                                         |
-| `* *`    | careless recruiter | confirm the clearing of the database                                | avoid any accidental deletion of the database                                                                             |
+| Priority | As a …​            | I want to …​                                                              | So that I can…​                                                                                                           |
+|----------|--------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | recruiter          | update the contact details of potential candidates                        | quickly fix mistakes or update outdated data                                                                              |
+| `* * *`  | recruiter          | view the contact details of potential candidates in tabular format        | read the data more easily                                                                                                 |
+| `* * *`  | recruiter          | add new candidates to the database                                        | expand my network of contacts                                                                                             |
+| `* * *`  | recruiter          | delete candidates from the database                                       | comply with candidates' request to delete information in accordance with privacy acts or when the information is outdated |
+| `* * *`  | recruiter          | add tags to categorise candidates                                         | easily find candidates fulfilling a particular criteria (tag)                                                             |
+| `* * *`  | recruiter          | filter candidates by their attributes                                     | easily seek out for the relevant candidates                                                                               |
+| `* * *`  | recruiter          | leave a comment on the candidate profile                                  | take note of the important aspects of the candidate for future reference                                                  |
+| `* * *`  | recruiter          | keep track of the candidate's interview status for particular application | facilitate the interview process                                                                                          |
+| `* * *`  | recruiter          | clear the database in one single command                                  | avoid typing multiple delete commands                                                                                     |
+| `* * *`  | recruiter          | view the details of a candidate of a particular row in the database       | have an absolute reference of the singular candidate that I am interested in                                              |
+| `* * *`  | recruiter          | filter candidates by the jobs they applied                                | see what jobs they apply for                                                                                              |
+| `* * *`  | recruiter          | filter applications by job                                                | have an overview of all the applications for a particular job for easier processing                                       |
+| `* * *`  | recruiter          | delete specific tags                                                      | undo mistakes made when adding tags                                                                                       |
+| `* * `   | recruiter          | view the number of vacancies left for each role                           | know when to stop hiring/accepting new candidates                                                                         |
+| `* *`    | careless recruiter | confirm the clearing of the database                                      | avoid any accidental deletion of the database                                                                             |
 
 
 ### Use cases
