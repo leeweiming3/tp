@@ -48,8 +48,6 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -88,7 +86,6 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</div>
 
 ### Viewing help : `help`
 
@@ -97,7 +94,6 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a person: `add`
 
