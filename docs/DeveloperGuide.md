@@ -308,7 +308,7 @@ Step 4.`AddApplicationCommand#execute(Model)` is then called in `LogicManager#ex
 
 **Aspect:** Format of add_app command:
 
-**Alternative 1 (current choice):** Use primary keys for `Person` (`Email`) and `Job` (job `Title`) as argument.
+**Alternative 1 (current choice):** Use primary keys for `Person` (`Email`) and `Job` (job `Title`) as arguments.
 
 Pros: `Email` of a candidate and the job `Title` that the candidate applies for are usually known beforehand to the recruiters, and they are unique primary keys for all candidates and jobs in their respective lists.
 
