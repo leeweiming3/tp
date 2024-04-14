@@ -229,8 +229,20 @@ The following sequence diagram shows how a search operation goes through the var
 
 ![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
 
-Alternatives:
-`SearchPersonDescriptor` may be omitted - in which case, `SearchCommandParser#parse(String)` can directly use the attributes it has parsed to create a `SearchPredicate` object with the relevant attributes and information to search for. However, the methods to test `SearchPersonDescriptor` are readily available, which would ease the testing process.
+Design considerations:
+Aspect: Search criteria of search command:
+
+Alternative 1 (current choice): Return candidates that match all the specified attributes.
+
+Pros: The user can shrink down the result list by specifying more attributes, making it easier to find a particular candidate.
+Cons: The user may need to run multiple search commands to find candidates that match one of the specified attributes.
+
+We choose this alternative because the recruiter tends to have a specific candidate in mind, so narrowing down the list quickly is more useful. Furthermore, this has a better niche, as finding candidates matching one of the specified attributes is easier, while finding candidates matching all the specified attributes is harder.
+
+Alternative 2: Return candidates that match one of the specified attributes.
+
+Pros: It is helpful for recruiters who may have multiple possible criteria for candidates to meet. This helps to keep options open and not accidentally neglect a candidate.
+Cons: It is harder to shrink down the result list as specifying more attributes only increases the size of the result list. Also, finding candidates that match all the specified attributes is difficult, as the user needs to keep track of the candidates that appear in all the result lists, over multiple search commands.
 
 ### SlotsLeft Command
 
@@ -275,6 +287,9 @@ Alternative 2: Use an index of Candidate (`Person`) in the candidate list and an
 Pros: It is easier for the users to type out index of candidates and jobs displayed in their respective lists than writing email and job title everytime.
 Cons: Recruiters need to scroll down the list of candidates and jobs in order to find respective indices, which could require additional effort. Recruiters might be prone to make a mistake since they need to identify candidates and job via indices. Moreover, recruiters might be confused since they cannot discern which index is for candidates and which is for person.
 
+The following sequence diagram shows how a add_app operation goes through the various components:
+
+![AddApplicationSequenceDiagram](images/AddApplicationSequenceDiagram.png)
 
 ### Tag Command
 
@@ -287,6 +302,10 @@ Step 2. The user enters `tag 1 t/tag1 t/tag2` to add tags to the candidate at 1s
 Step 3. `TagCommandParser#parse(String)` creates a new `TagCommand` object, which contains the index that a `Person` object should match, and the `Set<Tag>` of tags to add. In this case, it contains the index 1 and a `Set<Tag>` `[t/tag1, t/tag2]`.
 
 Step 4.`TagCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` is found and the union of tags present and tags to add is calculated. A new person is created using the tag union and the old person's data. Then, the old person is updated in the person list with `ModelManager#setPerson(Person, Person)`, the filtered person list in the model is updated with `ModelManager#updateFilteredPersonList(Predicate<Person>)`, and the applications in the application list are updated to contain the edited person with `ModelManager#replaceApplications(Person, Person)`.
+
+The following sequence diagram shows how a add_app operation goes through the various components:
+
+![TagSequenceDiagram](images/TagSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
