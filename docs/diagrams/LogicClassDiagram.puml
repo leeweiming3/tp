@@ -14,6 +14,7 @@ Class "{abstract}\nCommand" as Command
 Class "{abstract}\nConfirmableCommand" as ConfirmableCommand
 Class "{abstract}\nAbstractDeleteCommand" as ADCommand
 Class XYZDeleteCommand
+Enum "<<enumeration>>\nCommandBoxState" as CommandBoxState
 
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager
@@ -30,7 +31,7 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
-LogicManager -left->"1" ParserClasses
+LogicManager -left->"2" ParserClasses
 ParserClasses ..> XYZCommand : <<create>>
 ParserClasses ..>XYZDeleteCommand : <<create>>
 
@@ -39,6 +40,8 @@ LogicManager .left.> Command : <<call>>
 
 LogicManager --> Model
 LogicManager --> Storage
+CommandBoxState -right[hidden]->CommandResult
+LogicManager -> CommandBoxState
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
