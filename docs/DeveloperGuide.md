@@ -475,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-### Add candidate
+**<u>Add candidate</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -530,7 +530,7 @@ Use case ends.
 
 ---
 
-### Delete candidate
+**<u>Delete candidate</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -571,7 +571,7 @@ Use case ends.
 
 ---
 
-### Edit candidate details
+**<u>Edit candidate details</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -641,7 +641,7 @@ Use case ends.
 
 ---
 
-### Clear
+**<u>Clear</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -675,7 +675,7 @@ Use case ends.
 
 ---
 
-### Add job
+**<u>Add job</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -708,7 +708,7 @@ Use case ends.
 
 ---
 
-### Delete job
+**<u>Delete job</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -748,7 +748,7 @@ Use case ends.
 
 ---
 
-### Edit job details
+**<u>Edit job details</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -810,7 +810,7 @@ Use case ends.
 
 ---
 
-### Add application
+**<u>Add application</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -865,7 +865,7 @@ Use case ends.
 
 ---
 
-### Delete application
+**<u>Delete application</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
