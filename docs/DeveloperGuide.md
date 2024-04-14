@@ -211,6 +211,21 @@ The following sequence diagram shows how a get operation goes through the `Logic
 
 ![GetSequenceDiagram](images/GetSequenceDiagram.png)
 
+Design considerations:
+Aspect: Format of get command:
+
+Alternative 1 (current choice): Use index as argument.
+
+Pros: It is easier for the user to type out the index at the end user's side.
+Cons: This requires the user to know the index from the list of candidates displayed in the UI. If there is a long list of candidates in the UI, observing from the UI may not be so feasible.
+
+We choose this alternative because we have a search command which supports narrowing down of the candidate list to find the desired candidate.
+
+Alternative 2: Use Candidate's Email as argument.
+
+Pros: Email is usually known beforehand midst of the recruitment process, and email is the unique primary key for all candidates in the list.
+Cons: Email could possibly be a bit long and cumbersome for users to type out.
+
 ### Search Command
 
 Search Command searches candidates whose attributes match all the corresponding attributes (i.e. intersection of all the matches). Phone, email and country are matched by equality, while name, comment, tag are matched by substring of the candidate attributes. The search operation is executed as follows:
@@ -230,6 +245,7 @@ The following sequence diagram shows how a search operation goes through the var
 ![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
 
 Design considerations:
+
 Aspect: Search criteria of search command:
 
 Alternative 1 (current choice): Return candidates that match all the specified attributes.
@@ -260,6 +276,13 @@ The following sequence diagram shows how a SlotsLeft operation goes through the 
 
 ![SlotsLeftSequenceDiagram](images/SlotsLeftSequenceDiagram.png)
 
+Design Consideration:
+
+Aspect: Rationale behind why we chose to implement slots_left command
+
+At the outset, there were discussions centered around whether `vacancy` attribute for the job class should denote the remaining count of job openings or the total number of candidates intended for recruitment by the hiring entity. In consideration of the recruiters' potential necessity to adjust the vacancy count for a given job and constantly refer to the initial vacancy, it was resolved that the `vacancy` attribute shall denote the total number of positions that the recruiters aim to hire. To accommodate a functionality enabling recruiters to ascertain the number of remaining job openings after deducting the count of candidates already offered positions, a 'slots_left' command was instituted for this purpose.
+
+
 ### Add_app Command
 
 Add_app adds an application containing a job and a person
@@ -273,6 +296,7 @@ Step 3. `AddApplicationCommandParser#parse(String)` creates a new `AddApplicatio
 Step 4.`AddApplicationCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` and `Job` are found, and an `Application` object containing the `Person` and the `Job` is created. `model#addApplication(Application)` is then called and the `Application` is added to the list of `Application`s in `model`.
 
 Design considerations:
+
 Aspect: Format of add_app command:
 
 Alternative 1 (current choice): Use primary keys for `Person` (`Email`) and `Job` (job `Title`) as argument.
