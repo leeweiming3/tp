@@ -253,7 +253,7 @@ Format: `delete_tag INDEX t/TAG [t/TAG]…​`
 * The specified tag(s) must be in the candidate's list of tags.
 
 Example:
-* `delete_tag 2 t/colleagues t/friends` removes these tags from the 1st candidate displayed.
+* `delete_tag 2 t/colleagues t/friends` removes these tags from the 2nd candidate displayed.
 
 ### Change status of an application: `status`
 
