@@ -11,6 +11,7 @@ package "Parser Classes" as ParserClasses{
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+Class "{abstract}\nConfirmableCommand" as ConfirmableCommand
 
 
 Class "<<interface>>\nLogic" as Logic
@@ -40,7 +41,9 @@ Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
-
+ConfirmableCommand .right|> Command
+ConfirmableCommand ..> Command: <<create>>
+ConfirmableCommand ..> Command: <<create>>
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult : <<create>>
