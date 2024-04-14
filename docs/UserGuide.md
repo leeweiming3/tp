@@ -119,6 +119,14 @@ Examples:
 * `add n/John Doe e/johnd@example.com c/HK p/61234567`
 * `add n/John Doe e/asdf@gmail.com c/SG p/61234567 t/Internal`
 
+The following is an example of how the `add` command can be run in the GUI.
+
+![AddCommand](images/add/AddCommand.png)
+
+After the application has been successfully added, a success message will be shown in the output box. You can also see your new person in the person list display as seen below.
+
+![AddOutput](images/add/AddOutput.png)
+
 ### Adding a job: `add_job`
 
 Adds a job to the job list.
@@ -128,6 +136,14 @@ Format: `add_job ti/TITLE [d/DESCRIPTION] v/VACANCY`
 Examples:
 * `add_job ti/Software Engineer d/Must be proficient in C++ v/10`
 * `add_job ti/ML Engineer v/15`
+
+The following is an example of how the `add_job` command can be run in the GUI.
+
+![AddJobCommand](images/add-job/AddJobCommand.png)
+
+After the application has been successfully added, a success message will be shown in the output box. You can also see your new job in the job list display as seen below.
+
+![AddJobOutput](images/add-job/AddJobOutput.png)
 
 ### Adding an application: `add_app`
 
