@@ -174,17 +174,18 @@ Step 3. `EditJobCommandParser#parse(String)` first checks if the given index is 
 
 Step 4. `EditJobCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the old job is updated in the job list with `ModelManager#setJob(Job, Job)`, the filtered job list in the model is updated with `ModelManager#updateFilteredJobList(Predicate<Job>)`, and the applications in the application list are updated to contain the edited job with `ModelManager#replaceApplications(Job, Job)`.
 
-Design considerations:
-Aspect: Format of edit_job command:
+**Design considerations:**
 
-Alternative 1 (current choice): Use index as argument.
+**Aspect: Format of edit_job command:**
+
+**Alternative 1 (current choice):** Use index as argument.
 
 Pros: It is easier for the user to type out the index to use the command.
 Cons: This choice requires the user to know the index, which can only be observed from the UI. If there is a long list of jobs in the UI, observing from the UI may not be so feasible.
 
 We choose this alternative because we have a search_job command which supports narrowing down of the jobs list to find the desired job.
 
-Alternative 2: Use job title as argument.
+**Alternative 2:** Use job title as argument.
 
 Pros: Job title is usually known beforehand, and job title is the unique primary key for all jobs in the list.
 Cons: Job title can be quite long and cumbersome for users to type out.
@@ -229,17 +230,18 @@ The following sequence diagram shows how a search operation goes through the var
 
 ![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
 
-Design considerations:
-Aspect: Search criteria of search command:
+**Design considerations:**
 
-Alternative 1 (current choice): Return candidates that match all the specified attributes.
+**Aspect: Search criteria of search command:**
+
+**Alternative 1 (current choice):** Return candidates that match all the specified attributes.
 
 Pros: The user can shrink down the result list by specifying more attributes, making it easier to find a particular candidate.
 Cons: The user may need to run multiple search commands to find candidates that match one of the specified attributes.
 
 We choose this alternative because the recruiter tends to have a specific candidate in mind, so narrowing down the list quickly is more useful. Furthermore, this has a better niche, as finding candidates matching one of the specified attributes is easier, while finding candidates matching all the specified attributes is harder.
 
-Alternative 2: Return candidates that match one of the specified attributes.
+**Alternative 2:** Return candidates that match one of the specified attributes.
 
 Pros: It is helpful for recruiters who may have multiple possible criteria for candidates to meet. This helps to keep options open and not accidentally neglect a candidate.
 Cons: It is harder to shrink down the result list as specifying more attributes only increases the size of the result list. Also, finding candidates that match all the specified attributes is difficult, as the user needs to keep track of the candidates that appear in all the result lists, over multiple search commands.
