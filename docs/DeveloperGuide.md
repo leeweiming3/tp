@@ -228,7 +228,7 @@ Cons: This requires the user to know the index from the list of candidates displ
 
 We choose this alternative because we have a search command which supports narrowing down of the candidate list to find the desired candidate.
 
-**Alternative 2:** Use Candidate's Email as argument.
+**Alternative 2:** Use candidate's email as argument.
 
 Pros: Email is usually known beforehand midst of the recruitment process, and email is the unique primary key for all candidates in the list.
 
