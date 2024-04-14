@@ -1,0 +1,103 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "c:TagCommand" as TagCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tag 1 t/INTERNAL")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("tag 1 t/INTERNAL")
+activate AddressBookParser
+
+create TagCommandParser
+AddressBookParser -> TagCommandParser
+activate TagCommandParser
+
+TagCommandParser --> AddressBookParser
+deactivate TagCommandParser
+
+AddressBookParser -> TagCommandParser : parse("1 t/INTERNAL")
+activate TagCommandParser
+
+TagCommandParser -> ParserUtil : parseIndex("1")
+activate ParserUtil
+
+ParserUtil -> TagCommandParser : index
+deactivate ParserUtil
+
+TagCommandParser -> ParserUtil : parseTags("t/INTERNAL")
+activate ParserUtil
+
+ParserUtil -> TagCommandParser : tags
+deactivate ParserUtil
+
+create TagCommand
+TagCommandParser -> TagCommand
+activate TagCommand
+
+TagCommand --> TagCommandParser : c
+deactivate TagCommand
+
+TagCommandParser --> AddressBookParser : c
+deactivate TagCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagCommandParser -[hidden]-> AddressBookParser
+destroy TagCommandParser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> TagCommand : execute(m)
+activate TagCommand
+
+create Person
+TagCommand -> Person
+activate Person
+
+Person --> TagCommand
+deactivate Person
+
+TagCommand -> Model : setPerson()
+activate Model
+
+Model --> TagCommand
+deactivate Model
+
+TagCommand -> Model : updateFilteredPersonList()
+activate Model
+
+Model --> TagCommand
+deactivate Model
+
+TagCommand -> Model : replaceApplications()
+activate Model
+
+Model --> TagCommand
+deactivate Model
+
+create CommandResult
+TagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagCommand
+deactivate CommandResult
+
+TagCommand --> LogicManager : r
+deactivate TagCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

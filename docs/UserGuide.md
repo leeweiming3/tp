@@ -230,7 +230,7 @@ Format: `tag INDEX t/TAG [t/TAG]…​`
 
 Examples:
 * `tag 24 t/smart` adds the tag "smart" to the candidate with index 24.
-* `tag 8 t/ExceptionalWork t/IMOGold t/Male` adds the tags "ExceptionalWork", "IMOGold" and "Male" to the candidate with index 8.
+* `tag 8 t/ExceptionalWork t/IMOGold t/PhD` adds the tags "ExceptionalWork", "IMOGold" and "PhD" to the candidate with index 8.
 
 If tag command is successfully executed, the app will display the candidate with the new tags.
 
@@ -263,6 +263,11 @@ Example:
 
 If status command is successfully executed, the app will display the application with the new status.
 
+The below demonstrates an error from the app when the user attempts to add more candidates with `OFFERED` status than the initial vacancy:
+
+![ExceedsVacancyImage](images/status/ExceedsVacancyImage.png)
+
+The above example attempts to add more `OFFERED` candidates for the job titled `Senior Software Engineer (Singapore)` with initial vacancy 1 where there is already 1 candidate, "Alex Yeoh", whose status is `OFFERED` for this position.
 
 ### Delete a candidate: `delete`
 
@@ -404,7 +409,16 @@ The remaining vacancies of the job will be displayed in the message box.
 Format: `slots_left INDEX`
 
 Example:
-* `slots_left 3`
+
+Candidate named "Alex Yeoh" has applied for a job titled "Senior Software Engineer (Singapore)" with initial vacancy 1. Currently, Alex Yeoh's application status is `PRESCREEN`.
+If the user types in `slots_left 1`, the remaining vacancy displayed for the job is 1 as shows below:
+
+![InitialJobScreenshot](images/slots-left/InitialJobScreenshot.png)
+
+Now, the status of application for candidate "Alex Yeoh" is updated to `OFFERED`. If the user types in `slots_left 1` to find out the remaining vacancy, the output is 0 since Alex Yeoh got an offer for this position:
+
+![VacancyLeftScreenshot](images/slots-left/VacancyLeftScreenshot.png)
+
 
 ### Listing all persons : `list`
 
@@ -493,7 +507,7 @@ _Details coming soon ..._
 | **Search applications** | `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]` <br> e.g., `search_app e/alexyeoh@example.com s/PRESCREEN`                                             |
 | **Slots left**          | `slots_left INDEX` <br> e.g., `slots_left 3`                                                                                                        |
 | **Status**              | `status INDEX INTERVIEW_STATUS` <br> e.g., `status 24 IN_PROGRESS`                                                                                  |
-| **Tag**                 | `tag INDEX t/TAG [t/TAG]…` <br> e.g., `tag 8 t/ExceptionalWork t/IMOGold t/Male`                                                                    |                                                                                |                                                                                                                              |                                                                                                                                         |
+| **Tag**                 | `tag INDEX t/TAG [t/TAG]…` <br> e.g., `tag 8 t/ExceptionalWork t/IMOGold t/PhD`                                                                    |                                                                                |                                                                                                                              |                                                                                                                                         |
 
 --------------------------------------------------------------------------------------------------------------------
 
