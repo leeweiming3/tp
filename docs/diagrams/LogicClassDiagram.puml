@@ -43,11 +43,11 @@ Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
-ConfirmableCommand .right|> Command
+ConfirmableCommand -right|> Command
 ConfirmableCommand ..> Command: <<create>>
 ConfirmableCommand ..> Command: <<create>>
-ADCommand .down|> ConfirmableCommand
-XYZDeleteCommand -up->ADCommand
+ADCommand -down|> ConfirmableCommand
+XYZDeleteCommand -up-|>ADCommand
 note left of XYZDeleteCommand: XYZDeleteCommand = DeleteTagCommand, \nClearCommand, etc
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
