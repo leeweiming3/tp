@@ -342,7 +342,7 @@ Format: `delete_app INDEX`
 ---
 
 Example:
-* `delete_app 3` removes the application at third position in the application list displayed.
+* `delete_app 2` removes the application at second position in the application list displayed.
 
 ### Clearing all entries : `clear`
 
