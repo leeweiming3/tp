@@ -8,14 +8,10 @@ public abstract class ConfirmableCommand extends Command {
     /**
      * Returns the command to be executed upon next confirmation.
      */
-    public Command whenConfirmed() {
-        return null;
-    }
+    public abstract Command whenConfirmed();
 
     /**
      * Returns the command to be executed upon next refusal to confirm.
      */
-    public Command whenDenied() {
-        return null;
-    }
+    public abstract Command whenDenied();
 }
