@@ -230,7 +230,7 @@ Format: `tag INDEX t/TAG [t/TAG]…​`
 
 Examples:
 * `tag 24 t/smart` adds the tag "smart" to the candidate with index 24.
-* `tag 8 t/ExceptionalWork t/IMOGold t/Male` adds the tags "ExceptionalWork", "IMOGold" and "Male" to the candidate with index 8.
+* `tag 8 t/ExceptionalWork t/IMOGold t/PhD` adds the tags "ExceptionalWork", "IMOGold" and "PhD" to the candidate with index 8.
 
 If tag command is successfully executed, the app will display the candidate with the new tags.
 
@@ -507,7 +507,7 @@ _Details coming soon ..._
 | **Search applications** | `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]` <br> e.g., `search_app e/alexyeoh@example.com s/PRESCREEN`                                             |
 | **Slots left**          | `slots_left INDEX` <br> e.g., `slots_left 3`                                                                                                        |
 | **Status**              | `status INDEX INTERVIEW_STATUS` <br> e.g., `status 24 IN_PROGRESS`                                                                                  |
-| **Tag**                 | `tag INDEX t/TAG [t/TAG]…` <br> e.g., `tag 8 t/ExceptionalWork t/IMOGold t/Male`                                                                    |                                                                                |                                                                                                                              |                                                                                                                                         |
+| **Tag**                 | `tag INDEX t/TAG [t/TAG]…` <br> e.g., `tag 8 t/ExceptionalWork t/IMOGold t/PhD`                                                                    |                                                                                |                                                                                                                              |                                                                                                                                         |
 
 --------------------------------------------------------------------------------------------------------------------
 
