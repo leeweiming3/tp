@@ -427,7 +427,7 @@ Format: `slots_left INDEX`
 Example:
 
 Candidate named "Alex Yeoh" has applied for a job titled "Senior Software Engineer (Singapore)" with initial vacancy 1. Currently, Alex Yeoh's application status is `PRESCREEN`.
-If the user types in `slots_left 1`, the remaining vacancy displayed for the job is 1 as shows below:
+If the user types in `slots_left 1`, the remaining vacancy displayed for the job is 1 as shown below:
 
 ![InitialJobScreenshot](images/slots-left/InitialJobScreenshot.png)
 
