@@ -316,7 +316,7 @@ Cons: It is harder for the users to type out the email of a candidate and job ti
 
 We choose this alternative because recruiters can reduce the probability of adding incorrect application by enforcing them to explicitly type out a candidate's email and a job title that the candidate applies for.
 
-**Alternative 2:** Use an index of Candidate (`Person`) in the candidate list and an index of job in the job list as an input.
+**Alternative 2:** Use an index of candidate (`Person`) in the candidate list and an index of job in the job list as an input.
 
 Pros: It is easier for the users to type out index of candidates and jobs displayed in their respective lists than writing email and job title everytime.
 
