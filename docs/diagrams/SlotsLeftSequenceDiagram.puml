@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SlotsLeftCommandParser" as SlotsLeftCommandParser LOGIC_COLOR
+participant "s:SlotsLeftCommand" as SlotsLeftCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":FilteredList<Job>" as FilteredList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("slots_left 2")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("slots_left 2")
+activate AddressBookParser
+
+create SlotsLeftCommandParser
+AddressBookParser -> SlotsLeftCommandParser
+activate SlotsLeftCommandParser
+
+SlotsLeftCommandParser --> AddressBookParser
+deactivate SlotsLeftCommandParser
+
+AddressBookParser -> SlotsLeftCommandParser : parse("2")
+activate SlotsLeftCommandParser
+
+create SlotsLeftCommand
+SlotsLeftCommandParser -> SlotsLeftCommand
+activate SlotsLeftCommand
+
+SlotsLeftCommand --> SlotsLeftCommandParser :
+deactivate SlotsLeftCommand
+
+SlotsLeftCommandParser --> AddressBookParser : s
+deactivate SlotsLeftCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SlotsLeftCommandParser -[hidden]-> AddressBookParser
+destroy SlotsLeftCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> SlotsLeftCommand : execute(m)
+activate SlotsLeftCommand
+
+SlotsLeftCommand -> ModelManager : getFilteredJobList()
+activate ModelManager
+
+ModelManager -> FilteredList : get(2)
+activate FilteredList
+
+FilteredList --> ModelManager : Job
+deactivate FilteredList
+
+ModelManager --> SlotsLeftCommand : Job
+deactivate ModelManager
+
+SlotsLeftCommand -> ModelManager : countRemainingVacancy(Job)
+activate ModelManager
+
+ModelManager --> SlotsLeftCommand : vacancy left
+deactivate ModelManager
+
+create CommandResult
+SlotsLeftCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SlotsLeftCommand
+deactivate CommandResult
+
+SlotsLeftCommand --> LogicManager : r
+deactivate SlotsLeftCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -9,16 +9,10 @@ import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.hirehub.logic.commands.SearchCommand;
 import seedu.hirehub.logic.commands.SearchCommand.SearchPersonDescriptor;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.person.Comment;
-import seedu.hirehub.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new SearchCommand object
@@ -64,23 +58,10 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         if (argMultimap.getValue(PREFIX_COMMENT).isPresent()) {
             searchPersonDescriptor.setComment(new Comment(argMultimap.getValue(PREFIX_COMMENT).get()));
         }
-        parseTagsForSearch(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(searchPersonDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            searchPersonDescriptor.setTags(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
+        }
 
         return new SearchCommand(searchPersonDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForSearch(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 }

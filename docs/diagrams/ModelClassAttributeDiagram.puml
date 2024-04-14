@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model as ModelPackage <<Rectangle>>{
+
+Class AddressBook
+
+Class UniquePersonList
+
+Class Person
+Class Name
+Class Phone
+Class Email
+Class Country
+Class Comment
+Class Tag
+
+Class UniqueApplicationList
+
+Class Application
+Class Status
+
+Class UniqueJobList
+
+Class Job
+Class Title
+Class Description
+Class Vacancy
+
+Class I #FFFFFF
+}
+AddressBook *--> "1" UniquePersonList
+UniquePersonList --> "~* all" Person
+Person *--> "1" Name
+Person *--> "1" Phone
+Person *--> "1" Email
+Person *--> "1" Country
+Person *--> "1" Comment
+Person *--> "*" Tag
+
+Person -[hidden]right--> I
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Country
+Country -[hidden]right-> Email
+
+AddressBook *--> "1" UniqueApplicationList
+UniqueApplicationList --> "~* all" Application
+Application *--> "1" Status
+
+AddressBook *--> "1" UniqueJobList
+UniqueJobList --> "~* all" Job
+Job *--> "1" Title
+Job *--> "1" Description
+Job *--> "1" Vacancy
+
+Job -[hidden]down--> I
+
+Title -[hidden]right-> Description
+Description -[hidden]right-> Vacancy
+
+Job - Person: < applies
+(Person, Job) .. Application
+
+
+@enduml
