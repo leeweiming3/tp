@@ -262,7 +262,7 @@ Pros: The user can shrink down the result list by specifying more attributes, ma
 
 Cons: The user may need to run multiple search commands to find candidates that match one of the specified attributes.
 
-We choose this alternative because the recruiter tends to have a specific candidate in mind, so narrowing down the list quickly is more useful. Furthermore, this has a better niche, as finding candidates matching one of the specified attributes is easier, while finding candidates matching all the specified attributes is harder.
+We choose this alternative because the recruiter tends to have a specific candidate in mind, so narrowing down the list quickly is more useful. Furthermore, finding candidates matching one of the specified attributes is easier, while finding candidates matching all the specified attributes is harder.
 
 **Alternative 2:** Return candidates that match one of the specified attributes.
 
