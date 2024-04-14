@@ -176,7 +176,7 @@ Format: `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`
 * Even though you can edit multiple candidate details at once, attribute to edit must be **non-empty**. In other words, you must edit **at least one attribute** specified above.
 * When **editing tags**, the existing tags of the candidate will be **removed**. Thus, you must specify **every tag** you want to keep on the candidate whenever you edit the candidate details.
 * Applications involving the candidate to edit will be updated to involve the edited candidate.
-* **Comment and Interview Status** field for the candidates **cannot be edited** by `edit` as there is a dedicated method for editing them separately.
+* **Comment** field for the candidates **cannot be edited** by `edit` as there is a dedicated method for editing it separately.
 
 ---
 Examples:
