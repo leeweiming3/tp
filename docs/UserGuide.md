@@ -57,24 +57,18 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 
 * These are the constraints for each of the parameters (this applies to all commands):
 
-  * **NAME**: cannot be blank, and only alphanumeric characters and spaces are allowed. In particular, special characters such as `/` and `-` and non-English characters (e.g. Chinese characters) are not allowed. This would be part of the planned improvements.
-  * **PHONE**: cannot be blank and must adhere to the following constraints:
-    * International phone numbers should contain a country code in front (+ followed by 1 to 3 digits), then a space, followed by a combination of digits, spaces, parentheses or hyphens with at least 3 digits.
-    * If country code is omitted, it must be a valid Singapore phone number. It must start with 3, 6, 8 or 9 and must be in the following formats: `XXXXYYYY`, `XXXX-YYYY` or `XXXX YYYY`.
-    * Other than the above constraints, there is no other validation to check if a country code is valid. Furthermore, given a country code, there is no phone validation specific to the country code. This would be part of the planned improvements.
-  * **EMAIL**: must be of the format local-part@domain and adhere to the following constraints:
-    * The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-    * This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
-      - end with a domain label at least 2 characters long
-      - have each domain label start and end with alphanumeric characters
-      - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  * **COUNTRY**: must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS. Alternatively, you can refer to the [appendix](#appendix-country-codes) for the exact ISO code to use for each country. Note that the value for country field shown on the UI is the English display name equivalent of the ISO code for user convenience, and what is actually stored in the backend is the ISO code.
-  * **TAG**: cannot be blank (except in edit command), and only alphanumeric characters are allowed.
-  * **COMMENT**: can be blank and does not have any constraints.
-  * **TITLE**: cannot be blank and has a character limit of 100.
-  * **DESCRIPTION**: can be blank and does not have any constraints.
-  * **VACANCY**: must be a positive integer.
-  * **STATUS**: must be one of the following 5 statuses (not case-sensitive): PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED
+| Parameter       | Prefix | Format                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+|-----------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **NAME**        | n/     | Cannot be blank, and only alphanumeric characters and spaces are allowed. In particular, special characters such as `/` and `-` and non-English characters (e.g. Chinese characters) are not allowed. This would be part of the planned improvements.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **PHONE**       | p/     | Cannot be blank and must adhere to the following constraints: <br><br> 1. International phone numbers should contain a country code in front (+ followed by 1 to 3 digits), then a space, followed by a combination of digits, spaces, parentheses or hyphens with at least 3 digits. <br><br> 2. If country code is omitted, it must be a valid Singapore phone number. It must start with 3, 6, 8 or 9 and must be in the following formats: `XXXXYYYY`, `XXXX-YYYY` or `XXXX YYYY`. <br><br>3. Other than the above constraints, there is no other validation to check if a country code is valid. Furthermore, given a country code, there is no phone validation specific to the country code. This would be part of the planned improvements. |
+| **EMAIL**       | e/     | Must be of the format local-part@domain and adhere to the following constraints: <br><br> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br><br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br><br> 2a. end with a domain label at least 2 characters long <br> 2b. have each domain label start and end with alphanumeric characters <br> 2c. have each domain label consist of alphanumeric characters, separated only by hyphens, if any.                                                   |
+| **COUNTRY**     | c/     | Must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS. Alternatively, you can refer to the [appendix](#appendix-country-codes) for the exact ISO code to use for each country. Note that the value for country field shown on the UI is the English display name equivalent of the ISO code for user convenience, and what is actually stored in the backend is the ISO code.                                                                                                                                                                                                                                                                  |
+| **TAG**         | t/     | Cannot be blank (except in edit command), and only alphanumeric characters are allowed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **COMMENT**     | None   | Can be blank and does not have any constraints.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **TITLE**       | ti/    | Cannot be blank and has a character limit of 100.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **DESCRIPTION** | d/     | Can be blank and does not have any constraints.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **VACANCY**     | v/     | Must be a positive integer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **STATUS**      | s/     | Must be one of the following 5 statuses (not case-sensitive): PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                           |                                                                                                                              |                                                                                                                                         |
 
 * These are the primary key (i.e. no 2 items can have the same parameter) of candidates, jobs and applications respectively:
   * **Candidates**: EMAIL
@@ -119,6 +113,14 @@ Examples:
 * `add n/John Doe e/johnd@example.com c/HK p/61234567`
 * `add n/John Doe e/asdf@gmail.com c/SG p/61234567 t/Internal`
 
+The following is an example of how the `add` command can be run in the GUI.
+
+![AddCommand](images/add/AddCommand.png)
+
+After the application has been successfully added, a success message will be shown in the output box. You can also see your new person in the person list display as seen below.
+
+![AddOutput](images/add/AddOutput.png)
+
 ### Adding a job: `add_job`
 
 Adds a job to the job list.
@@ -128,6 +130,14 @@ Format: `add_job ti/TITLE [d/DESCRIPTION] v/VACANCY`
 Examples:
 * `add_job ti/Software Engineer d/Must be proficient in C++ v/10`
 * `add_job ti/ML Engineer v/15`
+
+The following is an example of how the `add_job` command can be run in the GUI.
+
+![AddJobCommand](images/add-job/AddJobCommand.png)
+
+After the application has been successfully added, a success message will be shown in the output box. You can also see your new job in the job list display as seen below
+
+![AddJobOutput](images/add-job/AddJobOutput.png)
 
 ### Adding an application: `add_app`
 
@@ -173,14 +183,14 @@ Format: `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​`
 
 ---
 Examples:
-* `edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/SG`
+* `edit 2 n/Johnny Doe e/johnnydoe@gmail.com c/SG`
 
-This command edits **name**, **email**, and **country of residence** of the candidate with index 24 to **Johnny Doe**, **johnnydoe@gmail.com**, and **Singapore**, respectively.
+This command edits **name**, **email**, and **country of residence** of the candidate with index 2 to **Johnny Doe**, **johnnydoe@gmail.com**, and **Singapore**, respectively.
 
 
-* `edit 8 n/Jeb Song e/jebsong@gmail.com t/IMOGold`
+* `edit 3 n/Jeb Song e/jebsong@gmail.com t/IMOGold`
 
-This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 8 to **Jeb Song**, **jebsong@gmail.com**, and **IMOGold**, respectively. Note that the existing tag(s) on this candidate (if any) is/are completely removed and a new tag `IMOGold` is added.
+This command edits **name**, **email**, and the tag for **acceptance status** of the candidate with index 3 to **Jeb Song**, **jebsong@gmail.com**, and **IMOGold**, respectively. Note that the existing tag(s) on this candidate (if any) is/are completely removed and a new tag `IMOGold` is added.
 
 ---
 
@@ -208,7 +218,7 @@ Example:
 
 Leaves comments on important points to note down for individual candidates during the recruitment process. This overwrites existing comment (if any) and displays the resulting candidate.
 
-* `INDEX` must be within the range `1` to `n`, where `n` is the number of records in the database.
+* `INDEX` must be within the range `1` to `n`, where `n` is the number of candidates in the displayed candidate list.
 
 Format: `comment INDEX COMMENT`
 
@@ -229,8 +239,8 @@ Format: `tag INDEX t/TAG [t/TAG]…​`
 * At least one tag must be provided.
 
 Examples:
-* `tag 24 t/smart` adds the tag "smart" to the candidate with index 24.
-* `tag 8 t/ExceptionalWork t/IMOGold t/PhD` adds the tags "ExceptionalWork", "IMOGold" and "PhD" to the candidate with index 8.
+* `tag 2 t/smart` adds the tag "smart" to the candidate with index 2.
+* `tag 4 t/ExceptionalWork t/IMOGold t/PhD` adds the tags "ExceptionalWork", "IMOGold" and "PhD" to the candidate with index 4.
 
 If tag command is successfully executed, the app will display the candidate with the new tags.
 
@@ -238,13 +248,15 @@ If tag command is successfully executed, the app will display the candidate with
 
 Deletes existing tag(s) from a candidate's list of tags
 
+You can delete tags for any candidates in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from ***1*** to ***n***, where ***n*** represents the **number of candidates** in the candidate list displayed in the UI.
+
 Format: `delete_tag INDEX t/TAG [t/TAG]…​`
 
 * At least one tag must be provided.
 * The specified tag(s) must be in the candidate's list of tags.
 
 Example:
-* `delete_tag 1 t/ExceptionalWork t/IMOGold` removes these tags from the 1st candidate displayed.
+* `delete_tag 2 t/colleagues t/friends` removes these tags from the 1st candidate displayed.
 
 ### Change status of an application: `status`
 
@@ -253,13 +265,15 @@ Changes the interview status of an application.
 Interview status must be one of the following: `PRESCREEN`, `IN_PROGRESS`, `WAITLIST`, `OFFERED`, `REJECTED`.
 When an application is added, by default it has status `PRESCREEN`.
 
+You can edit status of any applications in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of applications shown in the displayed application list. The application index **must be** within the range from ***1*** to ***n***, where ***n*** represents the **number of applications** in the application list displayed in the UI.
+
 Format: `status INDEX STATUS`
 
 * The status update to an application of a job will fail under this condition:
     * The status of the application to change to is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
 
 Example:
-* `status 24 IN_PROGRESS` changes the status of the application with index 24 to `IN_PROGRESS`.
+* `status 2 IN_PROGRESS` changes the status of the application with index 2 to `IN_PROGRESS`.
 
 If status command is successfully executed, the app will display the application with the new status.
 
@@ -273,7 +287,7 @@ The above example attempts to add more `OFFERED` candidates for the job titled `
 
 Deletes an existing candidate from the candidate list.
 
-You can delete any candidates in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from ***1*** to ***n***, where ***n*** represents the **number of candidates** in the database.
+You can delete any candidates in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from ***1*** to ***n***, where ***n*** represents the **number of candidates** in the candidate list displayed in the UI.
 
 Format: `delete INDEX`
 
@@ -300,7 +314,9 @@ After the person has been successfully added, a success message will be shown in
 
 ### Delete a job: `delete_job`
 
-Deletes an existing job from the job list.
+Deletes an existing job from the job list displayed in the UI.
+
+You can delete any jobs in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of jobs shown in the displayed job list. The job index **must be** within the range from ***1*** to ***n***, where ***n*** represents the **number of jobs** in the job list displayed in the UI.
 
 Format: `delete_job INDEX`
 
@@ -316,7 +332,9 @@ Example:
 
 ### Delete an application: `delete_app`
 
-Deletes an existing application from the application list.
+Deletes an existing application from the application list displayed in the UI.
+
+You can delete any applications in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of applications shown in the displayed application list. The application index **must be** within the range from ***1*** to ***n***, where ***n*** represents the **number of applications** in the application list displayed in the UI.
 
 Format: `delete_app INDEX`
 
@@ -331,7 +349,7 @@ Example:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from Hirehub's address book. All applications will be cleared as well.
+Clears all entries from Hirehub's candidate list. All applications will be cleared as well.
 
 * A confirmation message would be displayed. Type in **Y** to confirm the deletion.
 
@@ -391,7 +409,7 @@ Examples:
 
 ### Accessing by index: `get`
 
-Accesses candidates by **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from 1 to n, where n represents the **number of candidates** in the database.
+Accesses candidates by **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the candidate list. The candidate index **must be** within the range from 1 to n, where n represents the **number of candidates** in the candidate list displayed.
 
 Format: `get INDEX`
 
@@ -450,7 +468,7 @@ HireHub data are saved in the hard disk automatically after any command that cha
 
 ### Editing the data files
 
-HireHub data are saved automatically as JSON files `[JAR file location]/data/hirehub.json`, `[JAR file location]/data/jobs.json` and `[JAR file location]/data/applications.json`. Advanced users are welcome to update data directly by editing those data files.
+HireHub data are saved automatically as JSON files `[JAR file location]/data/addressbook.json`, `[JAR file location]/data/jobs.json` and `[JAR file location]/data/applications.json`. Advanced users are welcome to update data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data files makes their format invalid, HireHub will discard all data and start with empty data files at the next run. Hence, it is recommended to take a backup of the files before editing them.<br>

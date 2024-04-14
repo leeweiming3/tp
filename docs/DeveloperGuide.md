@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -126,7 +126,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person`, `Job`, and `Application` objects (which are contained in a `UniquePersonList`, `UniqueJobList` and `UniqueApplicationList` object, respectively).
+* stores the app data i.e., all `Person`, `Job`, and `Application` objects (which are contained in a `UniquePersonList`, `UniqueJobList` and `UniqueApplicationList` object, respectively).
 * stores the currently 'selected' `Person`, `Job`, and `Application` objects (e.g., results of a search queries for each `Person`, `Job`, and `Application` object) as a separate _filtered_ list (`filteredPersonList`, `filteredJobList`, and `filteredApplicationList` respectively) which is exposed to outsiders as an unmodifiable `ObservableList<Person>`, `ObservableList<Job>`, and `ObservableList<Application>`, respectively, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -164,7 +164,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### EditJob command
-The EditJob command allows the recruiters to edit the details (job title, description, vacancy) for a particular job at a specified index from the job list. Given below is an example usage scenario and how the EditJob mechanism behaves at each step.
+The EditJob command allows the recruiters to edit the details (job title, description, vacancy) for a particular job at a specified index from the displayed job list. Given below is an example usage scenario and how the EditJob mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
 
@@ -181,6 +181,7 @@ Step 4. `EditJobCommand#execute(Model)` is then called in `LogicManager#execute(
 **Alternative 1 (current choice):** Use index as argument.
 
 Pros: It is easier for the user to type out the index to use the command.
+
 Cons: This choice requires the user to know the index, which can only be observed from the UI. If there is a long list of jobs in the UI, observing from the UI may not be so feasible.
 
 We choose this alternative because we have a search_job command which supports narrowing down of the jobs list to find the desired job.
@@ -188,16 +189,17 @@ We choose this alternative because we have a search_job command which supports n
 **Alternative 2:** Use job title as argument.
 
 Pros: Job title is usually known beforehand, and job title is the unique primary key for all jobs in the list.
+
 Cons: Job title can be quite long and cumbersome for users to type out.
 
 ![EditJobSequenceDiagram](images/EditJobSequenceDiagram.png)
 
 ### Get Command
 
-Get command allows the recruiters to retrieve the candidate from the list at specified index in the database. If a recruiter types in `get [INDEX]` with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via following via following steps:
+Get command allows the recruiters to retrieve the candidate from the list at specified index in the displayed candidate list. If a recruiter types in `get INDEX` with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via following via following steps:
 
-1. Get command class was created in `Command` file in `Logic` component which constructs a get command with candidate index as an argument
-2. execute() method in getcommand class checks whether index provided by the user is valid (i.e. positive integer with smaller or equal to the size of candidate list) or not, and filters the candidate list with given index number, creating a new `CommandResult` object that output success message
+1. Get command class was created in `Command` file in `Logic` component which constructs a get command with candidate index as an argument.
+2. `execute()` method in getcommand class checks whether index provided by the user is valid (i.e. positive integer should be smaller than or equal to the size of displayed candidate list) or not, and filters the candidate list with given index number, creating a new `CommandResult` object that outputs success message.
 3. In order for get command to get into the `Logic` component, user command must be parsed in `parser` component. In order to do so, `GetCommandParser` was created by implementing `Parser<T>` interface in the `parser` component where `parse()` method creates a `GetCommand` object with given index as an argument.
 
 Given below is an example usage scenario and how the get command mechanism behaves at each step, which could aid understanding the implementation outlined above:
@@ -211,6 +213,24 @@ Step 3. `GetCommand#execute()` checks whether index 3 is valid argument, and if 
 The following sequence diagram shows how a get operation goes through the `Logic` component:
 
 ![GetSequenceDiagram](images/GetSequenceDiagram.png)
+
+**Design considerations:**
+
+**Aspect: Format of get command:**
+
+**Alternative 1 (current choice):** Use index as argument.
+
+Pros: It is easier for the user to type out the index at the end user's side.
+
+Cons: This requires the user to know the index from the list of candidates displayed in the UI. If there is a long list of candidates in the UI, observing from the UI may not be so feasible.
+
+We choose this alternative because we have a search command which supports narrowing down of the candidate list to find the desired candidate.
+
+**Alternative 2:** Use Candidate's Email as argument.
+
+Pros: Email is usually known beforehand midst of the recruitment process, and email is the unique primary key for all candidates in the list.
+
+Cons: Email could possibly be a bit long and cumbersome for users to type out.
 
 ### Search Command
 
@@ -262,31 +282,40 @@ The following sequence diagram shows how a SlotsLeft operation goes through the 
 
 ![SlotsLeftSequenceDiagram](images/SlotsLeftSequenceDiagram.png)
 
-### Add_app Command
+**Design Consideration:**
+
+**Aspect:** Rationale behind implementation of SlotsLeft command:
+
+At the outset, there were discussions centered around whether `vacancy` attribute for the job class should denote the remaining count of job openings or the total number of candidates intended for recruitment by the hiring entity. In consideration of the potential for recruiters to adjust the vacancy count for a given job and make references to the initial vacancy, we decided that the `vacancy` attribute shall denote the total number of positions that the recruiters aim to hire. To support enabling recruiters to ascertain the number of remaining job openings after deducting the number of offers made, a 'slots_left' command was created for this purpose.
+
+### AddApplication Command
 
 Add_app adds an application containing a job and a person
 
 Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state. We assume that there is an existing person and job in the initial address book state - a person with an email `example@gmail.com` and a job with title `job`.
 
-Step 2. The user enters `add_app e/example@gmail.com ti/job` to add an application for the person uniquely identified by the email `exampel@gmail.com`, for the job with the title `job`. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `AddApplicationCommandParser#parse(String)`.
+Step 2. The user enters `add_app e/example@gmail.com ti/job` to add an application for the person uniquely identified by the email `example@gmail.com`, for the job with the title `job`. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `AddApplicationCommandParser#parse(String)`.
 
 Step 3. `AddApplicationCommandParser#parse(String)` creates a new `AddApplicationCommand` object, which contains the email that a `Person` object should match, and the job title the `Job` should match. In this case, it contains `example@gmail.com` for its `email` attribute and `job` for its `title` attribute, and `PRESCREEN` for the `status` attribute by default.
 
 Step 4.`AddApplicationCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` and `Job` are found, and an `Application` object containing the `Person` and the `Job` is created. `model#addApplication(Application)` is then called and the `Application` is added to the list of `Application`s in `model`.
 
-Design considerations:
-Aspect: Format of add_app command:
+**Design considerations:**
 
-Alternative 1 (current choice): Use primary keys for `Person` (`Email`) and `Job` (job `Title`) as argument.
+**Aspect:** Format of add_app command:
+
+**Alternative 1 (current choice):** Use primary keys for `Person` (`Email`) and `Job` (job `Title`) as argument.
 
 Pros: `Email` of a candidate and the job `Title` that the candidate applies for are usually known beforehand to the recruiters, and they are unique primary keys for all candidates and jobs in the their respective lists.
+
 Cons: It is harder for the users to type out the email of a candidate and job title that the candidate intends to apply to use the command.
 
 We choose this alternative because recruiters can reduce the probability of adding incorrect application by enforcing them to explicitly type out a candidate's email and a job title that the candidate applies for.
 
-Alternative 2: Use an index of Candidate (`Person`) in the candidate list and an index of job in the job list as an input
+**Alternative 2:** Use an index of Candidate (`Person`) in the candidate list and an index of job in the job list as an input
 
 Pros: It is easier for the users to type out index of candidates and jobs displayed in their respective lists than writing email and job title everytime.
+
 Cons: Recruiters need to scroll down the list of candidates and jobs in order to find respective indices, which could require additional effort. Recruiters might be prone to make a mistake since they need to identify candidates and job via indices, and it might be confusing for them to discern which index is for candidates and which one is for job when employing this command.
 
 The following sequence diagram shows how a add_app operation goes through the various components:
@@ -452,7 +481,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-### 1. Add candidate
+**<u>Add candidate</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -507,7 +536,7 @@ Use case ends.
 
 ---
 
-### Delete candidate
+**<u>Delete candidate</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -545,9 +574,10 @@ Use case ends.
     - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
     - Use case resumes from step 5 if recruiter confirms deletion.
     - Use case resumes from step 4a if recruiter cancels deletion.
+
 ---
 
-### Edit candidate details
+**<u>Edit candidate details</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -617,7 +647,7 @@ Use case ends.
 
 ---
 
-### Clear
+**<u>Clear</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -651,7 +681,7 @@ Use case ends.
 
 ---
 
-### Add job
+**<u>Add job</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -684,7 +714,7 @@ Use case ends.
 
 ---
 
-### Delete job
+**<u>Delete job</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -724,7 +754,7 @@ Use case ends.
 
 ---
 
-### Edit job details
+**<u>Edit job details</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -786,7 +816,7 @@ Use case ends.
 
 ---
 
-### Add application
+**<u>Add application</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -841,7 +871,7 @@ Use case ends.
 
 ---
 
-### Delete application
+**<u>Delete application</u>**
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
