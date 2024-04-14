@@ -164,7 +164,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### EditJob command
-The EditJob command allows the recruiters to edit the details (job title, description, vacancy) for a particular job at a specified index from the job list. Given below is an example usage scenario and how the EditJob mechanism behaves at each step.
+The EditJob command allows the recruiters to edit the details (job title, description, vacancy) for a particular job at a specified index from the displayed job list. Given below is an example usage scenario and how the EditJob mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
 
@@ -194,7 +194,7 @@ Cons: Job title can be quite long and cumbersome for users to type out.
 
 ### Get Command
 
-Get command allows the recruiters to retrieve the candidate from the list at specified index in the database. If a recruiter types in `get [INDEX]` with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via following via following steps:
+Get command allows the recruiters to retrieve the candidate from the list at specified index in the database. If a recruiter types in `get INDEX` with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via following via following steps:
 
 1. Get command class was created in `Command` file in `Logic` component which constructs a get command with candidate index as an argument
 2. execute() method in getcommand class checks whether index provided by the user is valid (i.e. positive integer with smaller or equal to the size of candidate list) or not, and filters the candidate list with given index number, creating a new `CommandResult` object that output success message
