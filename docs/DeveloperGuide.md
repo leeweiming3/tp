@@ -924,6 +924,7 @@ Use case ends.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Command**: The first word in the user input, determines 
 * **GUI**: Graphical user interface
+* **JSON**: JavaScript Object Notation
 
 --------------------------------------------------------------------------------------------------------------------
 
