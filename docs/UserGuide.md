@@ -61,8 +61,8 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 | **PHONE**       | p/     | Cannot be blank and must adhere to the following constraints: <br><br> 1. International phone numbers should contain a country code in front (+ followed by 1 to 3 digits), then a space, followed by a combination of digits, spaces, parentheses or hyphens with at least 3 digits. <br><br> 2. If country code is omitted, it must be a valid Singapore phone number. It must start with 3, 6, 8 or 9 and must be in the following formats: `XXXXYYYY`, `XXXX-YYYY` or `XXXX YYYY`. <br><br>3. Other than the above constraints, there is no other validation to check if a country code is valid. Furthermore, given a country code, there is no phone validation specific to the country code. This would be part of the planned improvements. |
 | **EMAIL**       | e/     | Must be of the format local-part@domain and adhere to the following constraints: <br><br> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br><br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br><br> 2a. end with a domain label at least 2 characters long <br> 2b. have each domain label start and end with alphanumeric characters <br> 2c. have each domain label consist of alphanumeric characters, separated only by hyphens, if any.                                                   |
 | **COUNTRY**     | c/     | Must be a valid ISO-3166-1 alpha-2 code which can be found from https://www.iso.org/obp/ui/#search/code/. It is case-sensitive and must be in ALL CAPITALS. Alternatively, you can refer to the [appendix](#appendix-country-codes) for the exact ISO code to use for each country. Note that the value for country field shown on the UI is the English display name equivalent of the ISO code for user convenience, and what is actually stored in the backend is the ISO code.                                                                                                                                                                                                                                                                  |
-| **TAG**         | t/     | Cannot be blank (except in edit command), and only alphanumeric characters are allowed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **COMMENT**     | None   | Can be blank and does not have any constraints.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **TAG**         | t/     | Cannot be blank (except in edit command), and only alphanumeric characters with no whitespace are allowed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **COMMENT**     | m/     | Can be blank and does not have any constraints.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | **TITLE**       | ti/    | Cannot be blank and has a character limit of 100.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | **DESCRIPTION** | d/     | Can be blank and does not have any constraints.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | **VACANCY**     | v/     | Must be a positive integer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -131,7 +131,7 @@ The following is an example of how the `add_job` command can be run in the GUI.
 
 ![AddJobCommand](images/add-job/AddJobCommand.png)
 
-After the application has been successfully added, a success message will be shown in the output box. You can also see your new job in the job list display as seen below
+After the application has been successfully added, a success message will be shown in the output box. You can also see your new job in the job list display as seen below.
 
 ![AddJobOutput](images/add-job/AddJobOutput.png)
 
@@ -242,7 +242,7 @@ If tag command is successfully executed, the app will display the candidate with
 
 ### Delete tag of a candidate: `delete_tag`
 
-Deletes existing tag(s) from a candidate's list of tags
+Deletes existing tag(s) from a candidate's list of tags.
 
 You can delete tags for any candidates in the displayed list at the specified **INDEX**. Here, **INDEX** refers to the index number of candidates shown in the displayed candidate list. The candidate index **must be** within the range from ***1*** to ***n***, where ***n*** represents the **number of candidates** in the candidate list displayed in the UI.
 
@@ -289,7 +289,7 @@ Format: `delete INDEX`
 
 ---
 
-* If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the candidate from the list and display the deleted candidate. If **N** is selected, it will display that the delete operation is cancelled.
+* If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** (case-sensitive) to confirm the deletion. If **Y** is selected, it will delete the candidate from the list and display the deleted candidate. If **N** is selected, it will display that the delete operation is cancelled.
 * Applications involving the candidate to delete will also be deleted.
 
 ---
@@ -318,7 +318,7 @@ Format: `delete_job INDEX`
 
 ---
 
-* If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the job from the list and display the deleted job. If **N** is selected, it will display that the delete operation is cancelled.
+* If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** (case-sensitive) to confirm the deletion. If **Y** is selected, it will delete the job from the list and display the deleted job. If **N** is selected, it will display that the delete operation is cancelled.
 * Applications involving the job to delete will also be deleted.
 
 ---
@@ -336,7 +336,7 @@ Format: `delete_app INDEX`
 
 ---
 
-* If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** to confirm the deletion. If **Y** is selected, it will delete the application from the list and display the deleted application. If **N** is selected, it will display that the delete operation is cancelled.
+* If INDEX provided is valid, a confirmation message would be displayed where the user would type **Y/N** (case-sensitive) to confirm the deletion. If **Y** is selected, it will delete the application from the list and display the deleted application. If **N** is selected, it will display that the delete operation is cancelled.
 
 ---
 
@@ -347,7 +347,7 @@ Example:
 
 Clears all entries from Hirehub's candidate list. All applications will be cleared as well.
 
-* A confirmation message would be displayed. Type in **Y** to confirm the deletion.
+* If the candidate list is not empty, a confirmation message would be displayed where the user would type **Y/N** (case-sensitive) to confirm the deletion. If **Y** is selected, it will clear the candidate list and display a success message. If **N** is selected, it will display that the clear operation is cancelled.
 
 Format: `clear`
 
@@ -361,7 +361,7 @@ Format: `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [t/TAG]`
 * The search is case-sensitive, e.g. `hans` will not match `Hans`.
 * For email, country and phone, only full words will be matched.
 * For name, comment and tag, partial words will be matched, e.g. `Han` will match `Hans`.
-* The search will fail if either of the email, country, phone is in an invalid format.
+* The search will fail if any of the specified fields is in an invalid format.
 * If multiple fields are specified, only candidates that match **all** the specified attributes will be returned.
 
 Examples:
@@ -378,6 +378,7 @@ Format: `search_job [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]`
 * The search is case-sensitive, e.g. `engineer` will not match `Engineer`.
 * For title and description, partial words will be matched.
 * For vacancy, only jobs with the same number of vacancies will be matched.
+* The search will fail if any of the specified fields is in an invalid format.
 * If multiple fields are specified, only jobs that match **all** the specified attributes will be returned.
 
 Examples:
@@ -471,10 +472,6 @@ If your changes to the data files makes their format invalid, HireHub will disca
 Furthermore, certain edits can cause HireHub to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data files only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -485,7 +482,7 @@ _Details coming soon ..._
 **Q**: What is the difference between `edit` and `tag`?<br>
 **A**: `edit` will overwrite any current tags with new tags, while `tag` will append the new tags to the current ones. For example, suppose that John is candidate 1 with tags `Internal` and `Waitlist`. `edit 1 t/QuantResearcher` will change John's tags to just `QuantResearcher`, while `tag t/QuantResearcher` will change John's tags to `Internal`, `Waitlist` and `QuantResearcher`.
 
-**Q**: Why can't I add/edit a candidate/job respectively?
+**Q**: Why can't I add/edit a candidate/job respectively?<br>
 **A**: Check the email/title of the candidate/job again. After add/edit operation, no 2 candidates can have the same email (not name), and no 2 jobs can have the same title.
 
 --------------------------------------------------------------------------------------------------------------------
