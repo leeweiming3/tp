@@ -414,7 +414,7 @@ Format: `get INDEX`
 * `INDEX` must be within the range `1` to `n`, where `n` is the number of candidates currently displayed in the `"Candidates"` column of the app.
 
 Example:
-* `get 24` returns the candidate with index 24.
+* `get 4` returns the candidate with index 4.
 
 ### Finding remaining vacancies: `slots_left`
 
