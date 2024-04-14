@@ -272,6 +272,21 @@ Step 3. `AddApplicationCommandParser#parse(String)` creates a new `AddApplicatio
 
 Step 4.`AddApplicationCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` and `Job` are found, and an `Application` object containing the `Person` and the `Job` is created. `model#addApplication(Application)` is then called and the `Application` is added to the list of `Application`s in `model`.
 
+Design considerations:
+Aspect: Format of add_app command:
+
+Alternative 1 (current choice): Use primary keys for `Person` (`Email`) and `Job` (job `Title`) as argument.
+
+Pros: `Email` of a candidate and the job `Title` that the candidate applies for are usually known beforehand to the recruiters, and they are unique primary keys for all candidates and jobs in the their respective lists.
+Cons: It is harder for the users to type out the email of a candidate and job title that the candidate intends to apply to use the command.
+
+We choose this alternative because recruiters can reduce the probability of adding incorrect application by enforcing them to explicitly type out a candidate's email and a job title that the candidate applies for.
+
+Alternative 2: Use an index of Candidate (`Person`) in the candidate list and an index of job in the job list as an input
+
+Pros: It is easier for the users to type out index of candidates and jobs displayed in their respective lists than writing email and job title everytime.
+Cons: Recruiters need to scroll down the list of candidates and jobs in order to find respective indices, which could require additional effort. Recruiters might be prone to make a mistake since they need to identify candidates and job via indices, and it might be confusing for them to discern which index is for candidates and which one is for job when employing this command.
+
 The following sequence diagram shows how a add_app operation goes through the various components:
 
 ![AddApplicationSequenceDiagram](images/AddApplicationSequenceDiagram.png)
