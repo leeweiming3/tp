@@ -270,7 +270,7 @@ Format: `status INDEX STATUS`
     * The status of the application to change to is `OFFERED`, and the number of `OFFERED` applications to the job is already equal to the number of vacancies of the job.
 
 Example:
-* `status 2 IN_PROGRESS` changes the status of the application with index 2 to `IN_PROGRESS`.
+* `status 2 WAITLIST` changes the status of the application with index 2 to `WAITLIST`.
 
 If status command is successfully executed, the app will display the application with the new status.
 
