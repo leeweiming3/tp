@@ -9,16 +9,10 @@ import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.hirehub.logic.commands.SearchCommand;
 import seedu.hirehub.logic.commands.SearchCommand.SearchPersonDescriptor;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.person.Comment;
-import seedu.hirehub.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new SearchCommand object
