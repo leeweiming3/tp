@@ -165,10 +165,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### EditJob command
-The EditJob command allows the recruiters to edit the details (job title, description, vacancy) for a particular job at a specified index from the displayed job list. Given below is an example usage scenario and how the EditJob mechanism behaves at each step.
+### edit_job command
+The edit_job command allows the recruiters to edit the details (job title, description, vacancy) for a particular job at a specified index from the displayed job list. Given below is an example usage scenario and how the edit_job mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
+Step 1. The user launches the application for the first time. `HireHub` will be initialized with the initial address book state.
 
 Step 2. The user types `edit_job 2 d/Good at OOP` to change the description of the job at index 2 to `Good at OOP`. This input is passed as an argument to `MainWindow#executeCommand(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `EditJobCommandParser#parse(String)`.
 
@@ -196,19 +196,19 @@ Cons: Job title can be quite long and cumbersome for users to type out.
 
 ![EditJobSequenceDiagram](images/EditJobSequenceDiagram.png)
 
-### Get Command
+### get command
 
-Get command allows the recruiters to retrieve the candidate from the list at specified index in the displayed candidate list. If a recruiter types in `get INDEX` with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via following via following steps:
+The get command allows the recruiters to retrieve the candidate from the list at specified index in the displayed candidate list. If a recruiter types in `get INDEX` with valid index, it returns the candidate at that specific index in the list of candidates displayed in the UI. Specifically, get command is implemented via the following steps:
 
-1. Get command class was created in `Command` file in `Logic` component which constructs a get command with candidate index as an argument.
-2. `execute()` method in getcommand class checks whether index provided by the user is valid (i.e. positive integer should be smaller than or equal to the size of displayed candidate list) or not, and filters the candidate list with given index number, creating a new `CommandResult` object that outputs success message.
+1. `GetCommand` class was created in `Command` file in `Logic` component which constructs a `GetCommand` object with candidate index as an argument.
+2. `execute()` method in `GetCommand` class checks whether index provided by the user is valid (i.e. positive integer should be smaller than or equal to the size of displayed candidate list) or not, and filters the candidate list with given index number, creating a new `CommandResult` object that outputs success message.
 3. In order for get command to get into the `Logic` component, user command must be parsed in `parser` component. In order to do so, `GetCommandParser` was created by implementing `Parser<T>` interface in the `parser` component where `parse()` method creates a `GetCommand` object with given index as an argument.
 
 Given below is an example usage scenario and how the get command mechanism behaves at each step, which could aid understanding the implementation outlined above:
 
-Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
+Step 1. The user launches the application for the first time. `HireHub` will be initialized with the initial address book state.
 
-Step 2. The user executes `get 3` command to retrieve candidate at 3rd entry in the list displayed by UI. Subsequently, `get 3` command calls `GetCommandParser#parse()`, parsing the command and creating a new `GetCommand` object by calling constructor `GetCommand(3)`
+Step 2. The user executes `get 3` command to retrieve candidate at 3rd entry in the list displayed by UI. Subsequently, `get 3` command calls `GetCommandParser#parse()`, parsing the command and creating a new `GetCommand` object by calling constructor `GetCommand(3)`.
 
 Step 3. `GetCommand#execute()` checks whether index 3 is valid argument, and if it is within the valid range, it creates `CommandResult` object to deliver success messages to `LogicManager` class.
 
@@ -234,11 +234,11 @@ Pros: Email is usually known beforehand midst of the recruitment process, and em
 
 Cons: Email could possibly be a bit long and cumbersome for users to type out.
 
-### Search Command
+### search command
 
-Search Command searches candidates whose attributes match all the corresponding attributes (i.e. intersection of all the matches). Phone, email and country are matched by equality, while name, comment, tag are matched by substring of the candidate attributes. The search operation is executed as follows:
+The search command searches candidates whose attributes match all the corresponding attributes (i.e. intersection of all the matches). Phone, email and country are matched by equality, while name, comment, tag are matched by substring of the candidate attributes. The search operation is executed as follows:
 
-Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
+Step 1. The user launches the application for the first time. `HireHub` will be initialized with the initial address book state.
 
 Step 2. The user types `search n/l c/SG` to retrieve candidates whose name contains `l`and whose country is `SG`. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `SearchCommandParser#parse(String)`.
 
@@ -259,6 +259,7 @@ The following sequence diagram shows how a search operation goes through the var
 **Alternative 1 (current choice):** Return candidates that match all the specified attributes.
 
 Pros: The user can shrink down the result list by specifying more attributes, making it easier to find a particular candidate.
+
 Cons: The user may need to run multiple search commands to find candidates that match one of the specified attributes.
 
 We choose this alternative because the recruiter tends to have a specific candidate in mind, so narrowing down the list quickly is more useful. Furthermore, this has a better niche, as finding candidates matching one of the specified attributes is easier, while finding candidates matching all the specified attributes is harder.
@@ -266,13 +267,14 @@ We choose this alternative because the recruiter tends to have a specific candid
 **Alternative 2:** Return candidates that match one of the specified attributes.
 
 Pros: It is helpful for recruiters who may have multiple possible criteria for candidates to meet. This helps to keep options open and not accidentally neglect a candidate.
+
 Cons: It is harder to shrink down the result list as specifying more attributes only increases the size of the result list. Also, finding candidates that match all the specified attributes is difficult, as the user needs to keep track of the candidates that appear in all the result lists, over multiple search commands.
 
-### SlotsLeft Command
+### slots_left command
 
-Slots left command finds the remaining vacancies of a specified job at the specified index of the displayed list of jobs. The remaining vacancies is the number of vacancies of the job, subtracted by the number of `OFFERED` applications to that job. The slots left operation is executed as follows:
+The slots_left command finds the remaining vacancies of a specified job at the specified index of the displayed list of jobs. The remaining vacancies is the number of vacancies of the job, subtracted by the number of `OFFERED` applications to that job. The slots_left operation is executed as follows:
 
-Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state.
+Step 1. The user launches the application for the first time. `HireHub` will be initialized with the initial address book state.
 
 Step 2. The user types `slots_left 3` to find the number of remaining vacancies of the job with index `3`. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `SlotsLeftCommandParser#parse(String)`.
 
@@ -280,21 +282,21 @@ Step 3. `SlotsLeftCommandParser#parse(String)` creates a new `SlotsLeftCommand` 
 
 Step 4. `SlotsLeftCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where `ModelManager#getFilteredJobList()` is called. `List#get(int)` is then called, which returns a job object. `Job#getTitle()` is then called to return a String (the title of the job), which is then used as an argument for `ModelManager#countRemainingVacancy(String)`, returning the number of remaining vacancies of the job.
 
-The following sequence diagram shows how a SlotsLeft operation goes through the various components:
+The following sequence diagram shows how a slots_left operation goes through the various components:
 
 ![SlotsLeftSequenceDiagram](images/SlotsLeftSequenceDiagram.png)
 
 **Design Consideration:**
 
-**Aspect:** Rationale behind implementation of SlotsLeft command:
+**Aspect:** Rationale behind implementation of slots_left command:
 
 At the outset, there were discussions centered around whether `vacancy` attribute for the job class should denote the remaining count of job openings or the total number of candidates intended for recruitment by the hiring entity. In consideration of the potential for recruiters to adjust the vacancy count for a given job and make references to the initial vacancy, we decided that the `vacancy` attribute shall denote the total number of positions that the recruiters aim to hire. To support enabling recruiters to ascertain the number of remaining job openings after deducting the number of offers made, a 'slots_left' command was created for this purpose.
 
-### AddApplication Command
+### add_app command
 
-Add_app adds an application containing a job and a person
+The add_app command adds an application containing a job and a person.
 
-Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state. We assume that there is an existing person and job in the initial address book state - a person with an email `example@gmail.com` and a job with title `job`.
+Step 1. The user launches the application for the first time. `HireHub` will be initialized with the initial address book state. We assume that there is an existing person and job in the initial address book state - a person with an email `example@gmail.com` and a job with title `job`.
 
 Step 2. The user enters `add_app e/example@gmail.com ti/job` to add an application for the person uniquely identified by the email `example@gmail.com`, for the job with the title `job`. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `AddApplicationCommandParser#parse(String)`.
 
@@ -308,13 +310,13 @@ Step 4.`AddApplicationCommand#execute(Model)` is then called in `LogicManager#ex
 
 **Alternative 1 (current choice):** Use primary keys for `Person` (`Email`) and `Job` (job `Title`) as argument.
 
-Pros: `Email` of a candidate and the job `Title` that the candidate applies for are usually known beforehand to the recruiters, and they are unique primary keys for all candidates and jobs in the their respective lists.
+Pros: `Email` of a candidate and the job `Title` that the candidate applies for are usually known beforehand to the recruiters, and they are unique primary keys for all candidates and jobs in their respective lists.
 
 Cons: It is harder for the users to type out the email of a candidate and job title that the candidate intends to apply to use the command.
 
 We choose this alternative because recruiters can reduce the probability of adding incorrect application by enforcing them to explicitly type out a candidate's email and a job title that the candidate applies for.
 
-**Alternative 2:** Use an index of Candidate (`Person`) in the candidate list and an index of job in the job list as an input
+**Alternative 2:** Use an index of Candidate (`Person`) in the candidate list and an index of job in the job list as an input.
 
 Pros: It is easier for the users to type out index of candidates and jobs displayed in their respective lists than writing email and job title everytime.
 
@@ -324,11 +326,11 @@ The following sequence diagram shows how a add_app operation goes through the va
 
 ![AddApplicationSequenceDiagram](images/AddApplicationSequenceDiagram.png)
 
-### Tag Command
+### tag command
 
-Tag command adds one or more tags to a person. The person retains all tags it had before.
+The tag command adds one or more tags to a person. The person retains all tags it had before.
 
-Step 1. The user launches the application for the first time. The `HireHub` will be initialized with the initial address book state. We assume that there is an existing person in the initial address book state - a person at index 1 with tag `t/tag0`.
+Step 1. The user launches the application for the first time. `HireHub` will be initialized with the initial address book state. We assume that there is an existing person in the initial address book state - a person at index 1 with tag `t/tag0`.
 
 Step 2. The user enters `tag 1 t/tag1 t/tag2` to add tags to the candidate at 1st entry in the list displayed by UI. This calls `MainWindow#execute(String)`, which subsequently calls `LogicManager#execute(String)`, which subsequently calls `AddressBookParser#parseCommand(String)`, which then calls `TagCommandParser#parse(String)`.
 
@@ -1018,3 +1020,4 @@ Hirehub data is saved locally in three separate files `addressbook.json`, `appli
 6. Currently, we can add duplicate tags to a candidate without any errors, and only one of the duplicate tags would be added to the candidate. We intend to add a message informing the user that they are adding duplicate tags.
 7. Currently, tags only support alphanumeric characters, which means that whitespaces are not supported. We intend to support tags with multiple words by relaxing the constraints of the tag to allow for whitespaces.
 8. Currently, the UI does not support wrapping of tags. We intend to fix this in the future to allow users to view tags with long names.
+9. Currently, Hirehub will throw a Null Pointer Exception if there is null in the tag list of a candidate (done via editing addressbook.json). We intend to fix this, by not only allowing Hirehub to launch (with a new empty addressbook.json) in such cases, but also inform the user that the json file is corrupted.
