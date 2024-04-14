@@ -79,6 +79,9 @@ public class SearchCommandParserTest {
         // invalid phone followed by valid email
         assertParseFailure(parser, INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 
+        // empty tag
+        assertParseFailure(parser, TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+
         // duplicate prefixes are captured before invalid values
         assertParseFailure(parser, TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
                 getErrorMessageForDuplicatePrefixes(PREFIX_TAG));
@@ -181,14 +184,5 @@ public class SearchCommandParserTest {
 
         assertParseFailure(parser, userInput,
                 getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_COUNTRY));
-    }
-
-    @Test
-    public void parse_resetTags_success() {
-        String userInput = TAG_EMPTY;
-        SearchPersonDescriptor descriptor = new SearchPersonDescriptorBuilder().withTags().build();
-        SearchCommand expectedCommand = new SearchCommand(descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
     }
 }
