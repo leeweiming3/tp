@@ -40,23 +40,23 @@ AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 
 Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
+UniquePersonList -[hidden]up-> I
 
 ModelManager --> "~* filtered" Person
 
-AddressBook *--> "1" UniqueApplicationList
+ModelManager --> "1" UniqueApplicationList
 UniqueApplicationList --> "~* all" Application
 
 Application -[hidden]up--> I
-UniqueApplicationList -[hidden]left-> I
+UniqueApplicationList -[hidden]right-> I
 
 ModelManager --> "~* filtered" Application
 
-AddressBook *--> "1" UniqueJobList
+ModelManager --> "1" UniqueJobList
 UniqueJobList --> "~* all" Job
 
 Job -[hidden]up--> I
-UniqueJobList -[hidden]right-> I
+UniqueJobList -[hidden]left-> I
 
 ModelManager --> "~* filtered" Job
 
