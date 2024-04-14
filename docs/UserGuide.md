@@ -274,7 +274,7 @@ Example:
 
 If status command is successfully executed, the app will display the application with the new status.
 
-The below demonstrates an error from the app when the user attempts to add more candidates with `OFFERED` status than the initial vacancy:
+The image below demonstrates an error from the app when the user attempts to add more applications with `OFFERED` status than the initial vacancy for the target job:
 
 ![ExceedsVacancyImage](images/status/ExceedsVacancyImage.png)
 
