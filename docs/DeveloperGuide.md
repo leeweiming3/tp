@@ -334,7 +334,7 @@ Step 3. `TagCommandParser#parse(String)` creates a new `TagCommand` object, whic
 
 Step 4.`TagCommand#execute(Model)` is then called in `LogicManager#execute(String)`, where the matching `Person` is found and the union of tags present and tags to add is calculated. A new person is created using the tag union and the old person's data. Then, the old person is updated in the person list with `ModelManager#setPerson(Person, Person)`, the filtered person list in the model is updated with `ModelManager#updateFilteredPersonList(Predicate<Person>)`, and the applications in the application list are updated to contain the edited person with `ModelManager#replaceApplications(Person, Person)`.
 
-The following sequence diagram shows how a add_app operation goes through the various components:
+The following sequence diagram shows how a tag operation goes through the various components:
 
 ![TagSequenceDiagram](images/TagSequenceDiagram.png)
 
@@ -420,11 +420,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------

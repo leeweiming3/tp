@@ -42,7 +42,6 @@ deactivate SearchPersonDescriptor
 
 create SearchCommand
 SearchCommandParser -> SearchCommand
-activate SearchCommandCommand
 
 
 SearchCommand --> SearchCommandParser

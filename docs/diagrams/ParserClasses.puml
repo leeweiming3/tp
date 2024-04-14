@@ -24,8 +24,8 @@ HiddenOutside ..> ConfirmationStageParser
 HiddenOutside ..> AddressBookParser
 AddressBookParser .down.> XYZCommandParser: <<create>>
 
-ConfirmationStageParser ..> Command: <<confirm>>
-ConfirmationStageParser ..> Command: <<deny>>
+ConfirmationStageParser --> Command: <<confirm>>
+ConfirmationStageParser --> Command: <<deny>>
 XYZCommandParser ..> XYZCommand : <<create>>
 AddressBookParser ..> Command : <<use>>
 XYZCommandParser .up.|> Parser
