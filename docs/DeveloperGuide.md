@@ -259,6 +259,7 @@ The following sequence diagram shows how a search operation goes through the var
 **Alternative 1 (current choice):** Return candidates that match all the specified attributes.
 
 Pros: The user can shrink down the result list by specifying more attributes, making it easier to find a particular candidate.
+
 Cons: The user may need to run multiple search commands to find candidates that match one of the specified attributes.
 
 We choose this alternative because the recruiter tends to have a specific candidate in mind, so narrowing down the list quickly is more useful. Furthermore, this has a better niche, as finding candidates matching one of the specified attributes is easier, while finding candidates matching all the specified attributes is harder.
@@ -266,6 +267,7 @@ We choose this alternative because the recruiter tends to have a specific candid
 **Alternative 2:** Return candidates that match one of the specified attributes.
 
 Pros: It is helpful for recruiters who may have multiple possible criteria for candidates to meet. This helps to keep options open and not accidentally neglect a candidate.
+
 Cons: It is harder to shrink down the result list as specifying more attributes only increases the size of the result list. Also, finding candidates that match all the specified attributes is difficult, as the user needs to keep track of the candidates that appear in all the result lists, over multiple search commands.
 
 ### slots_left command
