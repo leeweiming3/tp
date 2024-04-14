@@ -360,8 +360,8 @@ Format: `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [t/TAG]`
 
 * At least one of the optional fields must be provided.
 * The search is case-sensitive, e.g. `hans` will not match `Hans`.
-* For email, country and phone, only full words will be matched.
-* For name, comment and tag, partial words will be matched, e.g. `Han` will match `Hans`.
+* For email, country and phone, only full matches will be returned.
+* For name, comment and tag, partial matches will be returned, e.g. `Han` will match `Hans`.
 * The search will fail if any of the specified fields is in an invalid format.
 * If multiple fields are specified, only candidates that match **all** the specified attributes will be returned.
 
@@ -377,7 +377,7 @@ Format: `search_job [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]`
 
 * At least one of the optional fields must be provided.
 * The search is case-sensitive, e.g. `engineer` will not match `Engineer`.
-* For title and description, partial words will be matched.
+* For title and description, partial matches will be returned.
 * For vacancy, only jobs with the same number of vacancies will be matched.
 * The search will fail if any of the specified fields is in an invalid format.
 * If multiple fields are specified, only jobs that match **all** the specified attributes will be returned.
@@ -393,8 +393,8 @@ Searches applications whose attributes match the specified attributes in the sea
 Format: `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]`
 
 * At least one of the optional fields must be provided.
-* For title, partial words will be matched.
-* For email and status, only full words will be matched.
+* For title, partial matches will be returned.
+* For email and status, only full matches will be returned.
 * For email and title, the search is case-sensitive.
 * For status, the search is case-insensitive.
 * The search will fail if either email or status is in an invalid format.
