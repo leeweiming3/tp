@@ -507,19 +507,19 @@ Furthermore, certain edits can cause HireHub to behave in unexpected ways (e.g.,
 | **Delete job**          | `delete_job INDEX` <br> e.g., `delete_job 3`                                                                                                        |
 | **Delete application**  | `delete_app INDEX` <br> e.g., `delete_app 3`                                                                                                        |
 | **Delete tag**          | `delete_tag INDEX t/TAG [t/TAG]…​` <br> e.g. `delete_tag 1 t/ExceptionalWork t/IMOGold`                                                             |
-| **Edit**                | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​` <br> e.g.,`edit 24 n/Johnny Doe e/johnnydoe@gmail.com c/SG`                         |
+| **Edit**                | `edit INDEX [n/NAME] [e/EMAIL] [c/COUNTRY] [p/PHONE] [t/TAG]…​` <br> e.g.,`edit 2 n/Johnny Doe e/johnnydoe@gmail.com c/SG`                         |
 | **Edit job**            | `edit_job INDEX [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]` <br> e.g., `edit_job 1 ti/Quantitative Trader d/Must have strong statistics background v/3` |
-| **Get**                 | `get INDEX` <br> e.g., `get 24`                                                                                                                     |
+| **Get**                 | `get INDEX` <br> e.g., `get 4`                                                                                                                     |
 | **Help**                | `help`                                                                                                                                              |
 | **List**                | `list`                                                                                                                                              |
 | **List jobs**           | `list_job`                                                                                                                                          |
-| **List applications**   | `list_applications`                                                                                                                                 |
+| **List applications**   | `list_app`                                                                                                                                 |
 | **Search**              | `search [n/NAME] [e/EMAIL] [c/COUNTRY] [m/COMMENT] [p/PHONE] [t/TAG]` <br> e.g., `search n/John c/SG`                                               |
 | **Search jobs**         | `search_job [ti/TITLE] [d/DESCRIPTION] [v/VACANCY]` <br> e.g., `search_job ti/Engineer d/C++`                                                       |
 | **Search applications** | `search_app [e/EMAIL] [ti/TITLE] [s/STATUS]` <br> e.g., `search_app e/alexyeoh@example.com s/PRESCREEN`                                             |
 | **Slots left**          | `slots_left INDEX` <br> e.g., `slots_left 3`                                                                                                        |
-| **Status**              | `status INDEX INTERVIEW_STATUS` <br> e.g., `status 24 IN_PROGRESS`                                                                                  |
-| **Tag**                 | `tag INDEX t/TAG [t/TAG]…` <br> e.g., `tag 8 t/ExceptionalWork t/IMOGold t/PhD`                                                                     |
+| **Status**              | `status INDEX INTERVIEW_STATUS` <br> e.g., `status 1 IN_PROGRESS`                                                                                  |
+| **Tag**                 | `tag INDEX t/TAG [t/TAG]…` <br> e.g., `tag 5 t/ExceptionalWork t/IMOGold t/PhD`                                                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 
