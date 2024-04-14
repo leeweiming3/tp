@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S2-CS2103T-W08-1/tp/blob/master/src/main/java/seedu/hirehub/Main.java) and [`MainApp`](https://github.com/AY2324S2-CS2103T-W08-1/tp/blob/master/src/main/java/seedu/hirehub/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -68,7 +68,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103T-W08-1/tp/blob/master/src/main/java/seedu/hirehub/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -87,7 +87,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-W08-1/tp/blob/master/src/main/java/seedu/hirehub/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -228,7 +228,7 @@ Cons: This requires the user to know the index from the list of candidates displ
 
 We choose this alternative because we have a search command which supports narrowing down of the candidate list to find the desired candidate.
 
-**Alternative 2:** Use Candidate's Email as argument.
+**Alternative 2:** Use candidate's email as argument.
 
 Pros: Email is usually known beforehand midst of the recruitment process, and email is the unique primary key for all candidates in the list.
 
@@ -308,7 +308,7 @@ Step 4.`AddApplicationCommand#execute(Model)` is then called in `LogicManager#ex
 
 **Aspect:** Format of add_app command:
 
-**Alternative 1 (current choice):** Use primary keys for `Person` (`Email`) and `Job` (job `Title`) as argument.
+**Alternative 1 (current choice):** Use primary keys for `Person` (`Email`) and `Job` (job `Title`) as arguments.
 
 Pros: `Email` of a candidate and the job `Title` that the candidate applies for are usually known beforehand to the recruiters, and they are unique primary keys for all candidates and jobs in their respective lists.
 
@@ -320,7 +320,7 @@ We choose this alternative because recruiters can reduce the probability of addi
 
 Pros: It is easier for the users to type out index of candidates and jobs displayed in their respective lists than writing email and job title everytime.
 
-Cons: Recruiters need to scroll down the list of candidates and jobs in order to find respective indices, which could require additional effort. Recruiters might be prone to make a mistake since they need to identify candidates and job via indices, and it might be confusing for them to discern which index is for candidates and which one is for job when employing this command.
+Cons: Recruiters need to scroll down the list of candidates and jobs in order to find respective indices, which could require additional effort. Recruiters might be prone to make a mistake since they need to identify candidates and job via indices, and it might be confusing for them to discern which index is for candidates and which one is for job when using this command.
 
 The following sequence diagram shows how a add_app operation goes through the various components:
 
@@ -458,24 +458,23 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​            | I want to …​                                                        | So that I can…​                                                                                                           |
-|----------|--------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | recruiter          | update the contact details of potential candidates                  | quickly fix mistakes or update outdated data                                                                              |
-| `* * *`  | recruiter          | view the contact details of potential candidates in tabular format  | read the data more easily                                                                                                 |
-| `* * *`  | recruiter          | add new candidates to the database                                  | expand my network of contacts                                                                                             |
-| `* * *`  | recruiter          | delete candidates from the database                                 | comply with candidates' request to delete information in accordance with privacy acts or when the information is outdated |
-| `* * *`  | recruiter          | add tags to categorise candidates                                   | easily find candidates fulfilling a particular criteria (tag)                                                             |
-| `* * *`  | recruiter          | filter candidates by their attributes                               | easily seek out for the relevant candidates                                                                               |
-| `* * *`  | recruiter          | leave a comment on the candidate profile                            | take note of the important aspects of the candidate for future reference                                                  |
-| `* * *`  | recruiter          | keep track of the candidate's interview status                      | facilitate the interview process                                                                                          |
-| `* * *`  | recruiter          | clear the database in one single command                            | avoid typing multiple delete commands                                                                                     |
-| `* * *`  | recruiter          | view the details of a candidate of a particular row in the database | have an absolute reference of the singular candidate that I am interested in                                              |
-| `* * *`  | recruiter          | filter candidates by the jobs they applied                          | see what jobs they apply for                                                                                              |
-| `* * *`  | recruiter          | filter applications by job                                          | have an overview of all the applications for a particular job for easier processing                                       |
-| `* * *`  | recruiter          | delete specific tags                                                | undo mistakes made when adding tags                                                                                       |
-| `* * `   | recruiter          | view the number of vacancies left for each role                     | know when to stop hiring/accepting new candidates                                                                         |
-| `* * `   | recruiter          | view the contact details of potential candidates in tabular format  | see the fields clearly highlighted and defined in the UI                                                                  |
-| `* *`    | careless recruiter | confirm the clearing of the database                                | avoid any accidental deletion of the database                                                                             |
+| Priority | As a …​            | I want to …​                                                              | So that I can…​                                                                                                           |
+|----------|--------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | recruiter          | update the contact details of potential candidates                        | quickly fix mistakes or update outdated data                                                                              |
+| `* * *`  | recruiter          | view the contact details of potential candidates in tabular format        | read the data more easily                                                                                                 |
+| `* * *`  | recruiter          | add new candidates to the candidate list                                  | expand my network of contacts                                                                                             |
+| `* * *`  | recruiter          | delete candidates from the candidate list                                 | comply with candidates' request to delete information in accordance with privacy acts or when the information is outdated |
+| `* * *`  | recruiter          | add tags to categorise candidates                                         | easily find candidates fulfilling a particular criteria (tag)                                                             |
+| `* * *`  | recruiter          | filter candidates by their attributes                                     | easily seek out for the relevant candidates                                                                               |
+| `* * *`  | recruiter          | leave a comment on the candidate profile                                  | take note of the important aspects of the candidate for future reference                                                  |
+| `* * *`  | recruiter          | keep track of the candidate's interview status for particular application | facilitate the interview process                                                                                          |
+| `* * *`  | recruiter          | clear the database in one single command                                  | avoid typing multiple delete commands                                                                                     |
+| `* * *`  | recruiter          | view the details of a candidate of a particular row in the candidate list | have an absolute reference of the singular candidate that I am interested in                                              |
+| `* * *`  | recruiter          | filter candidates by the jobs they applied                                | see what jobs they apply for                                                                                              |
+| `* * *`  | recruiter          | filter applications by job                                                | have an overview of all the applications for a particular job for easier processing                                       |
+| `* * *`  | recruiter          | delete specific tags                                                      | undo mistakes made when adding tags                                                                                       |
+| `* * `   | recruiter          | view the number of vacancies left for each role                           | know when to stop hiring/accepting new candidates                                                                         |
+| `* *`    | careless recruiter | confirm the clearing of the candidate list                                | avoid any accidental deletion of the candidate list                                                                       |
 
 
 ### Use cases
@@ -925,6 +924,7 @@ Use case ends.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Command**: The first word in the user input, determines 
 * **GUI**: Graphical user interface
+* **JSON**: JavaScript Object Notation
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1020,4 +1020,4 @@ Hirehub data is saved locally in three separate files `addressbook.json`, `appli
 6. Currently, we can add duplicate tags to a candidate without any errors, and only one of the duplicate tags would be added to the candidate. We intend to add a message informing the user that they are adding duplicate tags.
 7. Currently, tags only support alphanumeric characters, which means that whitespaces are not supported. We intend to support tags with multiple words by relaxing the constraints of the tag to allow for whitespaces.
 8. Currently, the UI does not support wrapping of tags. We intend to fix this in the future to allow users to view tags with long names.
-9. Currently, Hirehub will throw a Null Pointer Exception if there is null in the tag list of a candidate (done via editing addressbook.json). We intend to fix this, by not only allowing Hirehub to launch (with a new empty addressbook.json) in such cases, but also inform the user that the json file is corrupted.
+9. Currently, Hirehub will throw a Null Pointer Exception if there is the value `null` in the tag list of a candidate (done via editing addressbook.json). We intend to fix this by allowing Hirehub to launch (with a new empty addressbook.json) and informing the user that the JSON file is corrupted.
