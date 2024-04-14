@@ -917,8 +917,6 @@ Use case ends.
 5.  Should be able to use offline
 6.  The UI should be resizable as users will likely be referencing other tabs while using this product.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
