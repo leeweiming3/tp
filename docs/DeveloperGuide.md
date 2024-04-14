@@ -286,7 +286,7 @@ The following sequence diagram shows how a SlotsLeft operation goes through the 
 
 **Aspect:** Rationale behind implementation of SlotsLeft command:
 
-At the outset, there were discussions centered around whether `vacancy` attribute for the job class should denote the remaining count of job openings or the total number of candidates intended for recruitment by the hiring entity. In consideration of the recruiters' potential necessity to adjust the vacancy count for a given job and constantly refer to the initial vacancy, it was resolved that the `vacancy` attribute shall denote the total number of positions that the recruiters aim to hire. To accommodate a functionality enabling recruiters to ascertain the number of remaining job openings after deducting the count of candidates already offered positions, a 'slots_left' command was instituted for this purpose.
+At the outset, there were discussions centered around whether `vacancy` attribute for the job class should denote the remaining count of job openings or the total number of candidates intended for recruitment by the hiring entity. In consideration of the potential for recruiters to adjust the vacancy count for a given job and make references to the initial vacancy, we decided that the `vacancy` attribute shall denote the total number of positions that the recruiters aim to hire. To support enabling recruiters to ascertain the number of remaining job openings after deducting the number of offers made, a 'slots_left' command was created for this purpose.
 
 ### AddApplication Command
 
