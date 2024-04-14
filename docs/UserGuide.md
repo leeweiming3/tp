@@ -5,17 +5,17 @@ title: User Guide
 
 HireHub is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HireHub can get your candidate management tasks done faster than traditional GUI apps.
 
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Tips on using this user guide
 
 * Go through _Quick Start_ to ensure that you are able to use hirehub.
 * Go through _Features_ to familiarise yourself with the terms used. You may want to have a separate pdf for viewing the _Features_, so that you can easily refer to it if you have forgotten any part of it.
 * To navigate to any command quickly, click the corresponding section in the _Table of Contents_.
 * If you are facing any problems, you may want to go to the _FAQ_ section to see if it addresses the problems.
-
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
@@ -48,8 +48,6 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -68,7 +66,7 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 | **TITLE**       | ti/    | Cannot be blank and has a character limit of 100.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | **DESCRIPTION** | d/     | Can be blank and does not have any constraints.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | **VACANCY**     | v/     | Must be a positive integer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **STATUS**      | s/     | Must be one of the following 5 statuses (not case-sensitive): PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                           |                                                                                                                              |                                                                                                                                         |
+| **STATUS**      | s/     | Must be one of the following 5 statuses (not case-sensitive): PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                                                                              |                                                                                                                                         |
 
 * These are the primary key (i.e. no 2 items can have the same parameter) of candidates, jobs and applications respectively:
   * **Candidates**: EMAIL
@@ -88,7 +86,6 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</div>
 
 ### Viewing help : `help`
 
@@ -97,7 +94,6 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a person: `add`
 

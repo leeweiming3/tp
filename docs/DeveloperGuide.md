@@ -103,12 +103,13 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it looks at `Logic`'s `state` and chooses the appropriate `Parser`.
-2. The command is passed to the `Parser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+2. The command is passed to the `Parser` object which in turn creates a parser that matches the command (e.g., `ConfirmationStageParser`) and uses it to parse the command.
+3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+4. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-2. Based on the `CommandResult`, the `state` of the `Logic` can be modified.
+5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+6. Based on the `CommandResult`, the `state` of the `Logic` can be modified.
+7. If the current command is a `ConfirmableCommand`, it is passed into `ConfirmationStageParser` to create the commands that will be executed when `ConfirmationStageParser` is next used (when the user confirms or refuses the next prompt).
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -116,6 +117,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `ConfirmationStageParser` class checks if the command is "Y" or "N", representing confirming or denying the previous `ConfirmableCommand` respectively, then returns the respective stored command obtained from the previous command (e.g. `AbortDeleteCommand`).
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -921,7 +923,7 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Command**: The first word in the user input
+* **Command**: The first word in the user input, determines 
 * **GUI**: Graphical user interface
 
 --------------------------------------------------------------------------------------------------------------------
@@ -957,10 +959,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: A confirmation message would be displayed where the user would type Y/N to confirm the deletion. If Y is selected, it will delete the candidate from the list and display the deleted candidate. If N is selected, it will display that the delete operation is cancelled. 
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details are shown in the UI.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
