@@ -474,7 +474,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | recruiter          | filter applications by job                                          | have an overview of all the applications for a particular job for easier processing                                       |
 | `* * *`  | recruiter          | delete specific tags                                                | undo mistakes made when adding tags                                                                                       |
 | `* * `   | recruiter          | view the number of vacancies left for each role                     | know when to stop hiring/accepting new candidates                                                                         |
-| `* * `   | recruiter          | view the contact details of potential candidates in tabular format  | see the fields clearly highlighted and defined in the UI                                                                  |
 | `* *`    | careless recruiter | confirm the clearing of the database                                | avoid any accidental deletion of the database                                                                             |
 
 
