@@ -262,7 +262,7 @@ The following sequence diagram shows how a SlotsLeft operation goes through the 
 
 ![SlotsLeftSequenceDiagram](images/SlotsLeftSequenceDiagram.png)
 
-### Add_app Command
+### AddApplication Command
 
 Add_app adds an application containing a job and a person
 
@@ -452,7 +452,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-### 1. Add candidate
+### Add candidate
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -545,6 +545,7 @@ Use case ends.
     - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
     - Use case resumes from step 5 if recruiter confirms deletion.
     - Use case resumes from step 4a if recruiter cancels deletion.
+
 ---
 
 ### Edit candidate details
