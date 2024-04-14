@@ -284,8 +284,7 @@ The following sequence diagram shows how a SlotsLeft operation goes through the 
 
 At the outset, there were discussions centered around whether `vacancy` attribute for the job class should denote the remaining count of job openings or the total number of candidates intended for recruitment by the hiring entity. In consideration of the recruiters' potential necessity to adjust the vacancy count for a given job and constantly refer to the initial vacancy, it was resolved that the `vacancy` attribute shall denote the total number of positions that the recruiters aim to hire. To accommodate a functionality enabling recruiters to ascertain the number of remaining job openings after deducting the count of candidates already offered positions, a 'slots_left' command was instituted for this purpose.
 
-
-### Add_app Command
+### AddApplication Command
 
 Add_app adds an application containing a job and a person
 
@@ -476,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-### 1. Add candidate
+### Add candidate
 
 **System**: Hirehub (Candidate Management System for Company Recruiters)
 
@@ -569,6 +568,7 @@ Use case ends.
     - Use case 4b is repeated if the recruiter enters invalid input for the confirmation page again.
     - Use case resumes from step 5 if recruiter confirms deletion.
     - Use case resumes from step 4a if recruiter cancels deletion.
+
 ---
 
 ### Edit candidate details
