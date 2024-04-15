@@ -2,18 +2,19 @@
 layout: page
 title: User Guide
 ---
+### Introduction
+Welcome to Hirehub! HireHub is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Within Hirehub, recruiters can easily manage their candidates, jobs and job applications. If you can type fast, HireHub can get your candidate management tasks done faster than traditional GUI apps!
 
-HireHub is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Within Hirehub, recruiters can easily manage their candidates, jobs and job applications. If you can type fast, HireHub can get your candidate management tasks done faster than traditional GUI apps.
-
+This guide will help you set up HireHub and learn the various commands to manage your recruiting needs. For the detail-oriented, it also contains a comprehensive list of commands and their formats. Check out the Quick Start and Command Summary if you are in a hurry.
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Tips on using this user guide
 
 * Go through _Quick Start_ to ensure that you are able to use hirehub.
-* Go through _Features_ to familiarise yourself with the terms used. You may want to have a separate pdf for viewing the _Features_, so that you can easily refer to it if you have forgotten any part of it.
+* Go through _Features_ to familiarise yourself with the terms used in this document. You may want to have a separate pdf for viewing the _Features_, so that you can easily refer to it if you have forgotten any part of it.
 * To navigate to any command quickly, click the corresponding section in the _Table of Contents_.
 * If you are facing any problems, you may want to go to the _FAQ_ section to see if it addresses the problems.
 
@@ -21,16 +22,17 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `hirehub.jar` from [here](https://github.com/AY2324S2-CS2103T-W08-1/tp/releases).
+2. Download `hirehub.jar` of our latest release, located under "v1.4" under "assets", from [here](https://github.com/AY2324S2-CS2103T-W08-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your HireHub.
+3. Copy the file to a folder on your computer. This folder will be used as the _home folder_ for your HireHub.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hirehub.jar` command to run the application.<br>
+4. Open a command terminal and navigate to the folder containing `hirehub.jar`(e.g. using  the `cd` command).
+5. Type `java -jar hirehub.jar` and press enter to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   
+
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. You can use commands to add or modify data. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all contacts.
@@ -48,6 +50,16 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+Hirehub contains three lists which you can use commands on: Candidates, Jobs and Applications.
+
+Candidates represent job applicants who might apply or have applied for one or more jobs. They each have a name, phone, email and country, and optionally a comment and multiple tags to distinguish them. Each email must be distinct.
+
+Jobs represent job openings which you can recruit candidates for. Each job has a title, description and vacancy. Vacancy represents the maximum amount of candidates you can recruit for each job. Below the vacancy, there is
+no restriction for which candidate can apply for which job. Each title must be distinct.
+
+Applications represent the job applications made by a candidate towards a job. Thus, each application is associated with a candidate (via their email) and a job (via its title). When a candidate applies, they will go through an interview process and eventually be accepted or rejected, and the status of an application represents this progress.
+
 
 **:information_source: Notes about the command format:**<br>
 
@@ -69,10 +81,10 @@ HireHub is a **desktop app for managing candidates, optimized for use via a Comm
 | **VACANCY**     | v/     | Must be a positive integer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | **STATUS**      | s/     | Must be one of the following 5 statuses (not case-sensitive): PRESCREEN, IN_PROGRESS, WAITLIST, OFFERED, REJECTED                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-* These are the primary key (i.e. no 2 items can have the same parameter) of candidates, jobs and applications respectively:
-  * **Candidates**: EMAIL
-  * **Jobs**: TITLE
-  * **Applications**: (EMAIL, TITLE) - either EMAIL or TITLE can be the same, as long as both are not the same.
+* These are the primary key (i.e. no 2 items may have the same value of this parameter) of candidates, jobs and applications respectively:
+    * **Candidates**: EMAIL
+    * **Jobs**: TITLE
+    * **Applications**: (EMAIL, TITLE) - either EMAIL or TITLE can be the same, as long as both are not the same.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
