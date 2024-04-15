@@ -104,9 +104,9 @@ Applications represent the job applications made by a candidate towards a job. T
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
+
+![help message](images/helpMessage.png)
 
 ### Adding a person: `add`
 
