@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-### Introduction
+
 Welcome to HireHub! HireHub is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Within HireHub, recruiters can easily manage their candidates, jobs and job applications. If you can type fast, HireHub can get your candidate management tasks done faster than traditional GUI apps!
 
 This guide will help you set up HireHub and learn the various commands to manage your recruiting needs. For the detail-oriented, it also contains a comprehensive list of commands and their formats. Check out the Quick Start and Command Summary if you are in a hurry.
