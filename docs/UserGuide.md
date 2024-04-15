@@ -50,12 +50,13 @@ Go to Features for a more in-depth explanation of commands and parameters.
 3. Copy the file to a folder on your computer. This folder will be used as the _home folder_ for your HireHub.
 
 4. Navigate to the folder containing `hirehub.jar`.
+   
 5. Type `java -jar hirehub.jar` and press enter to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
    ![Ui](images/Ui.png)
 
-5. Now that HireHub is running, you can use commands to add or modify data. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Now that HireHub is running, you can use commands to add or modify data. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all contacts.
@@ -68,7 +69,7 @@ Go to Features for a more in-depth explanation of commands and parameters.
 
     * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
