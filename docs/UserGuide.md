@@ -20,13 +20,13 @@ This guide will help you set up HireHub and learn the various commands to manage
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer. If you are using Windows, open the command prompt application. If you are using Mac, open the Terminal application. Then, enter `java -—version` and press Enter. If you have Java `11` or above installed, you should see `java xx.y.zz`, where `xx` is `11` or bigger, e.g. `java 17.0.10`. If not, go to this [website](https://www.java.com/en/download/help/download_options.html) to install the correct java version.
 
 2. Download `hirehub.jar` of our latest release, located under "v1.4" under "assets", from [here](https://github.com/AY2324S2-CS2103T-W08-1/tp/releases).
 
 3. Copy the file to a folder on your computer. This folder will be used as the _home folder_ for your HireHub.
 
-4. Open a command terminal and navigate to the folder containing `hirehub.jar`(e.g. using  the `cd` command).
+4. Navigate to the folder containing `hirehub.jar`.
 5. Type `java -jar hirehub.jar` and press enter to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
@@ -532,6 +532,16 @@ Furthermore, certain edits can cause HireHub to behave in unexpected ways (e.g.,
 | **Slots left**          | `slots_left INDEX` <br> e.g., `slots_left 3`                                                                                                        |
 | **Status**              | `status INDEX INTERVIEW_STATUS` <br> e.g., `status 1 IN_PROGRESS`                                                                                  |
 | **Tag**                 | `tag INDEX t/TAG [t/TAG]…` <br> e.g., `tag 5 t/ExceptionalWork t/IMOGold t/PhD`                                                                     |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+* **Mainstream OS:** Windows, Linux, Unix, MacOS
+* **Command:** The first word in the user input
+* **Index:** The row number of the item in the individual list displayed in the app where items can be candidates, jobs or applications
+* **GUI:** Graphical user interface that the user can interact with
+* **JSON:** JavaScript Object Notation
 
 --------------------------------------------------------------------------------------------------------------------
 
