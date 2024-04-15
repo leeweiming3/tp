@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-### Introduction
+
 Welcome to HireHub! HireHub is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Within HireHub, recruiters can easily manage their candidates, jobs and job applications. If you can type fast, HireHub can get your candidate management tasks done faster than traditional GUI apps!
 
 This guide will help you set up HireHub and learn the various commands to manage your recruiting needs. For the detail-oriented, it also contains a comprehensive list of commands and their formats. Check out the Quick Start and Command Summary if you are in a hurry.
@@ -33,7 +33,7 @@ Applications represent the job applications made by a candidate towards a job. T
 
 Each command is a command word followed by a sequence of parameters, e.g. `add n/John Doe e/johnd@example.com c/HK p/61234567 t/Internal` will add a candidate named John Doe to the list. Type a command into the **Command Box**, then press Enter to execute it. You may need to confirm by entering Y or N, if the command deletes data. Output will be shown in the **Output Box**.
 
-Using commands, you can add, edit, delete, search and list (all entries) of candidates. These commands have equivalents for the Jobs and Applications list, for example `add_job` and `add_app`. (However, to edit an application you can only use status.)
+Using commands, you can `add`, `edit`, `delete`, `search` and `list` (all entries) of candidates. All of theese commands have equivalents for the Jobs and Applications list, for example `add_job` and `add_app`. (However, to edit an application you can only use status.)
 
 Other commands allow you to tag, delete tags and comment on candidates (`tag`, `delete_tag`, `comment`), clear candidates and applications (`clear`), get candidates by index (`get`) and find the remaining vacancy for a job (`slots_left`).
 
