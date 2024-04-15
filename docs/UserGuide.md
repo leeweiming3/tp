@@ -3,20 +3,43 @@ layout: page
 title: User Guide
 ---
 ### Introduction
-Welcome to Hirehub! HireHub is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Within Hirehub, recruiters can easily manage their candidates, jobs and job applications. If you can type fast, HireHub can get your candidate management tasks done faster than traditional GUI apps!
+Welcome to HireHub! HireHub is a **desktop app for managing candidates, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Within HireHub, recruiters can easily manage their candidates, jobs and job applications. If you can type fast, HireHub can get your candidate management tasks done faster than traditional GUI apps!
 
 This guide will help you set up HireHub and learn the various commands to manage your recruiting needs. For the detail-oriented, it also contains a comprehensive list of commands and their formats. Check out the Quick Start and Command Summary if you are in a hurry.
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ### Tips on using this user guide
 
-* Go through _Quick Start_ to ensure that you are able to use hirehub.
+* Go through _Quick Start_ to ensure that you are able to use HireHub.
+* For a quick explanation of HireHub, go through _Introduction to HireHub_.
 * Go through _Features_ to familiarise yourself with the terms used in this document. You may want to have a separate pdf for viewing the _Features_, so that you can easily refer to it if you have forgotten any part of it.
 * To navigate to any command quickly, click the corresponding section in the _Table of Contents_.
 * If you are facing any problems, you may want to go to the _FAQ_ section to see if it addresses the problems.
+
+### Introduction to HireHub
+
+HireHub contains three lists which you can use commands on: Candidates, Jobs and Applications.
+
+![Ui](images/UiEdited.png)
+
+Candidates represent job applicants who might apply or have applied for one or more jobs. They each have a name, phone, email and country, and optionally a comment and multiple tags to distinguish them. Each email must be distinct.
+
+Jobs represent job openings which you can recruit candidates for. Each job has a title, description and vacancy. Vacancy represents the maximum amount of candidates you can recruit for each job. Below the vacancy, there is
+no restriction for which candidate can apply for which job. Each title must be distinct.
+
+Applications represent the job applications made by a candidate towards a job. Thus, each application is associated with a candidate (via their email) and a job (via its title). These must be distinct. When a candidate applies, they will go through an interview process and eventually be accepted or rejected, and the status of an application represents this progress.
+
+Each command is a command word followed by a sequence of parameters, e.g. `add n/John Doe e/johnd@example.com c/HK p/61234567 t/Internal` will add a candidate named John Doe to the list. Type a command into the **Command Box**, then press Enter to execute it. You may need to confirm by entering Y or N, if the command deletes data. Output will be shown in the **Output Box**.
+
+Using commands, you can add, edit, delete, search and list (all entries) of candidates. These commands have equivalents for the Jobs and Applications list, for example `add_job` and `add_app`. (However, to edit an application you can only use status.)
+
+Other commands allow you to tag, delete tags and comment on candidates (`tag`, `delete_tag`, `comment`), clear candidates and applications (`clear`), get candidates by index (`get`) and find the remaining vacancy for a job (`slots_left`).
+
+Finally, enter `help` to view this guide or `exit` to close HireHub.
+
+Go to Features for a more in-depth explanation of commands and parameters.
 
 ## Quick start
 
@@ -32,7 +55,7 @@ This guide will help you set up HireHub and learn the various commands to manage
 
    ![Ui](images/Ui.png)
 
-5. You can use commands to add or modify data. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Now that HireHub is running, you can use commands to add or modify data. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all contacts.
@@ -50,17 +73,6 @@ This guide will help you set up HireHub and learn the various commands to manage
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-
-Hirehub contains three lists which you can use commands on: Candidates, Jobs and Applications.
-
-Candidates represent job applicants who might apply or have applied for one or more jobs. They each have a name, phone, email and country, and optionally a comment and multiple tags to distinguish them. Each email must be distinct.
-
-Jobs represent job openings which you can recruit candidates for. Each job has a title, description and vacancy. Vacancy represents the maximum amount of candidates you can recruit for each job. Below the vacancy, there is
-no restriction for which candidate can apply for which job. Each title must be distinct.
-
-Applications represent the job applications made by a candidate towards a job. Thus, each application is associated with a candidate (via their email) and a job (via its title). When a candidate applies, they will go through an interview process and eventually be accepted or rejected, and the status of an application represents this progress.
-
-
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -108,14 +120,14 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 
-### Adding a person: `add`
+### Adding a candidate: `add`
 
-Adds a person to the candidate list.
+Adds a candidate to the candidate list.
 
 Format: `add n/NAME e/EMAIL c/COUNTRY p/PHONE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A candidate can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -126,7 +138,7 @@ The following is an example of how the `add` command can be run in the GUI.
 
 ![AddCommand](images/add/AddCommand.png)
 
-After the application has been successfully added, a success message will be shown in the output box. You can also see your new person in the person list display as seen below.
+After the application has been successfully added, a success message will be shown in the output box. You can also see your new candidate in the candidate list display as seen below.
 
 ![AddOutput](images/add/AddOutput.png)
 
@@ -317,7 +329,7 @@ A confirmation message will show up. Type **Y** to confirm the deletion.
 
 ![DeleteConfirmation](images/delete/DeleteConfirmation.png)
 
-After the person has been successfully added, a success message will be shown in the output box. You can see the person deleted from the person list, and all corresponding applications associated with the deleted person have been removed as well, as seen below.
+After the candidate has been successfully added, a success message will be shown in the output box. You can see the candidate deleted from the candidate list, and all corresponding applications associated with the deleted candidate have been removed as well, as seen below.
 
 ![DeleteCommandOutput](images/delete/DeleteCommandOutput.png)
 
@@ -358,7 +370,7 @@ Example:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from Hirehub's candidate list. All applications will be cleared as well.
+Clears all entries from HireHub's candidate list. All applications will be cleared as well.
 
 * If the candidate list is not empty, a confirmation message would be displayed where the user would type **Y/N** (case-sensitive) to confirm the deletion. If **Y** is selected, it will clear the candidate list and display a success message. If **N** is selected, it will display that the clear operation is cancelled.
 
@@ -430,7 +442,7 @@ Example:
 
 ### Finding remaining vacancies: `slots_left`
 
-Finds the remaining vacancies of a job at the specified **INDEX** from the list of jobs displayed in the Hirehub app. The remaining vacancies is the number of vacancies of the job, subtracted by the number of applications to the job with `OFFERED` status.
+Finds the remaining vacancies of a job at the specified **INDEX** from the list of jobs displayed in the HireHub app. The remaining vacancies is the number of vacancies of the job, subtracted by the number of applications to the job with `OFFERED` status.
 
 The remaining vacancies of the job will be displayed in the message box.
 
@@ -448,9 +460,9 @@ Now, the status of application for candidate "Alex Yeoh" is updated to `OFFERED`
 ![VacancyLeftScreenshot](images/slots-left/VacancyLeftScreenshot.png)
 
 
-### Listing all persons : `list`
+### Listing all candidates : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all candidates in the address book.
 
 Format: `list`
 
